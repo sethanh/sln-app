@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "../../",
+    "baseUrl": "../../",
+    "paths": {
+      "@my-monorepo/ui": ["packages/ui/src"],
+      "@my-monorepo/utils": ["packages/utils/src"]
+    }
+  },
+  "include": [
+    "src",
+    "../../packages/ui/src",
+    "../../packages/utils/src",
+    "vite.config.ts"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "my-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "management": "yarn workspace management dev"
+  }
+}
