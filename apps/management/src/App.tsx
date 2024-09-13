@@ -1,21 +1,10 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button } from '@my-monorepo/ui';
-import { formatDate, capitalize } from '@my-monorepo/utils';
+import {ManagementLayout} from './Layouts'
 
 function App() {
-  const handleClick = () => {
-    alert('Button clicked!');
-  };
-
-  const name = 'john doe';
-  const capitalized = capitalize(name);
-  const currentDate = formatDate(new Date());
 
   return (
     <>
-      <div>
+      {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -29,7 +18,8 @@ function App() {
       <p>Name: {capitalized}</p>
       <p>Current Date: {currentDate}</p>
       <Button label="Click Me" onClick={handleClick} />
-    </div>
+    </div> */}
+    <ManagementLayout></ManagementLayout>
     </>
   )
 }
