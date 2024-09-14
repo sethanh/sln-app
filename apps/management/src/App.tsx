@@ -1,12 +1,12 @@
-import {ManagementLayout} from './Layouts'
-import { BrowserRouter } from 'react-router-dom'
+import { ManagementLayout } from './Layouts'
+import { ManagementBrowserRouter } from './Routes'
 
 function App() {
 
   return (
-    <BrowserRouter>
-    <ManagementLayout></ManagementLayout>
-    </BrowserRouter>
+    <ManagementBrowserRouter>
+      <ManagementLayout />
+    </ManagementBrowserRouter>
   )
 }
 
