@@ -5,26 +5,35 @@ import './Sidebar.css'
 import { DownOutlined, RightOutlined } from '@ant-design/icons';
 
 
-export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({ label, onClick, className, children, sidebarItems }) => {
+export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
+  label,
+  className,
+  children,
+  sidebarItems,
+  border,
+  Icon
+}) => {
   const [showItem, setShowItem] = useState(false);
   return (
     <div className={`group-sidebar-wrapper ${className}`} >
-      <div className="group-sidebar-label" onClick={() => { setShowItem(!showItem) }}>
+      <div className={`group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { setShowItem(!showItem) }}>
+        <div className="group-sidebar-label-pre">
+          {Icon}
+          <div className="group-sidebar-label-pre-label">{label}</div>
+        </div>
         {
           showItem
-          &&<DownOutlined style={{ fontSize: '8px' }}/>
-          ||<RightOutlined style={{ fontSize: '8px' }}/>
+          && <DownOutlined style={{ fontSize: '12px' }} />
+          || <RightOutlined style={{ fontSize: '12px' }} className={`${!border?'group-sidebar-label-pre-icon':''}`}/>
         }
-        <div>{label}</div>
       </div>
       {
         showItem && (
           <div className="group-sidebar-item-wrapper">
             {
-              sidebarItems?.map((item  , index) => (
+              sidebarItems?.map((item, index) => (
                 <SidebarItem
                   {...item}
-                  onClick={onClick}
                 />
               ))
             }

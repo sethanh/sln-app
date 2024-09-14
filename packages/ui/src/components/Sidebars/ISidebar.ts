@@ -1,15 +1,27 @@
 export interface IGroupSidebarProps {
     label: string
-    onClick: () => void
     className?: string
     sidebarItems?: ISidebarItemProps[]
+    Icon?: React.ReactNode 
+    border?: boolean
+}
+
+export interface ISingleSidebarProps {
+    label: string
+    className?: string
+    PreIcon?: React.ReactNode 
+    border?: boolean
+    NextIcon?: React.ReactNode
+    onClick?: (value?: string) => void
+    name?: string
+    value?: string
 }
 
 export interface ISidebarItemProps {
     label: string
     name?: string
     value?: string
-    onClick?: () => void
+    onClick?: (value?: string) => void
     className?: string
-    Icon?: React.ReactNode; 
+    Icon?: React.ReactNode 
 }

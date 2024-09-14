@@ -1,13 +1,31 @@
-body {
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0 auto;
-  background-color: #F8F9FA;
+
+:root {
+  --background-color:rgb(242, 242, 242);
+  --text-color: black;
+  --primary-color: blue;
+  --background-white-color:white;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@font-face {
+  font-family: 'Gelion';
+  src: url('./assets/fonts/Gelion-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.dark-theme {
+  --background-color: black;
+  --text-color: white;
+  --primary-color: lightblue;
+  --background-white-color:black;
+}
+
+body {
+  font-family: 'Gelion', Helvetica, "Helvetica Neue", Arial;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 1.0rem;
+  font-variant-ligatures: no-common-ligatures;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
