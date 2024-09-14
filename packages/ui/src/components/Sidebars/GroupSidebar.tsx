@@ -11,9 +11,10 @@ export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
   children,
   sidebarItems,
   border,
-  Icon
+  Icon,
+  defaultShowItem
 }) => {
-  const [showItem, setShowItem] = useState(false);
+  const [showItem, setShowItem] = useState(defaultShowItem || false);
   return (
     <div className={`group-sidebar-wrapper ${className}`} >
       <div className={`group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { setShowItem(!showItem) }}>

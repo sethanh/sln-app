@@ -4,6 +4,7 @@ export interface IGroupSidebarProps {
     sidebarItems?: ISidebarItemProps[]
     Icon?: React.ReactNode 
     border?: boolean
+    defaultShowItem?: boolean
 }
 
 export interface ISingleSidebarProps {
