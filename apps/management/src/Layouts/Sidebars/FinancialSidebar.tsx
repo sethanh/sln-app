@@ -1,6 +1,7 @@
 import React from 'react';
 import {GroupSidebar, ISidebarItemProps} from '@my-monorepo/ui'
 import { AimOutlined, ClusterOutlined, FundProjectionScreenOutlined, RiseOutlined, UserOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const sidebarItems : ISidebarItemProps[]= [
     {
@@ -26,12 +27,15 @@ const sidebarItems : ISidebarItemProps[]= [
 ]  as ISidebarItemProps[];
 
 export const FinancialSidebar: React.FC = () => {
+    const navigate = useNavigate();
+    
     return (
        <GroupSidebar 
             label='Financial'
             sidebarItems={sidebarItems}
             Icon={<FundProjectionScreenOutlined />}
             border={true}
+            onClick={(e?: string)=> navigate(e||"")}
        />
     );
 };

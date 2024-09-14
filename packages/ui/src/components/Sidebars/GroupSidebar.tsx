@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, FC, useState } from 'react';
-import { IGroupSidebarProps } from './ISidebar';
+import { IGroupSidebarProps, ISidebarItemProps } from './ISidebar';
 import { SidebarItem } from './SidebarItem';
 import './Sidebar.css'
 import { DownOutlined, RightOutlined } from '@ant-design/icons';
@@ -12,9 +12,19 @@ export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
   sidebarItems,
   border,
   Icon,
-  defaultShowItem
+  defaultShowItem,
+  onClick
 }) => {
   const [showItem, setShowItem] = useState(defaultShowItem || false);
+  const onNavigate = (item: ISidebarItemProps) =>{
+    if(onClick)
+    {
+      return onClick(item.value)
+    }
+
+    return item.onClick
+  }
+
   return (
     <div className={`group-sidebar-wrapper ${className}`} >
       <div className={`group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { setShowItem(!showItem) }}>
@@ -35,6 +45,8 @@ export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
               sidebarItems?.map((item, index) => (
                 <SidebarItem
                   {...item}
+                  onClick={()=> onNavigate(item)}
+                  key={index}
                 />
               ))
             }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {GroupSidebar, ISidebarItemProps} from '@my-monorepo/ui'
 import { ClusterOutlined, NodeIndexOutlined, ScheduleOutlined, SlidersOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 const sidebarItems : ISidebarItemProps[]= [
     {
@@ -26,11 +27,13 @@ const sidebarItems : ISidebarItemProps[]= [
 ]  as ISidebarItemProps[];
 
 export const TaskSidebar: React.FC = () => {
+    const navigate = useNavigate();
     return (
        <GroupSidebar 
             label='Task'
             sidebarItems={sidebarItems}
             Icon={<NodeIndexOutlined />}
+            onClick={(e)=> navigate(e||'')}
        />
     );
 };
