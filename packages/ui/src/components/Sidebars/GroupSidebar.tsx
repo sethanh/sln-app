@@ -13,17 +13,8 @@ export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
   border,
   Icon,
   defaultShowItem,
-  onClick
 }) => {
   const [showItem, setShowItem] = useState(defaultShowItem || false);
-  const onNavigate = (item: ISidebarItemProps) =>{
-    if(onClick)
-    {
-      return onClick(item.value)
-    }
-
-    return item.onClick
-  }
 
   return (
     <div className={`group-sidebar-wrapper ${className}`} >
@@ -45,7 +36,6 @@ export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
               sidebarItems?.map((item, index) => (
                 <SidebarItem
                   {...item}
-                  onClick={()=> onNavigate(item)}
                   key={index}
                 />
               ))
