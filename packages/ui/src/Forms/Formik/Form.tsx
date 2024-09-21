@@ -1,29 +1,35 @@
-import React, { ReactNode } from 'react';
-import { Formik, Form, FormikHelpers } from 'formik';
+import React from 'react';
+import { Formik, Form, Field, FormikHelpers, FormikProps } from 'formik';
+import * as Yup from 'yup';
 
-interface FormProps<T> {
-    className?: string
-    initialValues: T
-    onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void
-    children: (formData: T, submitForm: () => void) => ReactNode
+// Generic props cho form
+interface FormikFormProps<T> {
+  initialValues: T;
+  onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>;
+  validate?: (values: T) => Partial<Record<keyof T, string>> | undefined;
+  children: (formikProps: FormikProps<T>) => React.ReactNode;
+  validationSchema?: Yup.ObjectSchema<any>;
 }
 
-export const FormikForm = <T extends {}>({
-    initialValues,
-    onSubmit,
-    children,
-    className
-}: FormProps<T>) => {
-    return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={onSubmit}
-        >
-            {({ values, submitForm }) => (
-                <Form className={`${className}`}>
-                    {children(values, submitForm)}
-                </Form>
-            )}
-        </Formik>
-    );
-};
+function FormikForm<T extends object>({
+  initialValues,
+  onSubmit,
+  validate,
+  children,
+}: FormikFormProps<T>) {
+  return (
+    <Formik<T>
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validate={validate}
+    >
+      {(formikProps) => (
+        <Form onSubmit={formikProps.handleSubmit}>
+          {children(formikProps)}
+        </Form>
+      )}
+    </Formik>
+  );
+}
+
+export default FormikForm;
