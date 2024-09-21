@@ -9,7 +9,7 @@ export const SidebarItem: FC<ISidebarItemProps> = ({ label, onClick, Icon, value
   const onNavigate = (path?: string) => {
     if(onClick)
     {
-      onClick(path);
+      return onClick(path);
     }
     navigate(path || '');
   } 

@@ -1,11 +1,11 @@
-.group-sidebar-wrapper{
+.sent_group-sidebar-wrapper{
     min-width: 14rem;
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
 }
 
-.group-sidebar-label{
+.sent_group-sidebar-label{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -20,30 +20,30 @@
     box-shadow: rgba(3, 3, 3, 0.08) 0px 2px 8px;
 }
 
-.group-sidebar-label-pre{
+.sent_group-sidebar-label-pre{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
-.group-sidebar-label-pre-label{
+.sent_group-sidebar-label-pre-label{
     margin: 0 0.5rem;
 }
 
-.group-sidebar-label:hover{
+.sent_group-sidebar-label:hover{
     opacity: 0.9;
     box-shadow: rgba(3, 3, 3, 0.2) 0px 2px 8px;
 }
 
-.group-sidebar-label:hover .group-sidebar-label-pre-icon {
+.sent_group-sidebar-label:hover .sent_group-sidebar-label-pre-icon {
     display: inline-block;
 }
 
-.group-sidebar-label-pre-icon{
+.sent_group-sidebar-label-pre-icon{
     display: none;
 }
 
-.group-sidebar-item-wrapper{
+.sent_group-sidebar-item-wrapper{
     margin-top: 0.5rem;
     border-radius: 0.5rem;
     background-color: rgb(242, 242, 242);
@@ -64,7 +64,7 @@
     background-color: #E6F4FF;
     border-radius: 0.5rem;
 }
-.account-action-avatar{
+.sent_account-action-avatar{
     width: 2rem;
     height: 2rem;
     background-color: #FCE8EC;
@@ -76,7 +76,7 @@
     border: #FCD1DA solid 1px;
 }
 
-.account-profile-avatar{
+.sent_account-profile-avatar{
     width: 1.8rem;
     height: 1.8rem;
     background-color: #C0DDFF;

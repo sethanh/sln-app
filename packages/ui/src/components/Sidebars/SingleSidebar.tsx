@@ -18,19 +18,19 @@ export const SingleSidebar: FC<PropsWithChildren<ISingleSidebarProps>> = ({
   const onNavigate = (path?: string) => {
     if(onClick)
     {
-      onClick(path);
+      return onClick(path);
     }
     navigate(path || '');
   } 
   
   return (
-    <div className={`group-sidebar-wrapper ${className}`} >
-      <div className={`group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { onNavigate(value)}}>
-        <div className="group-sidebar-label-pre">
+    <div className={`sent_group-sidebar-wrapper ${className}`} >
+      <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { onNavigate(value)}}>
+        <div className="sent_group-sidebar-label-pre">
           {PreIcon}
-          <div className="group-sidebar-label-pre-label">{label}</div>
+          <div className="sent_group-sidebar-label-pre-label">{label}</div>
         </div>
-        <PlusOutlined style={{ fontSize: '12px' }} className={`${!border?'group-sidebar-label-pre-icon':''}`}/> 
+        <PlusOutlined style={{ fontSize: '12px' }} className={`${!border?'sent_group-sidebar-label-pre-icon':''}`}/> 
       </div>
     </div>
   );

@@ -22,11 +22,11 @@ export const AccountProfile: FC<PropsWithChildren<IAccountActionProps>> = ({
   const termName = getInitials(label);
   const LasName = getLastName(label);
   return (
-    <div className={`group-sidebar-wrapper ${className}`} >
-      <div className={`group-sidebar-label ${border ? 'shadow-border' : ''}`}>
-        <div className="group-sidebar-label-pre">
-          <div className="account-profile-avatar">{termName.toUpperCase()}</div>
-          <div className="group-sidebar-label-pre-label">{LasName} Organization</div>
+    <div className={`sent_group-sidebar-wrapper ${className}`} >
+      <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
+        <div className="sent_group-sidebar-label-pre">
+          <div className="sent_account-profile-avatar">{termName.toUpperCase()}</div>
+          <div className="sent_group-sidebar-label-pre-label">{LasName} Organization</div>
         </div>
       </div>
     </div>

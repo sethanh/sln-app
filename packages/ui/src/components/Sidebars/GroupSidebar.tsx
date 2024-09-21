@@ -17,21 +17,21 @@ export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
   const [showItem, setShowItem] = useState(defaultShowItem || false);
 
   return (
-    <div className={`group-sidebar-wrapper ${className}`} >
-      <div className={`group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { setShowItem(!showItem) }}>
-        <div className="group-sidebar-label-pre">
+    <div className={`sent_group-sidebar-wrapper ${className}`} >
+      <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { setShowItem(!showItem) }}>
+        <div className="sent_group-sidebar-label-pre">
           {Icon}
-          <div className="group-sidebar-label-pre-label">{label}</div>
+          <div className="sent_group-sidebar-label-pre-label">{label}</div>
         </div>
         {
           showItem
           && <DownOutlined style={{ fontSize: '12px' }} />
-          || <RightOutlined style={{ fontSize: '12px' }} className={`${!border?'group-sidebar-label-pre-icon':''}`}/>
+          || <RightOutlined style={{ fontSize: '12px' }} className={`${!border?'sent_group-sidebar-label-pre-icon':''}`}/>
         }
       </div>
       {
         showItem && (
-          <div className="group-sidebar-item-wrapper">
+          <div className="sent_group-sidebar-item-wrapper">
             {
               sidebarItems?.map((item, index) => (
                 <SidebarItem
