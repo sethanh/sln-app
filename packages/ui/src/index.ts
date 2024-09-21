@@ -1,4 +1,4 @@
-export { default as Button } from './components/Button';
+export { default as Button } from './Components/Button';
 export * from './Layouts';
-export * from './components'
+export * from './Components'
 export * from './Routes'

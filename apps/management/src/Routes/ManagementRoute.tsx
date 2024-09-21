@@ -2,7 +2,7 @@ import { FC } from 'react';
 import {RouteApp} from '@my-monorepo/ui'
 import { ManagementContentItem, ManagementContentHeader } from '../Layouts';
 import { ManagementContentBody } from '../Layouts/Contents/ManagementContentBody';
-import { IRouteAppItem } from 'packages/ui/src/Routes/IRouteApp';
+import { IRouteAppItem } from '@my-monorepo/ui/src/Routes/IRouteApp';
 
 const routes = [
     {
