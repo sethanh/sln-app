@@ -33,6 +33,7 @@ export const FinancialSidebar: React.FC = () => {
             sidebarItems={sidebarItems}
             Icon={<FundProjectionScreenOutlined />}
             border={true}
+            defaultShowItem={true}
        />
     );
 };

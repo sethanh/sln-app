@@ -26,24 +26,24 @@ export const MainLayout = <T,>({
     footerClassName 
   }: LayoutProps<T>) => {
   return (
-    <div className={`main-layout`}>
+    <div className={`sent_main-layout`}>
       {
         header 
-        && <header className={`main-header `}>
+        && <header className={`sent_main-header`}>
           {header}
         </header>
       }
-      <div className={`main-layout-body`}>
-        <div className={`main-sidebar ${sidebarClassName}`}>
+      <div className={`sent_main-layout-body`}>
+        <div className={`sent_main-sidebar ${sidebarClassName}`}>
           {sidebar}
         </div>
-        <div className={`main-content ${contentClassName}`}>
+        <div className={`sent_main-content ${contentClassName}`}>
           {content}
         </div>
       </div>
       {
         footer
-        && <div className={`main-footer ${footerClassName}`}>
+        && <div className={`sent_main-footer ${footerClassName}`}>
           {footer}
         </div>
       }

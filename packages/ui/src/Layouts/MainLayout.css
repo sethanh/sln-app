@@ -1,10 +1,10 @@
-.main-layout {
+.sent_main-layout {
     display: flex;
     height: 100vh;
     flex-direction: column;
 }
 
-.main-layout-body {
+.sent_main-layout-body {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -12,19 +12,19 @@
     width: 100;
 }
 
-.main-header {
+.sent_main-header{
     padding: 1rem;
 }
 
-.main-sidebar {
+.sent_main-sidebar {
     display: flex;
     flex-direction: column;
 }
 
-.main-content {
+.sent_main-content {
     flex-grow: 1;
 }
 
-.main-footer {
+.sent_main-footer {
     padding: 1rem;
 }

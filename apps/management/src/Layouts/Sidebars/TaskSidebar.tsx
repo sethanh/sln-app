@@ -32,6 +32,7 @@ export const TaskSidebar: React.FC = () => {
             label='Task'
             sidebarItems={sidebarItems}
             Icon={<NodeIndexOutlined />}
+            defaultShowItem={true}
        />
     );
 };
