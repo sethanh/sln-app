@@ -1,6 +1,5 @@
 {
   "name": "@my-monorepo/ui",
-  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -18,5 +17,7 @@
     "formik": "^2.4.6",
     "react-router-dom": "^6.26.2",
     "yup": "^1.4.0"
-  }
+  },
+  "version": "1.0.0",
+  "license": "no"
 }

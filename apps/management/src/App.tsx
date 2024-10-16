@@ -2,7 +2,6 @@ import { ManagementLayout } from './Layouts'
 import { ManagementBrowserRouter } from './Routes'
 
 function App() {
-
   return (
     <ManagementBrowserRouter>
       <ManagementLayout />
@@ -11,3 +10,5 @@ function App() {
 }
 
 export default App
+
+// context outside ManagementBrowserRouter

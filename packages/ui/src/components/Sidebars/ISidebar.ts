@@ -1,3 +1,6 @@
+import React from "react"
+import { IRouteAppItem } from "../../Routes/IRouteApp"
+
 export interface IGroupSidebarProps {
     label: string
     className?: string
@@ -19,10 +22,8 @@ export interface ISingleSidebarProps {
     value?: string
 }
 
-export interface ISidebarItemProps {
-    label: string
+export interface ISidebarItemProps extends IRouteAppItem {
     name?: string
-    value?: string
     onClick?: (value?: string) => void
     className?: string
     Icon?: React.ReactNode 
