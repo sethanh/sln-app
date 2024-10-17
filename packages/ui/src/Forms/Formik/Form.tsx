@@ -11,7 +11,7 @@ interface FormikFormProps<T> {
   validationSchema?: Yup.ObjectSchema<any>;
 }
 
-function FormikForm<T extends object>({
+export function FormikForm<T extends object>({
   initialValues,
   onSubmit,
   validate,
@@ -31,5 +31,3 @@ function FormikForm<T extends object>({
     </Formik>
   );
 }
-
-export default FormikForm;
