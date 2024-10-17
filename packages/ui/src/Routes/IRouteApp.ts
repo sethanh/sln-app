@@ -5,7 +5,7 @@ export interface IRouteApp {
 export interface IRouteAppItem {
     label?: string
     path: string
-    element: React.ReactNode 
+    page: React.ReactNode 
 }
 
 

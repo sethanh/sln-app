@@ -9,7 +9,7 @@ export const RouteApp: React.FC<IRouteApp> = ({ routes }) => {
                 routes?.map((item, index) => (
                     <Route
                         path={item.path}
-                        element={item.element}
+                        element={item.page}
                         key={index}
                     />
                 ))
