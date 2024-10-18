@@ -1,5 +1,6 @@
 import { AimOutlined, ClusterOutlined, RiseOutlined, UserOutlined, ScheduleOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import { FinancialPage, TaskPage } from "../Pages";
+import {  TaskPage } from "../Pages";
+import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "../Pages/Finances";
 import { ISidebarItemProps } from "@my-monorepo/ui";
 
 const taskSidebarConstants : ISidebarItemProps[]= [
@@ -34,25 +35,25 @@ const financialSidebarConstants : ISidebarItemProps[]= [
         label: "Personal",
         Icon: <UserOutlined />,
         path: 'financial/personal',
-        page : <FinancialPage />
+        page : <PersonalPage/>
     },
     {
         label: "Planning",
         Icon: <RiseOutlined />,
         path: 'financial/planing',
-        page : <FinancialPage />
+        page : <PlanningPage />
     },
     {
         label: "Objective",
         Icon: <AimOutlined />,
         path: 'financial/objective',
-        page : <FinancialPage />
+        page : <ObjectivePage />
     },
     {
         label: "Management",
         Icon: <ClusterOutlined />,
         path: 'financial/management',
-        page : <FinancialPage />
+        page : <FinancialManagementPage />
     }
 ]
 

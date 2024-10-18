@@ -1,2 +1,2 @@
-export * from './Financials'
+export * from './Finances'
 export * from './Tasks'
