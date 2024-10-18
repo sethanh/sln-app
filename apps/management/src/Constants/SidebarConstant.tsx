@@ -1,6 +1,12 @@
-import { AimOutlined, ClusterOutlined, RiseOutlined, UserOutlined, ScheduleOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
-import {  TaskPage } from "../Pages";
+import { 
+    AimOutlined, ClusterOutlined, RiseOutlined, UserOutlined, ScheduleOutlined, SlidersOutlined, UnorderedListOutlined, 
+    TeamOutlined, ReadOutlined 
+} from "@ant-design/icons";
+// import {  TaskPage } from "../Pages";
 import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "../Pages/Finances";
+import { AllTaskPage, TodayTaskPage, ManagementTaskPage, BackLogPage } from "../Pages/Tasks";
+import { TeamPage } from "../Pages/Teams";
+import { DocumentPage } from "../Pages/Documents";
 import { ISidebarItemProps } from "@my-monorepo/ui";
 
 const taskSidebarConstants : ISidebarItemProps[]= [
@@ -8,25 +14,25 @@ const taskSidebarConstants : ISidebarItemProps[]= [
         label: "Today",
         Icon: <ScheduleOutlined />,
         path: 'task/today',
-        page: <TaskPage />
+        page: <TodayTaskPage />
     },
     {
         label: "All",
         Icon: <UnorderedListOutlined />,
         path: 'task/all',
-        page: <TaskPage />
+        page: <AllTaskPage />
     },
     {
         label: "Management",
         Icon: <ClusterOutlined />,
         path: 'task/management',
-        page: <TaskPage />
+        page: <ManagementTaskPage />
     },
     {
         label: "Back Log",
         Icon: <SlidersOutlined />,
         path: 'task/back-log',
-        page: <TaskPage />
+        page: <BackLogPage />
     }
 ] 
 
@@ -57,6 +63,29 @@ const financialSidebarConstants : ISidebarItemProps[]= [
     }
 ]
 
-export { financialSidebarConstants, taskSidebarConstants }
+const teamSidebarConstants : ISidebarItemProps[]= [
+    {
+        label: "Team",
+        Icon: <TeamOutlined />,
+        path: 'team',
+        page : <TeamPage/>
+    }
+]
+
+const documentSidebarConstants : ISidebarItemProps[]= [
+    {
+        label: "Document",
+        Icon: <ReadOutlined />,
+        path: 'document',
+        page : <DocumentPage/>
+    }
+]
+
+export { 
+    financialSidebarConstants, 
+    taskSidebarConstants, 
+    teamSidebarConstants, 
+    documentSidebarConstants 
+}
 
 
