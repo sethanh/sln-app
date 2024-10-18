@@ -11,6 +11,7 @@ export const RouteApp: React.FC<IRouteApp> = ({ routes }) => {
                         path={item.path}
                         element={item.page}
                         key={index}
+                        loader={item.loader}
                     />
                 ))
             }
