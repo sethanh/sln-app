@@ -13,11 +13,12 @@ export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
   border,
   Icon,
   defaultShowItem,
+  style
 }) => {
   const [showItem, setShowItem] = useState(defaultShowItem || false);
 
   return (
-    <div className={`sent_group-sidebar-wrapper ${className}`} >
+    <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
       <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { setShowItem(!showItem) }}>
         <div className="sent_group-sidebar-label-pre">
           {Icon}

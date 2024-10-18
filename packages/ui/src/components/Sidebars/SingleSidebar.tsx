@@ -11,7 +11,8 @@ export const SingleSidebar: FC<PropsWithChildren<ISingleSidebarProps>> = ({
   border,
   PreIcon,
   onClick, 
-  value
+  value,
+  style
 }) => {
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ export const SingleSidebar: FC<PropsWithChildren<ISingleSidebarProps>> = ({
   } 
   
   return (
-    <div className={`sent_group-sidebar-wrapper ${className}`} >
+    <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
       <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { onNavigate(value)}}>
         <div className="sent_group-sidebar-label-pre">
           {PreIcon}

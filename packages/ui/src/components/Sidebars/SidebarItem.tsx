@@ -3,19 +3,19 @@ import { ISidebarItemProps } from './ISidebar';
 import { useNavigate } from 'react-router-dom';
 
 
-export const SidebarItem: FC<ISidebarItemProps> = ({ label, onClick, Icon, path: value }) => {
+export const SidebarItem: FC<ISidebarItemProps> = ({ label, onClick, Icon, path,  style }) => {
   const navigate = useNavigate();
 
-  const onNavigate = (path?: string) => {
+  const onNavigate = (pathValue?: string) => {
     if(onClick)
     {
-      return onClick(path);
+      return onClick(pathValue);
     }
-    navigate(path || '');
+    navigate(pathValue || '');
   } 
   
   return (
-    <div className="sidebar-item" onClick={ () => onNavigate(value)}>
+    <div className="sidebar-item" onClick={ () => onNavigate(path)} style={style}>
       {Icon}
       <div>{label}</div>
     </div>

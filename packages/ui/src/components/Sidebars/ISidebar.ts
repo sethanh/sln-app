@@ -1,7 +1,8 @@
 import React from "react"
 import { IRouteAppItem } from "../../Routes/IRouteApp"
+import { IStyle } from "../Roots/IRoots"
 
-export interface IGroupSidebarProps {
+export interface IGroupSidebarProps extends IStyle {
     label: string
     className?: string
     sidebarItems?: ISidebarItemProps[]
@@ -11,7 +12,7 @@ export interface IGroupSidebarProps {
     onClick?: (value?: string) => void
 }
 
-export interface ISingleSidebarProps {
+export interface ISingleSidebarProps extends IStyle {
     label: string
     className?: string
     PreIcon?: React.ReactNode 
@@ -22,7 +23,7 @@ export interface ISingleSidebarProps {
     value?: string
 }
 
-export interface ISidebarItemProps extends IRouteAppItem {
+export interface ISidebarItemProps extends IRouteAppItem, IStyle {
     name?: string
     onClick?: (value?: string) => void
     className?: string
