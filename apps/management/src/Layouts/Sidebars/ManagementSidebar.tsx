@@ -1,10 +1,10 @@
 import React from 'react';
-import { FinancialSidebar } from './FinancialSidebar'
-import { TaskSidebar } from './TaskSidebar'
-import { TeamSidebar }  from './TeamSidebar'
-import { DocumentSidebar } from './DocumentSidebar'
-import { ManagementAccountAction } from './ManagementAccountAction'
-import { ManagementAccountProfile } from './ManagementAccountProfile'
+import { FinancialSidebar, 
+        TaskSidebar, 
+        TeamSidebar, 
+        DocumentSidebar, 
+        ManagementAccountAction, 
+        ManagementAccountProfile } from '@my-monorepo/management'
 import './Sidebar.css'
 
 

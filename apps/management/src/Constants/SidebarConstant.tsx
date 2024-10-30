@@ -1,6 +1,7 @@
 import { AimOutlined, ClusterOutlined, RiseOutlined, UserOutlined, ScheduleOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { FinancialPage, TaskPage } from "../Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
+// import { FinancialPersonal } from "../Pages/Financials/Personal/FinancialPersonal";
 
 const taskSidebarConstants : ISidebarItemProps[]= [
     {

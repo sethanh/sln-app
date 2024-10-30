@@ -25,7 +25,8 @@
     "baseUrl": "../../",
     "paths": {
       "@my-monorepo/ui": ["packages/ui/src"],
-      "@my-monorepo/utils": ["packages/utils/src"]
+      "@my-monorepo/utils": ["packages/utils/src"],
+      "@my-monorepo/management": ["apps/management/src"],
     }
   },
   "include": [
@@ -33,6 +34,7 @@
     "vite.config.ts",
     "../../packages/ui/src",
     "../../packages/utils/src",
+    "../../apps/management/src"
   ]
 }
 

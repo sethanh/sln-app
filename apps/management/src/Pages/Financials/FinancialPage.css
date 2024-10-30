@@ -1,4 +1,11 @@
-.management-content-body {
-    background-color: pink;
+.management-content-body-light {
     flex-grow: 1;
+}
+
+.light-theme {
+    background-color: azure;
+}
+
+.dark-theme {
+    background-color: rgb(35, 33, 33);
 }
