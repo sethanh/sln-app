@@ -1,3 +1,5 @@
+import { LoaderFunction } from 'react-router-dom';
+
 export interface IRouteApp {
    routes: IRouteAppItem[]
 }
@@ -5,7 +7,8 @@ export interface IRouteApp {
 export interface IRouteAppItem {
     label?: string
     path: string
-    page: React.ReactNode 
+    page: React.ReactNode
+    loader?: LoaderFunction
 }
 
 

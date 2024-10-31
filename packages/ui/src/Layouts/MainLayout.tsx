@@ -1,8 +1,9 @@
 import React from 'react';
 import './MainLayout.css';
+import { IStyle } from '..';
 
 // Define generic types for props
-interface LayoutProps<T> {
+interface LayoutProps<T> extends IStyle {
   header?: React.ReactNode;
   sidebar?: React.ReactNode;
   footer?: React.ReactNode;
@@ -23,13 +24,14 @@ export const MainLayout = <T,>({
     headerClassName,
     sidebarClassName,
     contentClassName,
-    footerClassName 
+    footerClassName, 
+    style
   }: LayoutProps<T>) => {
   return (
-    <div className={`sent_main-layout`}>
+    <div className={`sent_main-layout`} style={style}>
       {
         header 
-        && <header className={`sent_main-header`}>
+        && <header className={`sent_main-header ${headerClassName}`}>
           {header}
         </header>
       }

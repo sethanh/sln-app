@@ -12,11 +12,12 @@ function getInitials(name: string) {
 export const AccountAction: FC<PropsWithChildren<IAccountActionProps>> = ({
   label,
   className,
-  border
+  border,
+  style
 }) => {
   const termName = getInitials(label);
   return (
-    <div className={`sent_group-sidebar-wrapper ${className}`} >
+    <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
       <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
         <div className="sent_group-sidebar-label-pre">
           <div className="sent_account-action-avatar">{termName.toUpperCase()}</div>
