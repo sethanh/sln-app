@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, MainLayout } from '@my-monorepo/ui'
 import { ManagementSidebar } from './Sidebars'
 import { ManagementContent } from './Contents'
 import './Layout.css'
-import { ThemeContext, themeInit } from '../Contexts';
+import { ThemeContext} from '../Contexts';
+import { ContextTheme } from '../Constants';
 
 export const ManagementLayout: React.FC = () => {
-    const [theme, setTheme] = useState("light");
-    const { context: createTheme, context_use: useTheme } = themeInit(theme);
-
+    const theme_value = useContext(ContextTheme);
+    const [theme, setTheme] = useState(theme_value);
+    
     const onClick = () => {
         if(theme === "light") {
             setTheme("dark");
@@ -18,12 +19,12 @@ export const ManagementLayout: React.FC = () => {
         }
     }
     return (
-        <ThemeContext Context={createTheme}>
+        <ThemeContext Context={ContextTheme}>
             <MainLayout
         sidebar={<ManagementSidebar/>}
         content={<ManagementContent/>}
-        sidebarClassName={`management-sidebar ${useTheme}-theme`}
-        contentClassName={`management-content ${useTheme}-theme`}
+        sidebarClassName={`management-sidebar ${theme}-theme`}
+        contentClassName={`management-content ${theme}-theme`}
             />
             <Button label="Change theme" onClick={onClick} />
         </ThemeContext>
