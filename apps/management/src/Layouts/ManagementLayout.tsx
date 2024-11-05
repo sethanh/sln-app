@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Button, MainLayout } from '@my-monorepo/ui'
-import { ManagementSidebar } from '@my-monorepo/management'
-import { ManagementContent } from '@my-monorepo/management'
+import { ManagementSidebar } from './Sidebars'
+import { ManagementContent } from './Contents'
 import './Layout.css'
-import { ThemeContext, themeInit } from '@my-monorepo/management';
+import { ThemeContext, themeInit } from '../Contexts';
 
 export const ManagementLayout: React.FC = () => {
     const [theme, setTheme] = useState("light");
@@ -19,7 +18,7 @@ export const ManagementLayout: React.FC = () => {
         }
     }
     return (
-        <ThemeContext initialValue={theme} Context={createTheme}>
+        <ThemeContext Context={createTheme}>
             <MainLayout
         sidebar={<ManagementSidebar/>}
         content={<ManagementContent/>}
