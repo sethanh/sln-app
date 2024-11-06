@@ -1,6 +1,4 @@
-import React from 'react';
-import { ContextProvider } from '@my-monorepo/ui';
-import { IcontextProvider } from 'packages/ui/src/Contexts/IContext';
+import { ContextProvider, IcontextProvider} from '@my-monorepo/ui';
 
 export const ThemeContext = ({children, Context} : IcontextProvider<string>) => {
     return (

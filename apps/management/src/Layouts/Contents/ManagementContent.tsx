@@ -1,7 +1,7 @@
 import React from 'react';
-import { ManagementContentHeader } from '@my-monorepo/management'
+import { ManagementContentHeader } from '@my-monorepo/management/layouts';
 import './Content.css'
-import { ManagementRoute } from '@my-monorepo/management'
+import { ManagementRoute } from '@my-monorepo/management/routes'
 
 
 export const ManagementContent: React.FC = () => {

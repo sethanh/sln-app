@@ -1,13 +1,13 @@
-
 import { 
     AimOutlined, ClusterOutlined, RiseOutlined, UserOutlined, ScheduleOutlined, SlidersOutlined, UnorderedListOutlined, 
     TeamOutlined, ReadOutlined 
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "../Pages/Finances";
-import { AllTaskPage, TodayTaskPage, ManagementTaskPage, BackLogPage } from "../Pages/Tasks";
+import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "@my-monorepo/management/pages";
+import { AllTaskPage, TodayTaskPage, ManagementTaskPage, BackLogPage } from "@my-monorepo/management/pages";
 import { TeamPage } from "../Pages/Teams";
 import { DocumentPage } from "../Pages/Documents";
+import { ISidebarItemProps } from "@my-monorepo/ui";
 
 
 

@@ -5,6 +5,7 @@ export function contextInit <T>(initial_value: T) {
     const context = createContext(initial_value);
     return context
 }
+
 export const ContextProvider = <T,>({ children, Context 
         } : IcontextProvider<T>) => {
 

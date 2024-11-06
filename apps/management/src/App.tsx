@@ -1,5 +1,5 @@
-import { ManagementLayout } from '@my-monorepo/management'
-import { ManagementBrowserRouter } from '@my-monorepo/management'
+import { ManagementLayout } from '@my-monorepo/management/layouts'
+import { ManagementBrowserRouter } from '@my-monorepo/management/routes'
 
 
 function App() {
