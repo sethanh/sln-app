@@ -1,7 +1,7 @@
 import React from 'react';
 import { GroupSidebar } from '@my-monorepo/ui'
 import { FundProjectionScreenOutlined } from '@ant-design/icons';
-import { financialSidebarConstants } from '@my-monorepo/management/Constants';
+import { financialSidebarConstants } from '@my-monorepo/management/constants';
 
 
 export const FinancialSidebar: React.FC = () => {

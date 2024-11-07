@@ -1,6 +1,6 @@
 import React from 'react';
 import './Content.css'
-import { ManagementContentItem } from '@my-monorepo/management/Layouts';
+import { ManagementContentItem } from '@my-monorepo/management/layouts';
 
 
 export const ManagementContentBody: React.FC = () => {
