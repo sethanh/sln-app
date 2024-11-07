@@ -4,7 +4,7 @@ import { FinancialSidebar,
         TeamSidebar, 
         DocumentSidebar, 
         ManagementAccountAction, 
-        ManagementAccountProfile } from '@my-monorepo/management/Layouts'
+        ManagementAccountProfile } from '../Sidebars'
 import './Sidebar.css'
 
 

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, MainLayout } from '@my-monorepo/ui'
-import { ManagementSidebar } from '@my-monorepo/management/Layouts'
-import { ManagementContent } from '@my-monorepo/management/Layouts'
+import { ManagementSidebar } from './Sidebars'
+import { ManagementContent } from './Contents'
 import './Layout.css'
 import { ThemeContext} from '../Contexts';
 import { ContextTheme } from '../Constants';

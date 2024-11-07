@@ -1,5 +1,5 @@
 import React from 'react';
-import { ManagementContentHeader } from '@my-monorepo/management/Layouts';
+import { ManagementContentHeader } from './ManagementContentHeader';
 import './Content.css'
 import { ManagementRoute } from '@my-monorepo/management/Routes'
 
