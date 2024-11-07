@@ -3,7 +3,8 @@
       "baseUrl": ".",
       "paths": {
         "@my-monorepo/ui": ["packages/ui/src"],
-        "@my-monorepo/utils": ["packages/utils/src"]
+        "@my-monorepo/utils": ["packages/utils/src"],
+        "@my-monorepo/management" : ["apps/management/src"]
       },
       "target": "ES2020",
       "useDefineForClassFields": true,

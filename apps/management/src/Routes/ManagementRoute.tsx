@@ -5,7 +5,7 @@ import {
     taskSidebarConstants, 
     teamSidebarConstants,
     documentSidebarConstants
- } from '../Constants';
+ } from '@my-monorepo/management/Constants';
 
 const mainRoots : ISidebarItemProps[] = [
     ...financialSidebarConstants, 

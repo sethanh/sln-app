@@ -26,11 +26,7 @@
     "paths": {
       "@my-monorepo/ui": ["packages/ui/src"],
       "@my-monorepo/utils": ["packages/utils/src"],
-      "@my-monorepo/management/constants": ["apps/management/src/Constants"],
-      "@my-monorepo/management/contexts": ["apps/management/src/Contexts"],
-      "@my-monorepo/management/layouts": ["apps/management/src/Layouts"],
-      "@my-monorepo/management/pages": ["apps/management/src/Pages"],
-      "@my-monorepo/management/routes": ["apps/management/src/Routes"],
+      "@my-monorepo/management/*": ["apps/management/src/*"]
     }
   },
   "include": [
