@@ -9,7 +9,7 @@ export default defineConfig({
     alias: {
       '@my-monorepo/ui': path.resolve(__dirname, '../../packages/ui/src'),
       '@my-monorepo/utils': path.resolve(__dirname, '../../packages/utils/src'),
-      '@my-monorepo/management/*': path.resolve(__dirname, './src/*'),
+      '@my-monorepo/management': path.resolve(__dirname, './src'),
     },
   },
 })
