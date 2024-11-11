@@ -2,4 +2,4 @@ interface IStyle {
     style?: React.CSSProperties | undefined
 }
 
-export {IStyle}
+export type {IStyle}

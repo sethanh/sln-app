@@ -1,3 +1,5 @@
+import { IRequestOptions } from "./IRequestOptions";
+
 const apiFetch = async <T>(
     url: string,
     options: IRequestOptions = {}
