@@ -1,6 +1,6 @@
 import React from 'react';
 import {SingleSidebar} from '@my-monorepo/ui'
-import { teamSidebarConstants } from '../../Constants'
+import { teamSidebarConstants } from '@my-monorepo/management/Constants';
 const  teamSidebar = teamSidebarConstants[0];
 
 

@@ -3,11 +3,13 @@ import {
     TeamOutlined, ReadOutlined 
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "../Pages/Finances";
-import { AllTaskPage, TodayTaskPage, ManagementTaskPage, BackLogPage } from "../Pages/Tasks";
-import { TeamPage } from "../Pages/Teams";
-import { DocumentPage } from "../Pages/Documents";
+import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "@my-monorepo/management/Pages";
+import { AllTaskPage, TodayTaskPage, ManagementTaskPage, BackLogPage } from "@my-monorepo/management/Pages";
+import { TeamPage } from "@my-monorepo/management/Pages";
+import { DocumentPage } from "@my-monorepo/management/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
+
+
 
 const taskSidebarConstants : ISidebarItemProps[]= [
     {
@@ -15,12 +17,14 @@ const taskSidebarConstants : ISidebarItemProps[]= [
         Icon: <ScheduleOutlined />,
         path: 'task/today',
         page: <TodayTaskPage />
+
     },
     {
         label: "All",
         Icon: <UnorderedListOutlined />,
         path: 'task/all',
         page: <AllTaskPage />
+
     },
     {
         label: "Management",

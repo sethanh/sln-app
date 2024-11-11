@@ -1,5 +1,5 @@
 import React from 'react';
-import { taskSidebarConstants } from '../../Constants';
+import { taskSidebarConstants } from '@my-monorepo/management/Constants';
 import { NodeIndexOutlined } from '@ant-design/icons';
 import { GroupSidebar } from '@my-monorepo/ui';
 

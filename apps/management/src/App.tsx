@@ -1,14 +1,14 @@
-import { ManagementLayout } from './Layouts'
-import { ManagementBrowserRouter } from './Routes'
+import { ManagementLayout } from '@my-monorepo/management/Layouts'
+import { ManagementBrowserRouter } from '@my-monorepo/management/Routes'
+
 
 function App() {
+    
   return (
-    <ManagementBrowserRouter>
-      <ManagementLayout />
-    </ManagementBrowserRouter>
+        <ManagementBrowserRouter>
+            <ManagementLayout />
+        </ManagementBrowserRouter>
   )
 }
 
 export default App
-
-// context outside ManagementBrowserRouter

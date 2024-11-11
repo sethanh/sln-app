@@ -1,5 +1,19 @@
 .management-sidebar{
     background-color: var(--background-white-color);
     padding: 2rem 1rem;
+    color : var(--text-color);
 }
     
+.light-theme {
+    --background-color:rgb(242, 242, 242);
+    --text-color: black;
+    --primary-color: blue;
+    --background-white-color:white;
+}
+
+.dark-theme {
+  --background-color: black;
+  --text-color: white;
+  --primary-color: lightblue;
+  --background-white-color:black;
+}

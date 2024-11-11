@@ -1,6 +1,6 @@
 import React from 'react';
 import {SingleSidebar} from '@my-monorepo/ui'
-import {documentSidebarConstants} from  '../../Constants'
+import {documentSidebarConstants} from  '@my-monorepo/management/Constants'
 const documentSidebar = documentSidebarConstants[0]
 
 export const DocumentSidebar: React.FC = () => {
