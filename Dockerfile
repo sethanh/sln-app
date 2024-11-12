@@ -21,8 +21,8 @@ RUN echo "ENVIRONMENT: ${ENVIRONMENT}"
 RUN echo "APP: ${APP}"
 
 # Build app
-COPY apps/${APP}/.env.${ENVIRONMENT} apps/${APP}/.env
-RUN yarn build:${APP}
+# COPY apps/${APP}/.env.${ENVIRONMENT} apps/${APP}/.env
+RUN yarn ${APP}/build
 
 # RUNTIME IMAGE
 FROM nginx:alpine as runtime
