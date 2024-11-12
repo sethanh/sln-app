@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, FC, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { IAccountActionProps } from './IAccountAction';
 import '../Sidebars/Sidebar.css'
 
@@ -14,7 +14,7 @@ function getLastName(name: string) {
   return `${lastLetter}`; // Nối chữ cái đầu và cuối
 }
 
-export const AccountProfile: FC<PropsWithChildren<IAccountActionProps>> = ({
+export const AccountProfile: React.FC<PropsWithChildren<IAccountActionProps>> = ({
   label,
   className,
   border,

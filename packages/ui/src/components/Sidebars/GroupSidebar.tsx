@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, FC, useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { IGroupSidebarProps } from './ISidebar';
 import { SidebarItem } from './SidebarItem';
 import './Sidebar.css'
@@ -6,7 +6,7 @@ import { DownOutlined, RightOutlined } from '@ant-design/icons';
 
 
 
-export const GroupSidebar: FC<PropsWithChildren<IGroupSidebarProps>> = ({
+export const GroupSidebar: React.FC<PropsWithChildren<IGroupSidebarProps>> = ({
   label,
   className,
   children,

@@ -1,4 +1,4 @@
-export interface IcontextProvider<T>{
+export interface IContextProvider<T>{
     Context: React.Context<T>
     children?: React.ReactNode
 }

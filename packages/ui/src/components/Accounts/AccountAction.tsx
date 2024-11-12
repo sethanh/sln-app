@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, FC, useState } from 'react';
+import React, { PropsWithChildren} from 'react';
 import { IAccountActionProps } from './IAccountAction';
 import '../Sidebars/Sidebar.css'
 
@@ -9,7 +9,7 @@ function getInitials(name: string) {
     return `${firstLetter}${lastLetter}`; // Nối chữ cái đầu và cuối
 }
 
-export const AccountAction: FC<PropsWithChildren<IAccountActionProps>> = ({
+export const AccountAction: React.FC<PropsWithChildren<IAccountActionProps>> = ({
   label,
   className,
   border,

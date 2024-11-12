@@ -1,6 +1,6 @@
 import React from 'react';
 import './MainLayout.css';
-import { IStyle } from '..';
+import { IStyle } from '../Components/Roots/IRoots';
 
 // Define generic types for props
 interface LayoutProps<T> extends IStyle {

@@ -1,11 +1,11 @@
-import React, { PropsWithChildren, FC, useState } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { ISingleSidebarProps } from './ISidebar';
 import './Sidebar.css'
 import { PlusOutlined} from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
 
-export const SingleSidebar: FC<PropsWithChildren<ISingleSidebarProps>> = ({
+export const SingleSidebar: React.FC<PropsWithChildren<ISingleSidebarProps>> = ({
   label,
   className,
   border,

@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { ISidebarItemProps } from './ISidebar';
 import { useNavigate } from 'react-router-dom';
 
 
-export const SidebarItem: FC<ISidebarItemProps> = ({ label, onClick, Icon, path,  style }) => {
+export const SidebarItem: React.FC<ISidebarItemProps> = ({ label, onClick, Icon, path,  style }) => {
   const navigate = useNavigate();
 
   const onNavigate = (pathValue?: string) => {
