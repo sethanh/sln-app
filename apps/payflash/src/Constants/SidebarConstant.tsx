@@ -1,10 +1,10 @@
 import { 
-    HistoryOutlined, ClusterOutlined, CreditCardOutlined, QrcodeOutlined, UngroupOutlined, SlidersOutlined, UnorderedListOutlined, 
+    HistoryOutlined, CreditCardOutlined, QrcodeOutlined, UngroupOutlined, 
     TeamOutlined, ReadOutlined, SettingOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
 import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "@my-monorepo/payflash/Pages";
-import { AllTaskPage, TodayTaskPage, ManagementTaskPage, BackLogPage } from "@my-monorepo/payflash/Pages";
+import { AllTaskPage, TodayTaskPage, ManagementTaskPage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
