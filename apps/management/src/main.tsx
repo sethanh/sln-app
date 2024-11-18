@@ -1,17 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import {ManagementRootContext } from './Contexts'
+import App from './App/App.tsx'
 import './index.css'
-import { ContextRoot } from './Constants'
+import { Provider } from 'react-redux';
+import {store} from './App/Store/index.ts'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ManagementRootContext 
-      Context={ContextRoot}
-    >
+    <Provider store={store}>
       <App />
-    </ManagementRootContext>
+    </Provider>
   </StrictMode>,
 )

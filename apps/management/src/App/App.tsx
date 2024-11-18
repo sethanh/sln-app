@@ -2,7 +2,7 @@ import { ManagementLayout } from '@my-monorepo/management/Layouts'
 import { ManagementBrowserRouter } from '@my-monorepo/management/Routes'
 
 
-function App() {
+const App: React.FC = () => {
 
   return (
     <ManagementBrowserRouter>
