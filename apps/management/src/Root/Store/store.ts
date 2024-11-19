@@ -2,15 +2,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../Sagas/sagas';
-import languageReducer from '../Reducers/Language/languageSlice';
-import userReducer from '../Reducers/Account/userSlice';
+import {accountReducers, languageReducers} from '@my-monorepo/management/Root';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-    language: languageReducer,
-    user: userReducer,
+    ...languageReducers,
+    ...accountReducers
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
