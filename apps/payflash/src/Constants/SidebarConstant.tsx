@@ -4,7 +4,7 @@ import {
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
 import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "@my-monorepo/payflash/Pages";
-import { AllTaskPage, TodayTaskPage, ManagementTaskPage } from "@my-monorepo/payflash/Pages";
+import { QrHistoryPage, GeneratePage, QrSettingPage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
@@ -16,21 +16,21 @@ const qrCodeSidebarConstants : ISidebarItemProps[]= [
         label: "Generate",
         Icon: <UngroupOutlined />,
         path: 'task/today',
-        page: <TodayTaskPage />
+        page: <GeneratePage />
 
     },
     {
         label: "History",
         Icon: <HistoryOutlined />,
         path: 'task/all',
-        page: <AllTaskPage />
+        page: <QrHistoryPage />
 
     },
     {
         label: "Setting",
         Icon: <SettingOutlined />,
         path: 'task/management',
-        page: <ManagementTaskPage />
+        page: <QrSettingPage />
     }
 ] 
 
