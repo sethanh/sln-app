@@ -1,10 +1,10 @@
-import {GoogleAuthLogin} from '@my-monorepo/ui'
+import {GoogleAuthLogin, IGoogleTokenResponse} from '@my-monorepo/ui'
 
 export const GoogleLogin: React.FC = () => {
     return (
       <div>
         <h1>Custom Google Login Example</h1>
-        <GoogleAuthLogin onHandleSuccess={()=>{console.log('success')}} onHandleError={()=> {console.log('error')}}>
+        <GoogleAuthLogin onHandleSuccess={(token: IGoogleTokenResponse)=>{console.log(token)}} onHandleError={()=> {console.log('error')}}>
           {(login) => (
             <button
               onClick={login}

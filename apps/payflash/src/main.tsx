@@ -9,7 +9,7 @@ import { GoogleAuthProvider } from '@my-monorepo/ui'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GoogleAuthProvider clientId='36767143730-u224jclh8aailtdo1tabmeo86u6lr075.apps.googleusercontent.com'>
+    <GoogleAuthProvider clientId='603483609469-fj9dtrcaoecgh3ar6bpvhs1caetmm3t9.apps.googleusercontent.com'>
       <Provider store={store}>
         <App />
       </Provider>
