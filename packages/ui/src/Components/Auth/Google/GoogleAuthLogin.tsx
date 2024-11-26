@@ -5,6 +5,7 @@ import { IGoogleAuthLoginProps } from './IGoogleAuthLoginProps';
 const GoogleAuthLogin: React.FC<IGoogleAuthLoginProps> = ({
     onHandleSuccess, 
     onHandleError,
+    onHandleClose,
     children
 }) => {
     const login = useGoogleLogin({
@@ -14,6 +15,9 @@ const GoogleAuthLogin: React.FC<IGoogleAuthLoginProps> = ({
         onError: () => {
             onHandleError();
         },
+        onNonOAuthError: () => {
+            onHandleClose();
+        }
       });
 
     return <>{children(login)}</>;

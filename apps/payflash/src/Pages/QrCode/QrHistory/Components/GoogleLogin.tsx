@@ -1,6 +1,6 @@
 import { GoogleOutlined } from '@ant-design/icons';
 import { GoogleAuthLogin, IGoogleTokenResponse } from '@my-monorepo/ui'
-import { handleApiFetch } from '@my-monorepo/utils'
+import { paymentApiFetch } from '@my-monorepo/payflash/Root'
 import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions';
 import { googleLoginAccountUrl } from '@my-monorepo/payflash/Constants'
 import { TokenModel } from '@my-monorepo/payflash/Models'; 
@@ -15,11 +15,11 @@ export const GoogleLogin: React.FC = () => {
       }
     }
 
-    const login = await handleApiFetch<TokenModel>(
+    const login = await paymentApiFetch<TokenModel>(
       googleLoginAccountUrl, 
       option, 
       () => { }, 
-      () => { }
+      () => { },
     );
 
     console.log('login', login);
@@ -29,7 +29,11 @@ export const GoogleLogin: React.FC = () => {
   return (
     <div>
       <h1>Custom Google Login Example</h1>
-      <GoogleAuthLogin onHandleSuccess={onHandleSuccess} onHandleError={() => { console.log('error') }}>
+      <GoogleAuthLogin 
+        onHandleSuccess={onHandleSuccess} 
+        onHandleError={() => { console.log('error') }}
+        onHandleClose={()=> {console.log('cloud')}}
+      >
         {(login) => (
           <div
             onClick={login}
