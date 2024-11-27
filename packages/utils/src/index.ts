@@ -9,3 +9,4 @@ export const capitalize = (str: string): string => {
 
 export * from './services'
 export * from './store'
+export * from './jotai'
