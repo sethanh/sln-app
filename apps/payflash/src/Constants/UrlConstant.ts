@@ -1,4 +1,6 @@
-const apiUrl = import.meta.env.VITE_API_URL;
+import {appConstant}  from './AppConstant'
 
-export const accountUrl = apiUrl + "/Accounts" 
-export const googleLoginAccountUrl = accountUrl + "/google-login"
+const accountUrl = appConstant.apiUrl + "/Accounts" 
+const googleLoginAccountUrl = accountUrl + "/google-login"
+
+export  const urlConstant ={ accountUrl, googleLoginAccountUrl} 

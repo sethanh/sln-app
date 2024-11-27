@@ -5,11 +5,12 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { store } from './Root'
 import { GoogleAuthProvider } from '@my-monorepo/ui'
+import {appConstant} from '@my-monorepo/payflash/Constants'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GoogleAuthProvider clientId='603483609469-fj9dtrcaoecgh3ar6bpvhs1caetmm3t9.apps.googleusercontent.com'>
+    <GoogleAuthProvider clientId={appConstant.googleClientId}>
       <Provider store={store}>
         <App />
       </Provider>

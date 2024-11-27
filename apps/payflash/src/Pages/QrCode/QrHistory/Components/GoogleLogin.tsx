@@ -2,8 +2,9 @@ import { GoogleOutlined } from '@ant-design/icons';
 import { GoogleAuthLogin, IGoogleTokenResponse } from '@my-monorepo/ui'
 import { paymentApiFetch } from '@my-monorepo/payflash/Root'
 import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions';
-import { googleLoginAccountUrl } from '@my-monorepo/payflash/Constants'
+import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants'
 import { TokenModel } from '@my-monorepo/payflash/Models'; 
+import {setToken} from '@my-monorepo/utils'
 
 export const GoogleLogin: React.FC = () => {
   const onHandleSuccess = async (token: IGoogleTokenResponse) => {
@@ -16,11 +17,15 @@ export const GoogleLogin: React.FC = () => {
     }
 
     const login = await paymentApiFetch<TokenModel>(
-      googleLoginAccountUrl, 
+      urlConstant.googleLoginAccountUrl, 
       option, 
       () => { }, 
       () => { },
     );
+
+    if (login) {
+      setToken(login.accessToken, appConstant.appName)
+    }
 
     console.log('login', login);
   }
