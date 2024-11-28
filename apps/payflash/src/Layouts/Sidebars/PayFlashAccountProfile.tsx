@@ -4,7 +4,7 @@ import { useNavigate } from "react-router"
 import { useAtom } from 'jotai';
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants';
 
-import { getToken } from '@my-monorepo/utils';
+import { getToken, removeToken } from '@my-monorepo/utils';
 import { currentAccountAtom, paymentApiFetch } from '@my-monorepo/payflash/Root';
 import { AccountModel } from '@my-monorepo/payflash/Models';
 import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions';
@@ -40,12 +40,18 @@ export const PayFlashAccountProfile: React.FC = () => {
 
     }, [token, account]);
 
+    const onLogOut = () => {
+        removeToken(appConstant.appName)
+        setAccount(null)
+    }
+
     return (
         <AccountProfile
             label={account?.name}
             onLogin={() => {
                 navigate('auth/login');
             }}
+            onLogOut={()=> onLogOut()}
             avatar={account?.googleAccount?.picture}
         />
     );

@@ -4,7 +4,7 @@ import { PaymentSidebar,
         TeamSidebar, 
         DocumentSidebar, 
         PayFlashAccountAction, 
-        PayFlashAccountProfile } from '../Sidebars'
+        PayFlashAccountProfile } from '.'
 import './Sidebar.css'
 
 

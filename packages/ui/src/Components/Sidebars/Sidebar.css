@@ -90,3 +90,9 @@
     display: flex;
     border: #2292FF solid 1px;
 }
+
+.sent_account-profile-avatar-img{
+    width: 100%;
+    height: auto;
+    border-radius: calc(0.3rem - 1px);
+}

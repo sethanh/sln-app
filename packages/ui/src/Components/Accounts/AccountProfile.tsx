@@ -1,7 +1,8 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from 'react'
 import '../Sidebars/Sidebar.css'
-import { IAccountProfile } from './IAccountProfile';
-import { UserOutlined } from '@ant-design/icons'
+import { IAccountProfile } from './IAccountProfile'
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
+import { Dropdown, MenuProps } from 'antd';
 
 export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
   label,
@@ -9,8 +10,19 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
   border,
   style,
   avatar,
-  onLogin
+  onLogin,
+  onLogOut
 }) => {
+
+  const items: MenuProps['items'] = [
+    {
+      icon: <LogoutOutlined />,
+      key: '1',
+      label: 'Log out Flash',
+      onClick:()=> {onLogOut()}
+    }
+  ];
+
   if (!label) {
     return (
       <div
@@ -29,16 +41,21 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
   }
 
   return (
-    <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
-      <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
-        <div className="sent_group-sidebar-label-pre">
-          <div className="sent_account-profile-avatar">
-            <img src={avatar} style={{ width: "100%", height: "auto" }} alt='avatar' />
+    <Dropdown
+      menu={{ items }}
+      placement="bottom"
+    >
+      <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
+        <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
+          <div className="sent_group-sidebar-label-pre">
+            <div className="sent_account-profile-avatar">
+              <img src={avatar} className='sent_account-profile-avatar-img' alt='avatar' />
+            </div>
+            <div className="sent_group-sidebar-label-pre-label">{label}</div>
           </div>
-          <div className="sent_group-sidebar-label-pre-label">{label}</div>
         </div>
       </div>
-    </div>
+    </Dropdown>
   );
 };
 
