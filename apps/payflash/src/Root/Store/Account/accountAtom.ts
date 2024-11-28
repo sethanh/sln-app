@@ -1,8 +1,5 @@
+import { AccountModel } from '@my-monorepo/payflash/Models';
 import {genericAtom}  from '@my-monorepo/utils'
 
-export interface Account {
-    id: number;
-    name: string;
-}
 
-export const currentAccountAtom = genericAtom<Account | null>(null);
+export const currentAccountAtom = genericAtom<AccountModel | null>(null);
