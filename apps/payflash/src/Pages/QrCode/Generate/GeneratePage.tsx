@@ -13,7 +13,7 @@ const GeneratePage: React.FC = () => {
             <div style={{cursor: 'pointer', background:'blue'}}
                 onClick={()=> {setCurrentAccount({id: 1, name:'abc'} as Account)}}
             > abc</div>
-            {/* <QRCodeGenerator/> */}
+            <QRCodeGenerator/>
         </div>
     );
 };

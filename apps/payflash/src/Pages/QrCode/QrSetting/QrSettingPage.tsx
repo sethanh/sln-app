@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import React from 'react';
 
 const QrSettingPage: React.FC = () => {
-    const [currentAccount, setCurrentAccount] = useAtom(currentAccountAtom);
+    const [currentAccount] = useAtom(currentAccountAtom);
 
     console.log('abc', currentAccount);
     return (
