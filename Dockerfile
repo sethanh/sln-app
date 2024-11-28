@@ -8,6 +8,7 @@ ARG APP
 # Install dependencies
 COPY package.json ./
 COPY yarn.lock ./
+RUN yarn --frozen-lockfile
 
 # Copy source
 COPY . .

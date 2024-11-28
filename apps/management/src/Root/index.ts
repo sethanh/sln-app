@@ -1,3 +1,2 @@
-export * from './Reducers'
+export * from './Services'
 export * from './Store'
-export * from './Sagas'
