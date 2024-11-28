@@ -15,7 +15,7 @@ export const AccountAction: React.FC<PropsWithChildren<IAccountActionProps>> = (
   border,
   style
 }) => {
-  const termName = getInitials(label);
+  const termName = getInitials(label || '');
   return (
     <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
       <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
