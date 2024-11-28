@@ -1,5 +1,5 @@
-export * from './Managements'
-export * from './Objectives'
-export * from './Personals'
+export * from './PaymentSettings'
+export * from './Histories'
+export * from './Flashs'
 export * from './Plannings'
 

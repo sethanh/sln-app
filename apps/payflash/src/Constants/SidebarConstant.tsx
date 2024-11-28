@@ -3,7 +3,7 @@ import {
     TeamOutlined, ReadOutlined, SettingOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { PersonalPage, PlanningPage, ObjectivePage,  FinancialManagementPage } from "@my-monorepo/payflash/Pages";
+import { FlashPage, PlanningPage, HistoryPage,  PaymentSettingPage } from "@my-monorepo/payflash/Pages";
 import { QrHistoryPage, GeneratePage, QrSettingPage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
@@ -15,49 +15,49 @@ const qrCodeSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Generate",
         Icon: <UngroupOutlined />,
-        path: 'task/today',
+        path: 'qrcode/generate',
         page: <GeneratePage />
 
     },
     {
         label: "History",
         Icon: <HistoryOutlined />,
-        path: 'task/all',
+        path: 'qrcode/history',
         page: <QrHistoryPage />
 
     },
     {
         label: "Setting",
         Icon: <SettingOutlined />,
-        path: 'task/management',
+        path: 'qrcode/setting',
         page: <QrSettingPage />
     }
 ] 
 
-const financialSidebarConstants : ISidebarItemProps[]= [
+const paymentSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Flash qr payment",
         Icon: <QrcodeOutlined />,
-        path: 'financial/personal',
-        page : <PersonalPage/>
+        path: 'payment/flash',
+        page : <FlashPage/>
     },
     {
         label: "Payment amount qr",
         Icon: <CreditCardOutlined />,
-        path: 'financial/planing',
+        path: 'payment/amount',
         page : <PlanningPage />
     },
     {
         label: "Histories",
         Icon: <HistoryOutlined />,
-        path: 'financial/objective',
-        page : <ObjectivePage />
+        path: 'payment/history',
+        page : <HistoryPage />
     },
     {
         label: "Setting",
         Icon: <SettingOutlined />,
-        path: 'financial/management',
-        page : <FinancialManagementPage />
+        path: 'payment/setting',
+        page : <PaymentSettingPage />
     }
 ]
 
@@ -80,8 +80,8 @@ const documentSidebarConstants : ISidebarItemProps[]= [
 ]
 
 export { 
-    financialSidebarConstants, 
-    qrCodeSidebarConstants as taskSidebarConstants, 
+    paymentSidebarConstants, 
+    qrCodeSidebarConstants, 
     teamSidebarConstants, 
     documentSidebarConstants 
 }
