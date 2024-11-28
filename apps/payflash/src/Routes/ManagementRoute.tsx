@@ -1,23 +1,38 @@
 import { FC } from 'react';
-import {ISidebarItemProps, RouteApp} from '@my-monorepo/ui'
-import { 
-    paymentSidebarConstants, 
-    qrCodeSidebarConstants, 
+import { ISidebarItemProps, RouteApp } from '@my-monorepo/ui'
+import {
+    paymentSidebarConstants,
+    qrCodeSidebarConstants,
     teamSidebarConstants,
-    documentSidebarConstants
- } from '../Constants';
+    documentSidebarConstants,
+    mainRootConstants
+} from '../Constants';
 
-const mainRoots : ISidebarItemProps[] = [
-    ...paymentSidebarConstants, 
+const contentRootRoutes: ISidebarItemProps[] = [
+    ...paymentSidebarConstants,
     ...qrCodeSidebarConstants,
     ...teamSidebarConstants,
     ...documentSidebarConstants
 ];
 
-export const ManagementRoute: FC= () => {
+const mainRootRoutes: ISidebarItemProps[] = [
+    ...mainRootConstants.authConstants
+];
+
+
+
+export const ManagementContentRoute: FC = () => {
     return (
         <RouteApp
-            routes={mainRoots}
+            routes={contentRootRoutes}
+        />
+    );
+};
+
+export const ManagementRootRoute: FC = () => {
+    return (
+        <RouteApp
+            routes={mainRootRoutes}
         />
     );
 };

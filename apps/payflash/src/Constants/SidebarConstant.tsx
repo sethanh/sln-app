@@ -9,8 +9,6 @@ import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
 
-
-
 const qrCodeSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Generate",
