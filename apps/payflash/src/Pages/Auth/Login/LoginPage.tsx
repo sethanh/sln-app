@@ -7,7 +7,7 @@ import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants'
 import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions'
 import { paymentApiFetch } from '@my-monorepo/payflash/Root'
 import { TokenModel } from '@my-monorepo/payflash/Models'
-import { setToken } from '@my-monorepo/utils'
+import { paymentToken } from '@my-monorepo/payflash/Root'
 import { useNavigate } from "react-router"
 
 // Styled Components for the Layout
@@ -120,8 +120,7 @@ const LoginPage: React.FC = () => {
         );
 
         if (login) {
-            console.log('ok');
-            setToken(login.accessToken, appConstant.appName)
+            paymentToken.setPaymentToken(login.accessToken)
             navigate('/');
         }
     }

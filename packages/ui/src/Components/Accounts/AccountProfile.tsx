@@ -16,10 +16,13 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
 
   const items: MenuProps['items'] = [
     {
-      icon: <LogoutOutlined />,
+      icon: <LogoutOutlined style={{ fontSize: 17}}/>,
       key: '1',
       label: 'Log out Flash',
-      onClick:()=> {onLogOut()}
+      onClick:()=> {onLogOut()},
+      style: {
+        fontSize: 14,
+      }
     }
   ];
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router"
 import { useAtom } from 'jotai';
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants';
 
-import { getToken, removeToken } from '@my-monorepo/utils';
+import { paymentToken } from '@my-monorepo/payflash/Root';
 import { currentAccountAtom, paymentApiFetch } from '@my-monorepo/payflash/Root';
 import { AccountModel } from '@my-monorepo/payflash/Models';
 import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions';
@@ -12,7 +12,7 @@ import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions';
 export const PayFlashAccountProfile: React.FC = () => {
     const navigate = useNavigate();
     const [account, setAccount] = useAtom(currentAccountAtom)
-    const token = getToken(appConstant.appName)
+    const token = paymentToken.getPaymentToken()
     useEffect(() => {
 
         async function fetchCurrentAccount() {
@@ -41,7 +41,7 @@ export const PayFlashAccountProfile: React.FC = () => {
     }, [token, account]);
 
     const onLogOut = () => {
-        removeToken(appConstant.appName)
+        paymentToken.removePaymentToken()
         setAccount(null)
     }
 
