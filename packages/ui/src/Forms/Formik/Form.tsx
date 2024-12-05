@@ -16,7 +16,7 @@ export function FormikForm<T extends object>({
   onSubmit,
   validate,
   children,
-}: FormikFormProps<T>) {
+}: FormikFormProps<T>) { 
   return (
     <Formik<T>
       initialValues={initialValues}

@@ -1,32 +1,22 @@
-import React, { useContext, useState } from 'react';
-import { Button, MainLayout } from '@my-monorepo/ui'
+import React from 'react';
+import { MainLayout } from '@my-monorepo/ui'
 import { ManagementSidebar } from './Sidebars'
 import { ManagementContent } from './Contents'
 import './Layout.css'
-import { ThemeContext} from '../Contexts';
-import { ContextTheme } from '../Constants';
+import { TestContext, TestContextProvider } from '@my-monorepo/management/Contexts';
 
 export const ManagementLayout: React.FC = () => {
-    const theme_value = useContext(ContextTheme);
-    const [theme, setTheme] = useState(theme_value);
-    
-    const onClick = () => {
-        if(theme === "light") {
-            setTheme("dark");
-        }
-        else {
-            setTheme("light");
-        }
-    }
     return (
-        <ThemeContext Context={ContextTheme}>
+        <TestContextProvider
+            Context={TestContext}>
             <MainLayout
-        sidebar={<ManagementSidebar/>}
-        content={<ManagementContent/>}
-        sidebarClassName={`management-sidebar ${theme}-theme`}
-        contentClassName={`management-content ${theme}-theme`}
+                sidebar={<ManagementSidebar/>}
+                content={<ManagementContent/>}
+                sidebarClassName={`management-sidebar`}
+                contentClassName={`management-content`}
             />
-            <Button label="Change theme" onClick={onClick} />
-        </ThemeContext>
+        </TestContextProvider>
   );
 };
+
+
