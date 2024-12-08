@@ -5,3 +5,5 @@ type IRequestOptions = {
     routeParams?: Record<string, string>;
     body?: any;
 };
+
+export type { IRequestOptions }

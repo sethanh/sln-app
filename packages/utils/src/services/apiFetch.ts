@@ -1,6 +1,10 @@
+import { IRequestOptions } from "./IRequestOptions";
+import {getToken} from '../store'
+
 const apiFetch = async <T>(
     url: string,
-    options: IRequestOptions = {}
+    options: IRequestOptions = {},
+    appName?: string
 ): Promise<T> => {
     const { method = 'GET', headers = {}, queryParams, routeParams, body } = options;
 
@@ -17,10 +21,12 @@ const apiFetch = async <T>(
         url += `?${queryString}`;
     }
 
+    const token = getToken(appName)
+
     // Set default headers (like authorization)
     const defaultHeaders: HeadersInit = {
         'Content-Type': 'application/json',
-        Authorization: `Bearer `, // Token được truyền vào đây
+        Authorization: `Bearer ${token}`, // Token được truyền vào đây
         ...headers, // Merge any additional headers
     };
 

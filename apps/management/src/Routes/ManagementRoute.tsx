@@ -4,14 +4,16 @@ import {
     financialSidebarConstants, 
     taskSidebarConstants, 
     teamSidebarConstants,
-    documentSidebarConstants
+    documentSidebarConstants,
+    authConstants
  } from '../Constants';
 
 const mainRoots : ISidebarItemProps[] = [
     ...financialSidebarConstants, 
     ...taskSidebarConstants,
     ...teamSidebarConstants,
-    ...documentSidebarConstants
+    ...documentSidebarConstants,
+    ...authConstants
 ];
 
 export const ManagementRoute: FC= () => {
