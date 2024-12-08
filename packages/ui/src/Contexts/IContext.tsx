@@ -1,10 +1,4 @@
-export interface IContextInit<T> {
-    value: T
-    setValue: React.Dispatch<React.SetStateAction<T>>
-}
-
 export interface IContextProvider<T>{
-    Context: React.Context<IContextInit<T>>
+    Context: React.Context<T>
     children?: React.ReactNode
-
 }
