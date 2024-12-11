@@ -3,7 +3,7 @@ import { Formik, Form, FormikHelpers, FormikProps } from 'formik';
 import * as Yup from 'yup';
 
 // Generic props cho form
-interface FormikFormProps<T> {
+export interface FormikFormProps<T> {
   initialValues: T;
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>;
   validate?: (values: T) => Partial<Record<keyof T, string>> | undefined;

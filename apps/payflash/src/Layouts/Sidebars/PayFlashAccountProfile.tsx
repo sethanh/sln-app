@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { AccountProfile } from '@my-monorepo/ui'
 import { useNavigate } from "react-router"
 import { useAtom } from 'jotai';
-import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants';
+import { urlConstant } from '@my-monorepo/payflash/Constants';
 
 import { paymentToken } from '@my-monorepo/payflash/Root';
 import { currentAccountAtom, paymentApiFetch } from '@my-monorepo/payflash/Root';
@@ -17,7 +17,7 @@ export const PayFlashAccountProfile: React.FC = () => {
 
         async function fetchCurrentAccount() {
 
-            var option: IRequestOptions = {
+            const option: IRequestOptions = {
                 method: 'GET'
             }
 
