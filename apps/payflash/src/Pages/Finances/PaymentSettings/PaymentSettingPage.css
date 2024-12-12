@@ -1,0 +1,13 @@
+.mainButton {
+    position : fixed;
+    right : 80px;
+    top : 20px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

@@ -7,7 +7,7 @@ export interface ITableProps<T> {
     rawDatasource : T[]
 }
 
-export const CustomizeTable = <T,>({ rawColumns, rawDatasource } : ITableProps<T>) => {
+export const RootTable = <T,>({ rawColumns, rawDatasource } : ITableProps<T>) => {
     const columns = rawColumns?.map((column) => ({
         ...column
     }));

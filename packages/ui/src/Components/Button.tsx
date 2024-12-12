@@ -4,11 +4,12 @@ import './Button.css';
 interface ButtonProps {
   label: string;
   onClick: () => void;
+  buttonClassName?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ label, onClick, buttonClassName }) => {
   return (
-    <button className="sent_custom-button" onClick={onClick}>
+    <button className={`sent_custom-button ${buttonClassName}`} onClick={onClick}>
       {label}
     </button>
   );

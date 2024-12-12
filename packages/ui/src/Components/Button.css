@@ -1,7 +1,5 @@
 .sent_custom-button {
-  position : fixed;
-  right : 80px;
-  top : 30px;
+  outline: none;
   padding: 10px 20px;
   background-color: #007bff;
   color: white;

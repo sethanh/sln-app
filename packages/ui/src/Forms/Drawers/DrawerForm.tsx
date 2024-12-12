@@ -3,12 +3,12 @@ import { Drawer } from 'antd';
 import { DrawerStyles } from 'antd/es/drawer/DrawerPanel';
 import { FormikForm, FormikFormProps } from '../Formik';
 
-interface DrawerFormProps<T> {
+export interface DrawerFormProps<T> {
     title? : string;
     width : number;
     onClose : () => void;
     open : boolean;
-    styles : DrawerStyles;
+    styles? : DrawerStyles;
     extra? : React.ReactNode;
     formikFormProps : FormikFormProps<T>;
 }
