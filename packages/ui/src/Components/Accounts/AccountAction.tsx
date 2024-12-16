@@ -2,7 +2,7 @@ import React, { PropsWithChildren} from 'react';
 import { IAccountActionProps } from './IAccountAction';
 import '../Sidebars/Sidebar.css'
 
-function getInitials(name: string) {
+export function getInitials(name: string) {
     const words = name.split(" ");
     const firstLetter = words[0][0]; // Chữ cái đầu của từ đầu tiên
     const lastLetter = words[words.length - 1][0]; // Chữ cái đầu của từ cuối cùng

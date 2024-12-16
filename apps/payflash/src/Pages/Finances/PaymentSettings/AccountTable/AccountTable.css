@@ -1,0 +1,17 @@
+.account-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account-table-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.filter-button {
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid #ccc;
+}
