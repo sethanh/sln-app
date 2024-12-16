@@ -6,7 +6,8 @@ export const AccountForm = ({ title,
                             onClose,
                             open,
                             styles,
-                            extra,
+                            footer,
+                            closeIcon,
                             formikFormProps
                         } : DrawerFormProps<IAccountProps>) => {
                             return (
@@ -16,7 +17,8 @@ export const AccountForm = ({ title,
                                     onClose={onClose}
                                     open={open}
                                     styles={styles}
-                                    extra={extra}
+                                    footer={footer}
+                                    closeIcon={closeIcon}
                                     formikFormProps={formikFormProps}
                                 />
                             )

@@ -1,6 +1,13 @@
+export interface IUserProps {
+    username : string;
+    email : string;
+}
+
 export interface IAccountProps {
-    accountType: string;
-    accountName: string;
-    accountNumber?: string;
-    accountBalance: string;
+    ID : string;
+    Name : IUserProps;
+    Phone : string;
+    Group? : string;
+    Source? : string;
+    CreatedOn : Date; 
 }

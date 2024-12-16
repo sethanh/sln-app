@@ -4,30 +4,34 @@ import { DrawerStyles } from 'antd/es/drawer/DrawerPanel';
 import { FormikForm, FormikFormProps } from '../Formik';
 
 export interface DrawerFormProps<T> {
-    title? : string;
     width : number;
     onClose : () => void;
     open : boolean;
     styles? : DrawerStyles;
-    extra? : React.ReactNode;
+    title? : React.ReactNode;
+    footer? : React.ReactNode;
+    closeIcon? : React.ReactNode;
     formikFormProps : FormikFormProps<T>;
 }
 
-export const DrawerForm = <T extends object>({ title,
+export const DrawerForm = <T extends object>({ 
                         width,
                         onClose,
                         open,
                         styles,
-                        extra,
+                        title,
+                        footer,
+                        closeIcon,
                         formikFormProps} : DrawerFormProps<T>) => {
     return (
         <Drawer 
-            title={title} 
             width={width} 
             onClose={onClose} 
             open={open} 
             styles={styles} 
-            extra={extra}
+            closeIcon={closeIcon}
+            title={title}
+            footer={footer}
         >
             <FormikForm {...formikFormProps} />
         </Drawer>

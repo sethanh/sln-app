@@ -4,10 +4,12 @@ import { ColumnsType } from 'antd/es/table/interface';
 
 export interface ITableProps<T> {
     rawColumns : ColumnsType<T>;
-    rawDatasource : T[]
+    rawDatasource : T[];
+    title? : React.ReactNode;
+    footer? : React.ReactNode;
 }
 
-export const RootTable = <T,>({ rawColumns, rawDatasource } : ITableProps<T>) => {
+export const RootTable = <T,>({ rawColumns, rawDatasource, title, footer } : ITableProps<T>) => {
     const columns = rawColumns?.map((column) => ({
         ...column
     }));
@@ -17,7 +19,13 @@ export const RootTable = <T,>({ rawColumns, rawDatasource } : ITableProps<T>) =>
     }));
     
     return (
-        <Table columns={columns} dataSource={datasource} />
+        <Table 
+            columns={columns} 
+            dataSource={datasource} 
+            title={ title? () => title : undefined }
+            footer={ footer? () => footer : undefined }
+            bordered={ title? true : false }
+            />
     )
 }
 

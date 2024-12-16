@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useAtom } from 'jotai';
-import { Field } from 'formik';
-import { Button } from '@my-monorepo/ui';
-import { AccountTable } from './AccountTable';
-import { rawColumns, rawDatasource } from '@my-monorepo/payflash/Constants';
-import { AccountForm } from './AccountForm';
+import { AccountTable, AccountTableHeader } from './AccountTable';
+import { actionItems, rawColumns, rawDatasource } from '@my-monorepo/payflash/Constants';
+import { AccountForm, AccountFormBody, AccountFormFooter, AccountFormHeader } from './AccountForm';
 import { AccountTableAtom } from '@my-monorepo/payflash/Root/Store/Table';
 import './PaymentSettingPage.css';
+import { CloseCircleFilled, CloseCircleOutlined, DownOutlined, SearchOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Space } from 'antd';
 
 const PaymentSettingPage: React.FC = () => {
     const [accountTableValues, setAccountTableValues] = useAtom(AccountTableAtom);
@@ -15,37 +15,65 @@ const PaymentSettingPage: React.FC = () => {
         setOpen(true);
       };
     
-      const onClose = () => {
+    const onClose = () => {
         setOpen(false);
-      };
+    };
+
     const onSubmit = () => {}
+
+    const menuProps = {
+        items: actionItems
+    }
     
     return (
         <div>
-            <AccountTable rawColumns={rawColumns} rawDatasource={rawDatasource} />
-            <Button label='Add Account' onClick={showDrawer} buttonClassName='mainButton' />
+            <header className={"header"}>
+                <div className={"header-left"}>
+                    <h3>Simple CRM</h3>
+                </div>
+
+                <div className={"header-right"}>
+                    <Dropdown menu={menuProps}>
+                        <Button>
+                            <Space>
+                                Action 
+                                <DownOutlined />
+                            </Space>
+                        </Button>
+                    </Dropdown>
+                    <Button 
+                        type='primary' 
+                        icon={<SearchOutlined />} 
+                        onClick={showDrawer}
+                    >
+                        Create Client
+                    </Button>
+                </div>
+            </header>
+            <AccountTable 
+                rawColumns={rawColumns} 
+                rawDatasource={rawDatasource} 
+                title={<AccountTableHeader/>}/>
             <AccountForm
-                title='Add Account'
-                width={500}
+                width={420}
                 onClose={onClose}
                 open={open}
+                styles={{header: {padding: '10px 0 10px 10px'}, body: {padding: '10px 10px 0 10px'}}}
+                title={<AccountFormHeader />}
+                footer={<AccountFormFooter/>}
+                closeIcon={
+                    <CloseCircleFilled style={{ 
+                        fontSize: '20px', 
+                        color: '#e2dada', 
+                        position: 'absolute',
+                        right: '20px',
+                        cursor: 'pointer' 
+                    }} />
+                }
                 formikFormProps={{
                     initialValues: accountTableValues,
                     onSubmit: onSubmit,
-                    children: (
-                        <div className={"formContainer"}>
-                            <label htmlFor='accountType'>Account Type</label>
-                            <Field name='accountType' type='text' />
-
-                            <label htmlFor='accountName'>Account Name</label>
-                            <Field name='accountName' type='text' />
-
-                            <label htmlFor='accountBalance'>Account Balance</label>
-                            <Field name='accountBalance' type='text' />
-
-                            <Button label='Submit' onClick={onSubmit} />
-                        </div>
-                    )
+                    children: <AccountFormBody/>
                 }}
             />
         </div>

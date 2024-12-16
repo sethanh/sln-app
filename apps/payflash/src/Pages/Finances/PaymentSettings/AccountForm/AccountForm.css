@@ -1,0 +1,55 @@
+h4 {
+    margin : 0;
+}
+
+label {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.account-form-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.info-container {
+    width: 100%;
+    height: max-content;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 10px 20px 20px;
+}
+
+.general-info-inputs {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.account-header {
+    width: 100%;
+}
+
+.account-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
