@@ -5,7 +5,7 @@ import { FormikForm, FormikFormProps } from '../Formik';
 
 export interface DrawerFormProps<T> {
     width : number;
-    onClose : () => void;
+    onClose? : () => void;
     open : boolean;
     styles? : DrawerStyles;
     title? : React.ReactNode;

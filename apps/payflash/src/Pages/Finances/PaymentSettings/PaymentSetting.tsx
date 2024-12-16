@@ -5,7 +5,7 @@ import { actionItems, rawColumns, rawDatasource } from '@my-monorepo/payflash/Co
 import { AccountForm, AccountFormBody, AccountFormFooter, AccountFormHeader } from './AccountForm';
 import { AccountTableAtom } from '@my-monorepo/payflash/Root/Store/Table';
 import './PaymentSettingPage.css';
-import { CloseCircleFilled, CloseCircleOutlined, DownOutlined, SearchOutlined } from '@ant-design/icons';
+import { CloseCircleFilled, CloseCircleOutlined, CloseOutlined, DownOutlined, SearchOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Space } from 'antd';
 
 const PaymentSettingPage: React.FC = () => {
@@ -56,20 +56,11 @@ const PaymentSettingPage: React.FC = () => {
                 title={<AccountTableHeader/>}/>
             <AccountForm
                 width={420}
-                onClose={onClose}
                 open={open}
                 styles={{header: {padding: '10px 0 10px 10px'}, body: {padding: '10px 10px 0 10px'}}}
-                title={<AccountFormHeader />}
+                title={<AccountFormHeader/>}
                 footer={<AccountFormFooter/>}
-                closeIcon={
-                    <CloseCircleFilled style={{ 
-                        fontSize: '20px', 
-                        color: '#e2dada', 
-                        position: 'absolute',
-                        right: '20px',
-                        cursor: 'pointer' 
-                    }} />
-                }
+                closeIcon={false}
                 formikFormProps={{
                     initialValues: accountTableValues,
                     onSubmit: onSubmit,
