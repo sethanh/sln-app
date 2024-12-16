@@ -1,7 +1,7 @@
 import { genericAtom } from "@my-monorepo/utils";
-import { IAccountProps } from "@my-monorepo/payflash/Pages";
+import { IAccountTableProps } from "@my-monorepo/payflash/Pages";
 
-export const AccountTableAtom = genericAtom<IAccountProps>({
+export const AccountTableAtom = genericAtom<IAccountTableProps>({
     ID: "",
     Name: {
         username: "",
@@ -12,3 +12,5 @@ export const AccountTableAtom = genericAtom<IAccountProps>({
     Source: "",
     CreatedOn: new Date(),
 });
+
+export const AccountDrawerAtom = genericAtom<boolean>(false);

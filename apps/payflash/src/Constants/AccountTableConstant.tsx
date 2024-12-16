@@ -1,7 +1,7 @@
 import { ColumnsType } from "antd/es/table/interface"
 import { Avatar, MenuProps } from "antd"
 import { EditOutlined, DeleteOutlined} from "@ant-design/icons"
-import { IAccountProps, IUserProps } from "../Pages"
+import { IAccountTableProps, IUserProps } from "../Pages"
 import { getInitials } from "@my-monorepo/ui"
 
 export const actionItems : MenuProps['items'] = [
@@ -70,7 +70,7 @@ export const referredByOptions = [
     }
 ]
 
-export const rawColumns : ColumnsType<IAccountProps> = [
+export const rawColumns : ColumnsType<IAccountTableProps> = [
     {
         title: "ID",
         dataIndex: "ID",
@@ -138,7 +138,7 @@ export const rawColumns : ColumnsType<IAccountProps> = [
     }
 ]
 
-export const rawDatasource : IAccountProps[] = [
+export const rawDatasource : IAccountTableProps[] = [
     {
         ID: "CRM_00001",
         Name: {

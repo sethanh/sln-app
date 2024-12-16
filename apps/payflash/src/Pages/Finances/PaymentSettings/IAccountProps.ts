@@ -3,7 +3,7 @@ export interface IUserProps {
     email : string;
 }
 
-export interface IAccountProps {
+export interface IAccountTableProps {
     ID : string;
     Name : IUserProps;
     Phone : string;
