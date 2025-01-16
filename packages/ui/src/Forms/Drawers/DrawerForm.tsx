@@ -26,7 +26,7 @@ export const DrawerForm = <T extends object>({
     return (
         <Drawer 
             width={width} 
-            onClose={onClose} 
+            onClose={onClose}
             open={open} 
             styles={styles} 
             closeIcon={closeIcon}

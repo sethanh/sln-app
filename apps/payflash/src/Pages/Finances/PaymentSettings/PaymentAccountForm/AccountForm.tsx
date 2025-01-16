@@ -1,6 +1,6 @@
 import React from 'react';
 import { DrawerForm, DrawerFormProps } from '@my-monorepo/ui';
-import { IAccountTableProps } from '../IAccountProps';
+import { PaymentAccountProps } from '../IPaymentAccountProps';
 export const AccountForm = ({ title,
                             width,
                             onClose,
@@ -9,7 +9,7 @@ export const AccountForm = ({ title,
                             footer,
                             closeIcon,
                             formikFormProps
-                        } : DrawerFormProps<IAccountTableProps>) => {
+                        } : DrawerFormProps<PaymentAccountProps>) => {
                             return (
                                 <DrawerForm
                                     title={title}

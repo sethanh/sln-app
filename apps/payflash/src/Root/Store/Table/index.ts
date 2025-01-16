@@ -1,1 +1,1 @@
-export * from './AccountTableAtom'
+export * from './TableAtom'

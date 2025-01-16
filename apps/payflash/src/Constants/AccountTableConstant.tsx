@@ -1,76 +1,43 @@
 import { ColumnsType } from "antd/es/table/interface"
 import { Avatar, MenuProps } from "antd"
 import { EditOutlined, DeleteOutlined} from "@ant-design/icons"
-import { IAccountTableProps, IUserProps } from "../Pages"
+import { IPaymentAccountTableProps, IBankNameProps, IUserProps } from "../Pages"
 import { getInitials } from "@my-monorepo/ui"
 
 export const actionItems : MenuProps['items'] = [
     {
-        label: "Action A",
+        label: "Account Management",
         key: "1",
     },
     {
-        label: "Action B",
+        label: "Setting Payment order",
         key: "2",
     }
 ]
 
-export const genderOptions = [
+export const bankNameOptions = [
     {
-        label: "Male",
-        value: "male",
+        label: "OCB",
+        value: "OCB",
     },
     {
-        label: "Female",
-        value: "female",
+        label: "Vietcombank",
+        value: "Vietcombank",
     }
 ]
 
-export const clientGroupOptions = [
+export const bankGroupOptions = [
     {
-        label: "Client A",
-        value: "clientA",
+        label: "Group A",
+        value: "Group A",
     },
     {
-        label: "Client B",
-        value: "clientB",
+        label: "Group B",
+        value: "Group B",
     }
 ]
 
-export const employeeOptions = [
-    {
-        label: "Employee A",
-        value: "employeeA",
-    },
-    {
-        label: "Employee B",
-        value: "employeeB",
-    }
-]
-
-export const clientSourceOptions = [
-    {
-        label: "Source A",
-        value: "sourceA",
-    },
-    {
-        label: "Source B",
-        value: "sourceB",
-    }
-]
-
-export const referredByOptions = [
-    {
-        label: "Employee",
-        value: "Employee",
-    },
-    {
-        label: "Client",
-        value: "Client",
-    }
-]
-
-export const rawColumns : ColumnsType<IAccountTableProps> = [
+export const rawColumns : ColumnsType<IPaymentAccountTableProps> = [
     {
         title: "ID",
         dataIndex: "ID",
@@ -89,36 +56,24 @@ export const rawColumns : ColumnsType<IAccountTableProps> = [
         }
     },
     {
-        title: "Name",
-        dataIndex: "Name",
-        key: "Name",
-        render: ({ username, email } : IUserProps) => {
-            const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+        title: "Bank Name",
+        dataIndex: "BankName",
+        key: "BankName",
+        render: ({ name, icon } : IBankNameProps) => {
             return (
-                <div style={{display: "flex", alignItems: "center", gap: "1rem"}}>
-                    <Avatar size={34} style={{ backgroundColor: randomColor }}>{getInitials(username)}</Avatar>
-                    <div>
-                        <h4 style={{ fontWeight: "normal", margin : 0}}>{username}</h4>
-                        <h5 style={{ fontWeight: "normal", margin : 0}}>{email}</h5>
-                    </div>
-                </div>
+                <h4 style={{ fontWeight: "normal", margin : 0}}>{name}</h4>
             )
-        },
+        }
     },
     {
-        title: "Phone",
-        dataIndex: "Phone",
-        key: "Phone",
+        title: "Bank Account Number",
+        dataIndex: "BankAccountNumber",
+        key: "BankAccountNumber",
     },
     {
         title: "Group",
         dataIndex: "Group",
         key: "Group",
-    },
-    {
-        title: "Source",
-        dataIndex: "Source",
-        key: "Source",
     },
     {
         title: "Created On",
@@ -138,52 +93,46 @@ export const rawColumns : ColumnsType<IAccountTableProps> = [
     }
 ]
 
-export const rawDatasource : IAccountTableProps[] = [
+export const rawDatasource : IPaymentAccountTableProps[] = [
     {
-        ID: "CRM_00001",
-        Name: {
-            username: "John Doe",
-            email: "5oV6O@example.com",
+        ID: "00001",
+        BankName: {
+            name: "Bank A",
         },
-        Phone: "1234567890",
+        BankAccountNumber: "1234567890",
         Group: "Group A",
-        Source: "Source A",
         CreatedOn: new Date(),
     }, 
     {
-        ID: "CRM_00002",
-        Name: {
-            username: "Ahihi Leuleu",
-            email: "abc@gmail.com",
+        ID: "00002", 
+        BankName: {
+            name: "Bank A",
         },
-        Phone: "1325465470",
+        BankAccountNumber: "1234567890",
         CreatedOn: new Date(),
     },
     {
-        ID: "CRM_00002",
-        Name: {
-            username: "Ahihi Leuleu",
-            email: "abc@gmail.com",
+        ID: "00002",
+        BankName: {
+            name: "Bank A",
         },
-        Phone: "1325465470",
+        BankAccountNumber: "1234567890",
         CreatedOn: new Date(),
     },
     {
-        ID: "CRM_00002",
-        Name: {
-            username: "Ahihi Leuleu",
-            email: "abc@gmail.com",
+        ID: "00002",
+        BankName: {
+            name: "Bank A",
         },
-        Phone: "1325465470",
+        BankAccountNumber: "1234567890",
         CreatedOn: new Date(),
     },
     {
-        ID: "CRM_00002",
-        Name: {
-            username: "Ahihi Leuleu",
-            email: "abc@gmail.com",
+        ID: "00002",
+        BankName: {
+            name: "Bank A",
         },
-        Phone: "1325465470",
+        BankAccountNumber: "1234567890",
         CreatedOn: new Date(),
     }
 ]

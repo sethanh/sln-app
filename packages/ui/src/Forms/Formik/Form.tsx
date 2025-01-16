@@ -9,6 +9,7 @@ export interface FormikFormProps<T> {
   validate?: (values: T) => Partial<Record<keyof T, string>> | undefined;
   children: React.ReactNode;
   validationSchema?: Yup.ObjectSchema<any>;
+  innerRef?: React.Ref<FormikProps<T>>;
 }
 
 export function FormikForm<T extends object>({
@@ -16,16 +17,18 @@ export function FormikForm<T extends object>({
   onSubmit,
   validate,
   children,
+  innerRef,
 }: FormikFormProps<T>) { 
   return (
     <Formik<T>
       initialValues={initialValues}
       onSubmit={onSubmit}
       validate={validate}
+      innerRef={innerRef}
     >
-      <Form>
-        {children}
-      </Form>
+        <Form>
+            {children}
+        </Form>
     </Formik>
   );
 }

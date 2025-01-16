@@ -1,7 +1,7 @@
 import React from 'react';
 import { RootTable, ITableProps } from '@my-monorepo/ui';
-import { IAccountTableProps } from '../IAccountProps';
-export const AccountTable = ({rawColumns, rawDatasource, title} : ITableProps<IAccountTableProps>) => {
+import { IPaymentAccountTableProps } from '../IPaymentAccountTableProps';
+export const AccountTable = ({rawColumns, rawDatasource, title} : ITableProps<IPaymentAccountTableProps>) => {
     return (
         <RootTable 
             rawColumns={rawColumns}
