@@ -17,3 +17,5 @@ export const ManagementLayout: React.FC = () => {
         />
     );
 };
+
+

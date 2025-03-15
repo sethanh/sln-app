@@ -3,12 +3,13 @@ import { Formik, Form, FormikHelpers, FormikProps } from 'formik';
 import * as Yup from 'yup';
 
 // Generic props cho form
-interface FormikFormProps<T> {
+export interface FormikFormProps<T> {
   initialValues: T;
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>;
   validate?: (values: T) => Partial<Record<keyof T, string>> | undefined;
-  children: (formikProps: FormikProps<T>) => React.ReactNode;
+  children: React.ReactNode;
   validationSchema?: Yup.ObjectSchema<any>;
+  innerRef?: React.Ref<FormikProps<T>>;
 }
 
 export function FormikForm<T extends object>({
@@ -16,18 +17,18 @@ export function FormikForm<T extends object>({
   onSubmit,
   validate,
   children,
-}: FormikFormProps<T>) {
+  innerRef,
+}: FormikFormProps<T>) { 
   return (
     <Formik<T>
       initialValues={initialValues}
       onSubmit={onSubmit}
       validate={validate}
+      innerRef={innerRef}
     >
-      {(formikProps) => (
-        <Form onSubmit={formikProps.handleSubmit}>
-          {children(formikProps)}
+        <Form>
+            {children}
         </Form>
-      )}
     </Formik>
   );
 }

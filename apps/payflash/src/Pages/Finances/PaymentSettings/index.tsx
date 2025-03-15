@@ -1,1 +1,5 @@
-export * from './PaymentSetting'
+export * from './PaymentSettingPage'
+export * from './PaymentAccountTable'
+export * from './PaymentAccountForm'
+export * from './IPaymentAccountTableProps'
+export * from './IPaymentAccountProps'

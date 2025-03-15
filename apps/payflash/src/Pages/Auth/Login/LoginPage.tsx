@@ -105,7 +105,7 @@ const LoginPage: React.FC = () => {
 
     const onHandleSuccess = async (token: IGoogleTokenResponse) => {
 
-        var option: IRequestOptions = {
+        const option: IRequestOptions = {
             method: 'POST',
             body: {
                 accessToken: token.access_token

@@ -1,0 +1,56 @@
+h4 {
+    margin : 0;
+}
+
+label {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.account-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.account-form-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.info-container {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.general-info-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.account-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
