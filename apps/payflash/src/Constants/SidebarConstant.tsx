@@ -1,35 +1,53 @@
 import { 
     HistoryOutlined, CreditCardOutlined, QrcodeOutlined, UngroupOutlined, 
-    TeamOutlined, ReadOutlined, SettingOutlined
+    TeamOutlined, ReadOutlined, SettingOutlined,
+    FileDoneOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { FlashPage, PlanningPage, HistoryPage,  PaymentSettingPage } from "@my-monorepo/payflash/Pages";
-import { QrHistoryPage, GeneratePage, QrSettingPage } from "@my-monorepo/payflash/Pages";
+import { FlashPage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
+import { Empty } from "antd";
 
 const qrCodeSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Generate",
         Icon: <UngroupOutlined />,
         path: 'qrcode/generate',
-        page: <GeneratePage />
+        page: <Empty description="Feature under development"/>
 
     },
     {
         label: "History",
         Icon: <HistoryOutlined />,
         path: 'qrcode/history',
-        page: <QrHistoryPage />
+        page: <Empty description="Feature under development"/>
 
     },
     {
         label: "Setting",
         Icon: <SettingOutlined />,
         path: 'qrcode/setting',
-        page: <QrSettingPage />
+        page: <Empty description="Feature under development"/>
     }
+] 
+
+const taxSidebarConstants : ISidebarItemProps[]= [
+    {
+        label: "Tax",
+        Icon: <FileDoneOutlined />,
+        path: 'tax/generate',
+        page: <Empty description="Feature under development"/>
+
+    },
+    {
+        label: "History",
+        Icon: <HistoryOutlined />,
+        path: 'tax/history',
+        page: <Empty description="Feature under development"/>
+
+    },
 ] 
 
 const paymentSidebarConstants : ISidebarItemProps[]= [
@@ -43,19 +61,19 @@ const paymentSidebarConstants : ISidebarItemProps[]= [
         label: "Payment amount qr",
         Icon: <CreditCardOutlined />,
         path: 'payment/amount',
-        page : <PlanningPage />
+        page : <Empty description="Feature under development"/>
     },
     {
         label: "Histories",
         Icon: <HistoryOutlined />,
         path: 'payment/history',
-        page : <HistoryPage />
+        page :<Empty description="Feature under development"/>
     },
     {
         label: "Setting",
         Icon: <SettingOutlined />,
         path: 'payment/setting',
-        page : <PaymentSettingPage />
+        page : <Empty description="Feature under development"/>
     }
 ]
 
@@ -81,6 +99,7 @@ export {
     paymentSidebarConstants, 
     qrCodeSidebarConstants, 
     teamSidebarConstants, 
+    taxSidebarConstants,
     documentSidebarConstants 
 }
 

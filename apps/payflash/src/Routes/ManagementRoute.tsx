@@ -4,6 +4,7 @@ import {
     paymentSidebarConstants,
     qrCodeSidebarConstants,
     teamSidebarConstants,
+    taxSidebarConstants,
     documentSidebarConstants,
     mainRootConstants
 } from '../Constants';
@@ -12,7 +13,8 @@ const contentRootRoutes: ISidebarItemProps[] = [
     ...paymentSidebarConstants,
     ...qrCodeSidebarConstants,
     ...teamSidebarConstants,
-    ...documentSidebarConstants
+    ...documentSidebarConstants,
+    ...taxSidebarConstants
 ];
 
 const mainRootRoutes: ISidebarItemProps[] = [

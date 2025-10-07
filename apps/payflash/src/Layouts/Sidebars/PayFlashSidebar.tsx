@@ -4,7 +4,9 @@ import { PaymentSidebar,
         TeamSidebar, 
         DocumentSidebar, 
         PayFlashAccountAction, 
-        PayFlashAccountProfile } from '.'
+        PayFlashAccountProfile,
+        TaxSidebar
+ } from '.'
 import './Sidebar.css'
 
 
@@ -14,6 +16,7 @@ export const PayFlashSidebar: React.FC = () => {
             <div>
                 <PayFlashAccountProfile />
                 <PaymentSidebar />
+                <TaxSidebar/>
                 <QrCodeSidebar />
                 <TeamSidebar />
                 <DocumentSidebar />

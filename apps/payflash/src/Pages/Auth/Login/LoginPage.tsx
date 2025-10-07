@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button, Checkbox, Form, Input } from 'antd'
 import styled from 'styled-components'
-import { GoogleOutlined } from '@ant-design/icons'
-import { GoogleAuthLogin, GoogleAuthProvider, IGoogleTokenResponse } from '@my-monorepo/ui'
+import { DropboxOutlined, GoogleOutlined, JavaOutlined } from '@ant-design/icons'
+import { FlexBox, GoogleAuthLogin, GoogleAuthProvider, IGoogleTokenResponse, TextCommon } from '@my-monorepo/ui'
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants'
 import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions'
 import { paymentApiFetch } from '@my-monorepo/payflash/Root'
@@ -83,29 +83,24 @@ const LoginBox = styled.div`
   .register-link {
     margin-top: 1rem;
   }
+  display: flex;
+  flex-direction: column;
 `;
 
-const Logo = styled.div`
-  margin-bottom: 1rem;
-
-  img {
-    max-height: 50px;
-  }
-`;
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate()
-    const onFinish = (values: any) => {
+    const onFinish = (values: unknown) => {
         console.log('Success:', values);
     };
 
-    const onFinishFailed = (errorInfo: any) => {
+    const onFinishFailed = (errorInfo: unknown) => {
         console.log('Failed:', errorInfo);
     };
 
     const onHandleSuccess = async (token: IGoogleTokenResponse) => {
 
-        var option: IRequestOptions = {
+        const option: IRequestOptions = {
             method: 'POST',
             body: {
                 accessToken: token.access_token
@@ -130,21 +125,17 @@ const LoginPage: React.FC = () => {
             <GoogleAuthProvider clientId={appConstant.googleClientId}>
                 <Container>
                     <LeftPanel>
-                        <img
-                            src="https://via.placeholder.com/300x200" // Replace with actual graph/chart image
-                            alt="Analytics"
-                        />
+                        <DropboxOutlined style={{color:'#084396', fontSize: 122}}/>
                         <h1>Platform for Payment Success</h1>
                         <p>Intelligent · Efficient · Effortless</p>
                     </LeftPanel>
                     <RightPanel>
                         <LoginBox>
-                            <Logo>
-                                <img
-                                    src="https://via.placeholder.com/150x50" // Replace with your logo
-                                    alt="IziSalon"
-                                />
-                            </Logo>
+                            <FlexBox direction='column' alignItems='center' padding={16} borderRadius={8} >
+                                <JavaOutlined style={{color:'#084396', fontSize: 52}}/>
+                                <TextCommon color='#084396'>Flash</TextCommon>
+                                <TextCommon color='#022250'>PLATFORM FOR FINANCIAL</TextCommon>
+                            </FlexBox>
                             <div className="login-title">Log in to Flash</div>
                             <Form
                                 name="login"
