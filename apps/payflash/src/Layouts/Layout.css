@@ -1,7 +1,20 @@
-.management-sidebar{
+.pay-flash-sidebar{
     background-color: var(--background-white-color);
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
     color : var(--text-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.pay-flash-content{
+  background-color: var(--background-color);
+  padding: 1rem 1rem;
+  color : var(--text-color);
+}
+
+.pay-flash-header{
+  padding: 2px 1rem;
+  background-color: var(--background-white-color);
+  border-bottom: 1px solid var(--border-color);
 }
     
 .light-theme {

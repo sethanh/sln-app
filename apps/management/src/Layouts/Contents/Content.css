@@ -1,8 +1,6 @@
 .management-content-wrapper{
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    padding-left: 1rem;
     background-color: var(--background-white-color);
     flex-grow: 1;
 }

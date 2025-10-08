@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField, useFormikContext } from 'formik';
 import { Form, InputNumber } from 'antd';
-import { FlexBox } from '../../Components';
+import { FlexBox, TextCommon } from '../../Components';
 
 interface InputNumberFieldProps {
   fieldName: string;
@@ -17,7 +17,7 @@ interface InputNumberFieldProps {
   formatter?: ((value: number | undefined, info: {
     userTyping: boolean;
     input: string;
-}) => string) | undefined
+  }) => string) | undefined
 }
 
 export const InputNumberField: React.FC<InputNumberFieldProps> = ({
@@ -47,37 +47,32 @@ export const InputNumberField: React.FC<InputNumberFieldProps> = ({
   };
 
   return (
-    <FlexBox flex={1}>
-    <Form.Item
-      label={
-        label ? (
-          <div>
-            {label}
-            {required && <span style={{ color: 'red' }}> *</span>}
-          </div>
-        ) : null
-      }
-      labelCol={{ span: 24 }}
-      validateStatus={error ? 'error' : ''}
-      help={error ? meta.error : undefined}
-      style={{ width: '100%' }}
-    >
-      <InputNumber
-        id={fieldName}
-        name={fieldName}
-        style={{ width: '100%' }}
-        placeholder={placeholder}
-        disabled={disabled}
-        value={field.value ?? undefined}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        min={min}
-        max={max}
-        step={step}
-        precision={precision}
-        formatter={formatter}
-      />
-    </Form.Item>
+    <FlexBox flex={1} direction='column'>
+      <TextCommon fontWeight={500}>
+        {label}
+        {required && <span style={{ color: 'red', fontWeight: 700 }}> *</span>}
+      </TextCommon>
+      <Form.Item
+        validateStatus={error ? 'error' : ''}
+        help={error ? meta.error : undefined}
+        style={{ width: '100%', marginBottom: 0 }}
+      >
+        <InputNumber
+          id={fieldName}
+          name={fieldName}
+          style={{ width: '100%' }}
+          placeholder={placeholder}
+          disabled={disabled}
+          value={field.value ?? undefined}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          min={min}
+          max={max}
+          step={step}
+          precision={precision}
+          formatter={formatter}
+        />
+      </Form.Item>
     </FlexBox>
   );
 };

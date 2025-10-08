@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField, useFormikContext } from 'formik';
 import { Input, Form } from 'antd';
-import { FlexBox } from '../../Components';
+import { FlexBox, TextCommon } from '../../Components';
 
 interface InputFieldProps {
   fieldName: string;
@@ -38,22 +38,16 @@ export const InputField: React.FC<InputFieldProps> = ({
   };
 
   return (
-    <FlexBox flex={1}>
+    <FlexBox flex={1} direction='column'>
+      <TextCommon fontWeight={500}>
+        {label}
+        {required && <span style={{ color: 'red', fontWeight: 700 }}> *</span>}
+      </TextCommon>
       <Form.Item
-      label={
-        label ? (
-          <div>
-            {label}
-            {required && <span style={{ color: 'red', fontWeight: 700 }}> *</span>}
-          </div>
-        ) : null
-      }
-      labelCol={{ span: 24 }}
-      wrapperCol={{ span: 24 }}
-      validateStatus={showError ? 'error' : undefined}
-      help={showError ? meta.error : undefined}
-      style={{ width: '100%' }}
-    >
+        validateStatus={showError ? 'error' : undefined}
+        help={showError ? meta.error : undefined}
+        style={{ width: '100%', marginBottom: 0 }}
+      >
       <Input
         {...field}
         type={type}

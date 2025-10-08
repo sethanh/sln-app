@@ -1,7 +1,7 @@
 import React from 'react';
 import { useField, useFormikContext } from 'formik';
 import { Select, Form, SelectProps } from 'antd';
-import { FlexBox } from '../../Components';
+import { FlexBox, TextCommon } from '../../Components';
 
 interface SelectFieldProps extends SelectProps {
   fieldName: string;
@@ -36,21 +36,15 @@ export const SelectField: React.FC<SelectFieldProps> = ({
   };
 
   return (
-    <FlexBox flex={1}>
+    <FlexBox flex={1} direction='column'>
+      <TextCommon fontWeight={500}>
+        {label}
+        {required && <span style={{ color: 'red', fontWeight: 700 }}> *</span>}
+      </TextCommon>
       <Form.Item
-        label={
-          label ? (
-            <div>
-              {label}
-              {required && <span style={{ color: 'red', fontWeight: 700 }}> *</span>}
-            </div>
-          ) : null
-        }
-        labelCol={{ span: 24 }}
-        wrapperCol={{ span: 24 }}
         validateStatus={showError ? 'error' : undefined}
         help={showError ? meta.error : undefined}
-        style={{ width: '100%' }}
+        style={{ width: '100%', marginBottom: 0 }}
       >
         <Select
           value={field.value}

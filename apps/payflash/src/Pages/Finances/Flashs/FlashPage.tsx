@@ -77,7 +77,7 @@ const FlashPage: React.FC = () => {
                             onSubmit={handleSubmit}
                         >
                             {(formik) => (
-                                <FlexBox direction='column'>
+                                <FlexBox direction='column' gap={12}>
                                     {
                                         banks && <SelectField
                                             fieldName="binCode"
