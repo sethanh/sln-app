@@ -26,13 +26,13 @@ export const useHttpQuery = <TResponse>(
     setError(null);
 
     try {
-      const result = await handleApiFetch<TResponse>(
-        options.url,
-        options,
-        appName
-      );
-      setData({...result});
-      config?.onSuccess?.(result);
+      const result = await handleApiFetch<TResponse>(options.url, options, appName);
+
+      if (result !== null && result !== undefined) {
+        setData(result);
+        config?.onSuccess?.(result);
+      }
+
     } catch (err) {
       setError(err);
       config?.onError?.(err);
@@ -40,7 +40,7 @@ export const useHttpQuery = <TResponse>(
       setIsLoading(false);
       config?.onFinally?.();
     }
-  }, [appName, options?.url, JSON.stringify(options)]);
+  }, [appName, options?.url]);
 
   useEffect(() => {
     if (config?.autoFetch === false) return;

@@ -28,8 +28,12 @@ export const useHttpCommand = <TResponse>(
           params.requestOptions,
           appName
         );
-        setData(result);
-        config?.onSuccess?.(result);
+
+        if (result !== null && result !== undefined) {
+          setData(result);
+          config?.onSuccess?.(result);
+        }
+
         return result;
       } catch (err) {
         setError(err);
