@@ -135,7 +135,7 @@ const FlashPage: React.FC = () => {
                                 {data && <Image
                                     width={200}
                                     src={data.qrCode}
-                                    preview={false}
+                                    preview={true}
                                     style={{
                                         borderRadius: 8,
                                         boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
