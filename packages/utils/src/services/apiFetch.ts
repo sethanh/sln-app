@@ -1,47 +1,69 @@
-import { IRequestOptions } from "./IRequestOptions";
-import {getToken} from '../store'
+import { IRequestOptions } from "./IRequestOptions.js";
+import { getToken } from '../store'
 
 const apiFetch = async <T>(
-    url: string,
-    options: IRequestOptions = {},
-    appName?: string
+  url: string,
+  options: IRequestOptions = {},
+  appName?: string
 ): Promise<T> => {
-    const { method = 'GET', headers = {}, queryParams, routeParams, body } = options;
+  const { method = "GET", headers = {}, queryParams, routeParams, body } = options;
 
-    // Replace route params in the URL
-    if (routeParams) {
-        Object.keys(routeParams).forEach((key) => {
-            url = url.replace(`:${key}`, routeParams[key]);
-        });
+  // 1️⃣ Replace route params in the URL (e.g. /users/:id → /users/123)
+  if (routeParams && typeof routeParams === "object") {
+    for (const [key, value] of Object.entries(routeParams)) {
+      url = url.replace(`:${key}`, encodeURIComponent(String(value)));
+    }
+  }
+
+  // 2️⃣ Append query parameters safely
+  if (queryParams && typeof queryParams === "object") {
+    const searchParams = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(queryParams)) {
+      if (value === undefined || value === null) continue;
+
+      if (typeof value === "object") {
+        // Nested object/array -> stringify
+        searchParams.append(key, JSON.stringify(value));
+      } else {
+        searchParams.append(key, String(value));
+      }
     }
 
-    // Append query parameters to URL
-    if (queryParams) {
-        const queryString = new URLSearchParams(queryParams as any).toString();
-        url += `?${queryString}`;
+    const queryString = searchParams.toString();
+    if (queryString) {
+      url += (url.includes("?") ? "&" : "?") + queryString;
     }
+  }
 
-    const token = getToken(appName)
+  // 3️⃣ Add default headers & token
+  const token = getToken(appName);
+  const defaultHeaders: HeadersInit = {
+    "Content-Type": "application/json",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...headers,
+  };
 
-    // Set default headers (like authorization)
-    const defaultHeaders: HeadersInit = {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`, // Token được truyền vào đây
-        ...headers, // Merge any additional headers
-    };
+  // 4️⃣ Fetch API
+  const response = await fetch(url, {
+    method,
+    headers: defaultHeaders,
+    body: body ? JSON.stringify(body) : undefined,
+  });
 
-    const response = await fetch(url, {
-        method,
-        headers: defaultHeaders,
-        body: body ? JSON.stringify(body) : undefined,
-    });
+  // 5️⃣ Handle response
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    throw new Error(`HTTP ${response.status}: ${response.statusText}\n${errorText}`);
+  }
 
-    if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-    }
-
-    const data: T = await response.json();
-    return data;
+  // 6️⃣ Parse JSON safely
+  try {
+    return (await response.json()) as T;
+  } catch {
+    // Trường hợp API trả về text hoặc empty body
+    return {} as T;
+  }
 };
 
 export {apiFetch}

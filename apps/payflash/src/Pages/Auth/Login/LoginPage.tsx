@@ -5,7 +5,7 @@ import { DropboxOutlined, GoogleOutlined, JavaOutlined } from '@ant-design/icons
 import { FlexBox, GoogleAuthLogin, GoogleAuthProvider, IGoogleTokenResponse, TextCommon } from '@my-monorepo/ui'
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants'
 import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions'
-import { paymentApiFetch } from '@my-monorepo/payflash/Root'
+import { usePaymentHttpCommand } from '@my-monorepo/payflash/Root'
 import { TokenModel } from '@my-monorepo/payflash/Models'
 import { paymentToken } from '@my-monorepo/payflash/Root'
 import { useNavigate } from "react-router"
@@ -98,6 +98,8 @@ const LoginPage: React.FC = () => {
         console.log('Failed:', errorInfo);
     };
 
+    const {mutateAsync, isPending}= usePaymentHttpCommand<TokenModel>({})
+
     const onHandleSuccess = async (token: IGoogleTokenResponse) => {
 
         const option: IRequestOptions = {
@@ -107,11 +109,12 @@ const LoginPage: React.FC = () => {
             }
         }
 
-        const login = await paymentApiFetch<TokenModel>(
-            urlConstant.googleLoginAccountUrl,
-            option,
-            () => { },
-            () => { },
+        const login = await mutateAsync(
+          
+            {
+                url:   urlConstant.account.googleLoginAccountUrl,
+                requestOptions: option
+            }
         );
 
         if (login) {
@@ -163,7 +166,7 @@ const LoginPage: React.FC = () => {
                                     </div>
                                 </Form.Item>
                                 <Form.Item>
-                                    <Button type="primary" htmlType="submit">
+                                    <Button type="primary" htmlType="submit" disabled={true}>
                                         Log in
                                     </Button>
                                 </Form.Item>
@@ -179,6 +182,7 @@ const LoginPage: React.FC = () => {
                                             type="default" icon={<GoogleOutlined />}
                                             block
                                             onClick={login}
+                                            loading={isPending}
                                         >
                                             Continue with Google
                                         </Button>

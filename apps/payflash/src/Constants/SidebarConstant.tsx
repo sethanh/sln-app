@@ -4,32 +4,32 @@ import {
     FileDoneOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { FlashPage } from "@my-monorepo/payflash/Pages";
+import { FlashPage, GeneratePage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
-import { Empty } from "antd";
+import { Card, Empty } from "antd";
 
 const qrCodeSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Generate",
         Icon: <UngroupOutlined />,
         path: 'qrcode/generate',
-        page: <Empty description="Feature under development"/>
+        page: <GeneratePage/>
 
     },
     {
         label: "History",
         Icon: <HistoryOutlined />,
         path: 'qrcode/history',
-        page: <Empty description="Feature under development"/>
+        page: <Card><Empty description="Feature under development"/></Card>
 
     },
     {
         label: "Setting",
         Icon: <SettingOutlined />,
         path: 'qrcode/setting',
-        page: <Empty description="Feature under development"/>
+        page: <Card><Empty description="Feature under development"/></Card>
     }
 ] 
 
@@ -38,14 +38,14 @@ const taxSidebarConstants : ISidebarItemProps[]= [
         label: "Tax",
         Icon: <FileDoneOutlined />,
         path: 'tax/generate',
-        page: <Empty description="Feature under development"/>
+        page: <Card><Empty description="Feature under development"/></Card>
 
     },
     {
         label: "History",
         Icon: <HistoryOutlined />,
         path: 'tax/history',
-        page: <Empty description="Feature under development"/>
+        page: <Card><Empty description="Feature under development"/></Card>
 
     },
 ] 
@@ -61,19 +61,19 @@ const paymentSidebarConstants : ISidebarItemProps[]= [
         label: "Payment amount qr",
         Icon: <CreditCardOutlined />,
         path: 'payment/amount',
-        page : <Empty description="Feature under development"/>
+        page : <Card><Empty description="Feature under development"/></Card>
     },
     {
         label: "Histories",
         Icon: <HistoryOutlined />,
         path: 'payment/history',
-        page :<Empty description="Feature under development"/>
+        page :<Card><Empty description="Feature under development"/></Card>
     },
     {
         label: "Setting",
         Icon: <SettingOutlined />,
         path: 'payment/setting',
-        page : <Empty description="Feature under development"/>
+        page : <Card><Empty description="Feature under development"/></Card>
     }
 ]
 
@@ -95,12 +95,22 @@ const documentSidebarConstants : ISidebarItemProps[]= [
     }
 ]
 
+const homeConstants : ISidebarItemProps[]= [
+    {
+        label: "Flash qr payment",
+        Icon: <ReadOutlined />,
+        path: '',
+        page : <FlashPage/>
+    }
+]
+
 export { 
     paymentSidebarConstants, 
     qrCodeSidebarConstants, 
     teamSidebarConstants, 
     taxSidebarConstants,
-    documentSidebarConstants 
+    documentSidebarConstants,
+    homeConstants
 }
 
 

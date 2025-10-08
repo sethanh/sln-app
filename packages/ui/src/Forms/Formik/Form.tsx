@@ -16,12 +16,14 @@ export function FormikForm<T extends object>({
   onSubmit,
   validate,
   children,
+  validationSchema,
 }: FormikFormProps<T>) {
   return (
     <Formik<T>
       initialValues={initialValues}
       onSubmit={onSubmit}
       validate={validate}
+      validationSchema={validationSchema}
     >
       {(formikProps) => (
         <Form onSubmit={formikProps.handleSubmit}>

@@ -4,28 +4,30 @@ import { useNavigate } from "react-router"
 import { useAtom } from 'jotai';
 import { urlConstant } from '@my-monorepo/payflash/Constants';
 
-import { paymentToken } from '@my-monorepo/payflash/Root';
-import { currentAccountAtom, paymentApiFetch } from '@my-monorepo/payflash/Root';
+import { paymentToken, usePaymentHttpCommand } from '@my-monorepo/payflash/Root';
+import { currentAccountAtom } from '@my-monorepo/payflash/Root';
 import { AccountModel } from '@my-monorepo/payflash/Models';
-import { IRequestOptions } from 'packages/utils/src/services/IRequestOptions';
 
 export const PayFlashAccountProfile: React.FC = () => {
     const navigate = useNavigate();
     const [account, setAccount] = useAtom(currentAccountAtom)
     const token = paymentToken.getPaymentToken()
+    const {mutateAsync} = usePaymentHttpCommand<AccountModel>({
+        onError: (error) => {
+            console.error('Error fetching current account:', error);
+            setAccount(null)
+        }
+    });
     useEffect(() => {
 
         async function fetchCurrentAccount() {
-
-            const option: IRequestOptions = {
-                method: 'GET'
-            }
-
-            const resAccount = await paymentApiFetch<AccountModel>(
-                urlConstant.getCurrentAccountUrl,
-                option,
-                () => { },
-                () => { },
+            const resAccount = await mutateAsync(
+                {
+                    url:  urlConstant.account.getCurrentAccountUrl,
+                    requestOptions: {
+                        method: 'GET'
+                    }
+                }
             );
 
             if(resAccount)
@@ -38,7 +40,7 @@ export const PayFlashAccountProfile: React.FC = () => {
             fetchCurrentAccount()
         }
 
-    }, [token, account, setAccount]);
+    }, [token, account, setAccount, mutateAsync]);
 
     const onLogOut = () => {
         paymentToken.removePaymentToken()

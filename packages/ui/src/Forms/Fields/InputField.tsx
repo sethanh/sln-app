@@ -1,15 +1,16 @@
-// InputField.tsx
 import React from 'react';
 import { useField, useFormikContext } from 'formik';
-import { Input } from 'antd';
-import { TextCommon } from '../../Components';
+import { Input, Form } from 'antd';
+import { FlexBox } from '../../Components';
 
 interface InputFieldProps {
   fieldName: string;
   label?: string;
   placeholder?: string;
   disabled?: boolean;
-  onChange?: (value: string) => void; // custom callback
+  onChange?: (value: string) => void;
+  required?: boolean;
+  type?: string;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
@@ -18,10 +19,13 @@ export const InputField: React.FC<InputFieldProps> = ({
   placeholder,
   disabled,
   onChange,
+  required,
+  type = 'text',
 }) => {
   const [field, meta] = useField(fieldName);
-  const { setFieldValue } = useFormikContext<any>();
-  const error = meta.touched && meta.error;
+  const { setFieldValue, setFieldTouched } = useFormikContext<any>();
+
+  const showError = meta.touched && !!meta.error;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -29,16 +33,36 @@ export const InputField: React.FC<InputFieldProps> = ({
     if (onChange) onChange(value);
   };
 
+  const handleBlur = () => {
+    setFieldTouched(fieldName, true);
+  };
+
   return (
-    <div>
-      {label && <label>{label}</label>}
+    <FlexBox flex={1}>
+      <Form.Item
+      label={
+        label ? (
+          <div>
+            {label}
+            {required && <span style={{ color: 'red', fontWeight: 700 }}> *</span>}
+          </div>
+        ) : null
+      }
+      labelCol={{ span: 24 }}
+      wrapperCol={{ span: 24 }}
+      validateStatus={showError ? 'error' : undefined}
+      help={showError ? meta.error : undefined}
+      style={{ width: '100%' }}
+    >
       <Input
         {...field}
+        type={type}
         placeholder={placeholder}
         disabled={disabled}
         onChange={handleChange}
+        onBlur={handleBlur}
       />
-      {error && <TextCommon color='red' fontSize={12}>{error}</TextCommon>}
-    </div>
+    </Form.Item>
+    </FlexBox>
   );
 };

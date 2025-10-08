@@ -1,12 +1,12 @@
 import * as Yup from 'yup';
 
 export const createPaymentSchema = Yup.object({
-  accountNo: Yup.string().required('Số tài khoản là bắt buộc'),
-  binCode: Yup.string().required('Mã BIN là bắt buộc'),
+  accountNo: Yup.string().required('bank account is required'),
+  binCode: Yup.string().required('bank name is required'),
   amount: Yup.number()
     .nullable()
-    .typeError('Số tiền không hợp lệ')
-    .min(0, 'Số tiền phải >= 0'),
+    .typeError('amount must be a number')
+    .min(0, 'amount must be at least 0'),
   accountName: Yup.string().nullable(),
   description: Yup.string().nullable(),
 });
