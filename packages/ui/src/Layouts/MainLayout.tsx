@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MainLayout.css';
 import { IStyle } from '../Components/Roots/IRoots';
+import { Button } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 
-// Define generic types for props
 interface LayoutProps<T> extends IStyle {
   header?: React.ReactNode;
   sidebar?: React.ReactNode;
@@ -13,41 +14,60 @@ interface LayoutProps<T> extends IStyle {
   sidebarClassName?: string;
   contentClassName?: string;
   footerClassName?: string;
+  iconMenu?: React.ReactNode;
 }
 
-export const MainLayout = <T,>({ 
-    header, 
-    sidebar, 
-    footer, 
-    content,
-    headerClassName,
-    sidebarClassName,
-    contentClassName,
-    footerClassName, 
-    style
-  }: LayoutProps<T>) => {
+export const MainLayout = <T,>({
+  header,
+  sidebar,
+  footer,
+  content,
+  headerClassName,
+  sidebarClassName,
+  contentClassName,
+  footerClassName,
+  style,
+  iconMenu
+}: LayoutProps<T>) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
   return (
-    <div className={`sent_main-layout`} style={style}>
-      {
-        header 
-        && <header className={`sent_main-header ${headerClassName}`}>
+    <div className="sent_main-layout" style={style}>
+      {/* Header */}
+      {header && (
+        <header className={`sent_main-header ${headerClassName || ''}`}>
+          <Button
+            className="sent_main-menu-btn"
+            onClick={toggleSidebar}
+            icon={iconMenu ? iconMenu : <MenuOutlined />}
+          />
           {header}
         </header>
-      }
-      <div className={`sent_main-layout-body`}>
-        <div className={`sent_main-sidebar ${sidebarClassName}`}>
+      )}
+
+      {/* Body */}
+      <div className="sent_main-layout-body">
+        <div
+          className={`sent_main-sidebar ${sidebarOpen ? 'open' : ''} ${sidebarClassName || ''}`}
+        >
           {sidebar}
         </div>
-        <div className={`sent_main-content ${contentClassName}`}>
+        <div
+          className={`sent_main-content ${contentClassName || ''}`}
+          onClick={() => sidebarOpen && setSidebarOpen(false)} // click ngoài thì đóng sidebar
+        >
           {content}
         </div>
       </div>
-      {
-        footer
-        && <div className={`sent_main-footer ${footerClassName}`}>
+
+      {/* Footer */}
+      {footer && (
+        <div className={`sent_main-footer ${footerClassName || ''}`}>
           {footer}
         </div>
-      }
+      )}
     </div>
   );
 };

@@ -67,6 +67,13 @@
     border-radius: 0.5rem;
 }
 
+.sidebar-item{ 
+    &.active{
+      background-color: #E6F4FF;
+      border-radius: 0.5rem;
+    }
+}
+
 .sent_account-action-avatar{
     width: 2rem;
     height: 2rem;

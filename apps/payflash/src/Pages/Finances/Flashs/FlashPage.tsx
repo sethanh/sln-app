@@ -3,7 +3,7 @@ import { BankInfoResponse, BankResponse, CreatePaymentQr, CreatePaymentQrRespons
 import { usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
 import { usePaymentHttpCommand } from '@my-monorepo/payflash/Root/Services/hooks/usePaymentHttpCommand';
 import { FlexBox, formatterMoney, FormikForm, InputField, InputNumberField, SelectField, TextCommon } from '@my-monorepo/ui';
-import { Button, Card, Image } from 'antd';
+import { Button, Card, Col, Image, Row } from 'antd';
 import React, { useMemo } from 'react';
 
 
@@ -66,8 +66,8 @@ const FlashPage: React.FC = () => {
     return (
         <FlexBox direction='column' gap={24}>
             <TextCommon fontWeight={600} fontSize={22}>Flash payment QR</TextCommon>
-            <FlexBox flex='none' >
-                <FlexBox flex={1}>
+            <Row gutter={[24, 24]}>
+                <Col md={12} sm={24} xs={24}>
                     <Card style={{ width: '100%' }}>
                         <FormikForm<CreatePaymentQr>
                             initialValues={initialValues}
@@ -103,7 +103,7 @@ const FlashPage: React.FC = () => {
                                     <Button
                                         type="primary"
                                         htmlType="submit"
-                                        disabled={formik.isSubmitting || !formik.isValid}
+                                        disabled={formik.isSubmitting || !formik.isValid || !formik.dirty}
                                         loading={isPending || isLoading}
                                     >
                                         Create QR
@@ -112,13 +112,11 @@ const FlashPage: React.FC = () => {
                             )}
                         </FormikForm>
                     </Card>
-                </FlexBox>
-
-                <FlexBox justifyContent="center" alignItems="center" flex={1}>
+                </Col>
+                <Col md={12} sm={24} xs={24} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Card
                         style={{
-                            width: 280,
-                            height: 280,
+                            width: '50%',
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "center",
@@ -129,27 +127,23 @@ const FlashPage: React.FC = () => {
                             border: "1px solid #f0f0f0",
                         }}
                     >
-                        <FlexBox direction="column" alignItems="center" gap={16}>
-                            <FlexBox width={200} height={200}>
-                                {data && <Image
-                                    width={200}
-                                    src={data.qrCode}
-                                    preview={true}
-                                    style={{
-                                        borderRadius: 8,
-                                        boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
-                                    }}
-                                    loading='lazy'
-                                />}
-                            </FlexBox>
-                            <TextCommon fontSize={16} fontWeight={500}>
-                                {data ? 'Scan to pay' : 'No QR yet'}
-                            </TextCommon>
-                        </FlexBox>
+                        {data && <Image
+                            height="50%"
+                            src={data.qrCode}
+                            preview={true}
+                            style={{
+                                borderRadius: 8,
+                                boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
+                            }}
+                            loading='lazy'
+                        />}
+                        <TextCommon fontSize={16} fontWeight={500}>
+                            {data ? 'Scan to pay' : 'No QR yet'}
+                        </TextCommon>
 
                     </Card>
-                </FlexBox>
-            </FlexBox>
+                </Col>
+            </Row>
         </FlexBox>
     );
 };

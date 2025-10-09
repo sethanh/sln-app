@@ -53,6 +53,10 @@ const LeftPanel = styled.div`
   img {
     max-width: 80%;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const RightPanel = styled.div`
@@ -61,7 +65,6 @@ const RightPanel = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
 
   @media (max-width: 768px) {
     flex: none;

@@ -1,24 +1,25 @@
 import React from 'react';
-import { PaymentSidebar, 
-        QrCodeSidebar, 
-        TeamSidebar, 
-        DocumentSidebar, 
-        PayFlashAccountAction, 
- } from '.'
+import {
+    PaymentSidebar,
+    QrCodeSidebar,
+    TeamSidebar,
+    DocumentSidebar,
+    PayFlashAccountAction,
+} from '.'
 import './Sidebar.css'
-
+import { FlexBox } from '@my-monorepo/ui';
 
 export const PayFlashSidebar: React.FC = () => {
     return (
-        <div className='management-sidebar-wrapper'>
-            <div>
+        <FlexBox direction="column" justifyContent="space-between" >
+            <FlexBox direction="column" gap={2}>
                 <PaymentSidebar />
                 {/* <TaxSidebar/> */}
                 <QrCodeSidebar />
                 <TeamSidebar />
                 <DocumentSidebar />
-            </div>
+            </FlexBox >
             <PayFlashAccountAction />
-        </div>
+        </FlexBox>
     );
 };
