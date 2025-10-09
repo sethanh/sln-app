@@ -55,7 +55,6 @@ const FlashPage: React.FC = () => {
 
     const options: BankOption[] = useMemo<BankOption[]>(
         () => {
-            console.log('banks inside useMemo', banks);
             return banks?.items?.map((bank: BankInfoResponse) => ({
                 label: `${bank.shortName} - ${bank.name}`,
                 value: bank.bin || ''
@@ -64,7 +63,6 @@ const FlashPage: React.FC = () => {
         [banks?.items]
     );
 
-    console.log(options);
     return (
         <FlexBox direction='column' gap={24}>
             <TextCommon fontWeight={600} fontSize={22}>Flash payment QR</TextCommon>
