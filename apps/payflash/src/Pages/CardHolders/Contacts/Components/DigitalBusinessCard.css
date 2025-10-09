@@ -1,17 +1,89 @@
-.digital-business-card{
-    background: linear-gradient(#f6f6fc, #f6f7fa);
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    border-radius: 32px;
-} 
+
+.page-bg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--background-white-color);
+}
+
+.page-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background:linear-gradient(145deg, #F4F6FC, #f2f2f6);
+}
+
+.bg-blob-bottom {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(177,197,255,0.7), rgba(225,235,255,0));
+  /* background: red; */
+  bottom: 10px;
+  left: -12px ;
+  filter: blur(2px);
+  /* z-index: -1; */
+}
 
 .bg-blob {
   position: absolute;
-  width: 400px;
-  height: 400px;
+  width: 222px;
+  height: 222px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(177,197,255,0.7), rgba(225,235,255,0));
-  top: 20%;
-  left: 10%;
-  filter: blur(80px);
-  z-index: -1;
+  /* background: red; */
+  top: -75px;
+  right: -80px ;
+  filter: blur(2px);
+  /* z-index: -1; */
 }
+
+
+
+.btn-save {
+  background: linear-gradient(90deg, #9cd1ff, #c3f0ff);
+  color: #003366;
+  cursor: pointer;
+  border-radius: 22px;
+  padding: 6px 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #bad7f4;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px
+}
+
+.btn-connect {
+  background: linear-gradient(90deg, #a78bfa, #7dd3fc);
+  color: white;
+  cursor: pointer;
+  border-radius: 22px;
+  padding: 6px 14px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #8fb5ff;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px
+}
+
+.avatar-border {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 50%;
+  display: inline-block;
+  padding: 6px;
+  width: fit-content;
+  background-color: var(--background-white-color);
+}
+
