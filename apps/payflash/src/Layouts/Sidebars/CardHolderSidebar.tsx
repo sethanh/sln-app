@@ -1,16 +1,17 @@
 import React from 'react';
 import { GroupSidebar } from '@my-monorepo/ui'
-import { paymentSidebarConstants } from '@my-monorepo/payflash/Constants';
+import { cardHolderConstants } from '@my-monorepo/payflash/Constants';
 import { ICPayments } from '@my-monorepo/payflash/Assets';
 
 
-export const PaymentSidebar: React.FC = () => {
+export const CardHolderSidebar: React.FC = () => {
 
     return (
         <GroupSidebar
-            label='Payment'
-            sidebarItems={paymentSidebarConstants}
+            label='Card Holder'
+            sidebarItems={cardHolderConstants}
             Icon={<ICPayments.Wallet stroke='#22356F'/>}
+            border={true}
             defaultShowItem={true}
         />
     );

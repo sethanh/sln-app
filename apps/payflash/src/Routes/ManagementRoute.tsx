@@ -7,7 +7,8 @@ import {
     taxSidebarConstants,
     documentSidebarConstants,
     mainRootConstants,
-    homeConstants
+    homeConstants,
+    cardHolderConstants
 } from '../Constants';
 
 const contentRootRoutes: ISidebarItemProps[] = [
@@ -16,7 +17,8 @@ const contentRootRoutes: ISidebarItemProps[] = [
     ...teamSidebarConstants,
     ...documentSidebarConstants,
     ...taxSidebarConstants,
-    ...homeConstants
+    ...homeConstants,
+    ...cardHolderConstants
 ];
 
 const mainRootRoutes: ISidebarItemProps[] = [
