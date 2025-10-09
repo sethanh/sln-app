@@ -1,7 +1,7 @@
 import React from 'react';
 import { qrCodeSidebarConstants } from '@my-monorepo/payflash/Constants';
-import { BarcodeOutlined } from '@ant-design/icons';
 import { GroupSidebar } from '@my-monorepo/ui';
+import { ICPayments } from '@my-monorepo/payflash/Assets';
 
 export const QrCodeSidebar: React.FC = () => {
 
@@ -9,7 +9,7 @@ export const QrCodeSidebar: React.FC = () => {
         <GroupSidebar
             label='Qr Code'
             sidebarItems={qrCodeSidebarConstants}
-            Icon={<BarcodeOutlined />}
+            Icon={<ICPayments.QrCode />}
             defaultShowItem={true}
         />
     );

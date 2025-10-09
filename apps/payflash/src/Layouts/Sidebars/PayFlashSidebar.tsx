@@ -4,7 +4,6 @@ import { PaymentSidebar,
         TeamSidebar, 
         DocumentSidebar, 
         PayFlashAccountAction, 
-        TaxSidebar
  } from '.'
 import './Sidebar.css'
 
@@ -14,7 +13,7 @@ export const PayFlashSidebar: React.FC = () => {
         <div className='management-sidebar-wrapper'>
             <div>
                 <PaymentSidebar />
-                <TaxSidebar/>
+                {/* <TaxSidebar/> */}
                 <QrCodeSidebar />
                 <TeamSidebar />
                 <DocumentSidebar />

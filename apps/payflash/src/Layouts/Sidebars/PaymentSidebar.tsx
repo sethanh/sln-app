@@ -1,7 +1,7 @@
 import React from 'react';
 import { GroupSidebar } from '@my-monorepo/ui'
-import { StrikethroughOutlined } from '@ant-design/icons';
 import { paymentSidebarConstants } from '@my-monorepo/payflash/Constants';
+import { ICPayments } from '@my-monorepo/payflash/Assets';
 
 
 export const PaymentSidebar: React.FC = () => {
@@ -10,7 +10,7 @@ export const PaymentSidebar: React.FC = () => {
         <GroupSidebar
             label='Payment'
             sidebarItems={paymentSidebarConstants}
-            Icon={<StrikethroughOutlined />}
+            Icon={<ICPayments.Wallet stroke='#22356F'/>}
             border={true}
             defaultShowItem={true}
         />

@@ -12,7 +12,7 @@
 }
 
 .pay-flash-header{
-  padding: 2px 1rem;
+  padding: 6px 1rem;
   background-color: var(--background-white-color);
   border-bottom: 1px solid var(--border-color);
 }

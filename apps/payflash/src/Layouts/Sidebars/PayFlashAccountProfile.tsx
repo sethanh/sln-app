@@ -7,6 +7,7 @@ import { urlConstant } from '@my-monorepo/payflash/Constants';
 import { paymentToken, usePaymentHttpCommand } from '@my-monorepo/payflash/Root';
 import { currentAccountAtom } from '@my-monorepo/payflash/Root';
 import { AccountModel } from '@my-monorepo/payflash/Models';
+import { ICPayments } from '@my-monorepo/payflash/Assets';
 
 export const PayFlashAccountProfile: React.FC = () => {
     const navigate = useNavigate();
@@ -55,6 +56,7 @@ export const PayFlashAccountProfile: React.FC = () => {
             }}
             onLogOut={()=> onLogOut()}
             avatar={account?.googleAccount?.picture}
+            icon={<ICPayments.User stroke='#22356F'/>}
         />
     );
 };

@@ -3,6 +3,7 @@ import { ISingleSidebarProps } from './ISidebar';
 import './Sidebar.css'
 import { PlusOutlined} from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { TextCommon } from '../Typography';
 
 
 export const SingleSidebar: React.FC<PropsWithChildren<ISingleSidebarProps>> = ({
@@ -29,7 +30,7 @@ export const SingleSidebar: React.FC<PropsWithChildren<ISingleSidebarProps>> = (
       <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { onNavigate(value)}}>
         <div className="sent_group-sidebar-label-pre">
           {PreIcon}
-          <div className="sent_group-sidebar-label-pre-label">{label}</div>
+          <TextCommon fontSize={13} fontWeight={600}>{label}</TextCommon>
         </div>
         <PlusOutlined style={{ fontSize: '12px' }} className={`${!border?'sent_group-sidebar-label-pre-icon':''}`}/> 
       </div>

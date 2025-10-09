@@ -3,6 +3,7 @@ import { IGroupSidebarProps } from './ISidebar';
 import { SidebarItem } from './SidebarItem';
 import './Sidebar.css'
 import { DownOutlined, RightOutlined } from '@ant-design/icons';
+import { TextCommon } from '../Typography';
 
 
 
@@ -23,7 +24,7 @@ export const GroupSidebar: React.FC<PropsWithChildren<IGroupSidebarProps>> = ({
       <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={() => { setShowItem(!showItem) }}>
         <div className="sent_group-sidebar-label-pre">
           {Icon}
-          <div className="sent_group-sidebar-label-pre-label">{label}</div>
+          <TextCommon fontSize={13} fontWeight={600}>{label}</TextCommon>
         </div>
         {
           showItem

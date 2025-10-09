@@ -84,6 +84,7 @@ const FlashPage: React.FC = () => {
                                             label="Bank name"
                                             options={options}
                                             optionFilterProp="label"
+                                            required
                                             showSearch
                                         />
                                     }

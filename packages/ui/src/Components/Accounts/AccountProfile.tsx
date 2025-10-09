@@ -11,6 +11,7 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
   style,
   avatar,
   onLogin,
+  icon,
   onLogOut
 }) => {
 
@@ -29,14 +30,13 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
   if (!label) {
     return (
       <div
-        className={`sent_group-sidebar-wrapper ${className}`}
+        className={`${className}`}
         style={style}
         onClick={() => onLogin()}
       >
         <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
           <div className="sent_group-sidebar-label-pre">
-            <UserOutlined style={{ color: '#2292FF' }} />
-            <div className="sent_group-sidebar-label-pre-label" style={{ color: '#2292FF' }}>{`   Login Flash`}</div>
+            {icon || <UserOutlined style={{ color: '#2292FF' }} />}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { 
-    HistoryOutlined, CreditCardOutlined, QrcodeOutlined, UngroupOutlined, 
-    TeamOutlined, ReadOutlined, SettingOutlined,
+    HistoryOutlined, 
+    ReadOutlined, 
     FileDoneOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
@@ -9,25 +9,26 @@ import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
 import { Card, Empty } from "antd";
+import { ICPayments } from "../Assets";
 
 const qrCodeSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Generate",
-        Icon: <UngroupOutlined />,
+        Icon: <ICPayments.QrPlus />,
         path: 'qrcode/generate',
         page: <GeneratePage/>
 
     },
     {
         label: "History",
-        Icon: <HistoryOutlined />,
+        Icon: <ICPayments.Clock />,
         path: 'qrcode/history',
         page: <Card><Empty description="Feature under development"/></Card>
 
     },
     {
         label: "Setting",
-        Icon: <SettingOutlined />,
+        Icon: <ICPayments.Setting />,
         path: 'qrcode/setting',
         page: <Card><Empty description="Feature under development"/></Card>
     }
@@ -53,25 +54,25 @@ const taxSidebarConstants : ISidebarItemProps[]= [
 const paymentSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Flash qr payment",
-        Icon: <QrcodeOutlined />,
+        Icon: <ICPayments.QrCode />,
         path: 'payment/flash',
         page : <FlashPage/>
     },
     {
         label: "Payment amount qr",
-        Icon: <CreditCardOutlined />,
+        Icon: <ICPayments.Credit/>,
         path: 'payment/amount',
         page : <Card><Empty description="Feature under development"/></Card>
     },
     {
         label: "Histories",
-        Icon: <HistoryOutlined />,
+        Icon: <ICPayments.Clock/>,
         path: 'payment/history',
         page :<Card><Empty description="Feature under development"/></Card>
     },
     {
         label: "Setting",
-        Icon: <SettingOutlined />,
+        Icon: <ICPayments.Setting/>,
         path: 'payment/setting',
         page : <Card><Empty description="Feature under development"/></Card>
     }
@@ -80,7 +81,7 @@ const paymentSidebarConstants : ISidebarItemProps[]= [
 const teamSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Team",
-        Icon: <TeamOutlined />,
+        Icon: <ICPayments.Team />,
         path: 'team',
         page : <TeamPage/>
     }
@@ -89,7 +90,7 @@ const teamSidebarConstants : ISidebarItemProps[]= [
 const documentSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Document",
-        Icon: <ReadOutlined />,
+        Icon: <ICPayments.Document />,
         path: 'document',
         page : <DocumentPage/>
     }

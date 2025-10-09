@@ -1,6 +1,7 @@
 import React from 'react';
 import { ISidebarItemProps } from './ISidebar';
 import { useNavigate } from 'react-router-dom';
+import { TextCommon } from '../Typography';
 
 
 export const SidebarItem: React.FC<ISidebarItemProps> = ({ label, onClick, Icon, path,  style }) => {
@@ -17,7 +18,7 @@ export const SidebarItem: React.FC<ISidebarItemProps> = ({ label, onClick, Icon,
   return (
     <div className="sidebar-item" onClick={ () => onNavigate(path)} style={style}>
       {Icon}
-      <div>{label}</div>
+      <TextCommon fontWeight={450} fontSize={12} textAlign='end'>{label}</TextCommon>
     </div>
   );
 };

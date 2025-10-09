@@ -1,13 +1,16 @@
 {
     "compilerOptions": {
-      "moduleResolution": "nodenext",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
       "target": "ES6",
+      "jsx": "react",
       "declaration": true,
       "declarationMap": true,
       "outDir": "dist",
       "strict": true,
       "esModuleInterop": true,
-      "skipLibCheck": true
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]
