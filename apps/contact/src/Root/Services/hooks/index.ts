@@ -1,2 +1,2 @@
-export * from './usePaymentHttpCommand'
-export * from './usePaymentHttpQuery'
+export * from './useContactHttpCommand'
+export * from './useContactHttpQuery'

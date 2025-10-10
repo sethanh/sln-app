@@ -1,10 +1,8 @@
-import { FlexBox, TextCommon } from '@my-monorepo/ui'
+import { Router } from '../Routes'
 
 function App() {
   return (
-    <FlexBox>
-      <TextCommon>CONTACT</TextCommon>
-    </FlexBox>
+    <Router/>
   )
 }
 

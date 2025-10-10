@@ -79,7 +79,6 @@ const ContactForm: React.FC = () => {
                 <InputField fieldName="profileName" label="Profile name" />
               </FlexBox>
             </Card>
-
             <TextCommon fontWeight={600}>Social contact</TextCommon>
             <Card>
               <FieldArray
