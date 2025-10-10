@@ -116,7 +116,7 @@ const homeConstants : ISidebarItemProps[]= [
         label: "Flash qr payment",
         Icon: <ReadOutlined />,
         path: '',
-        page : <FlashPage/>
+        page : <ContactPage/>
     }
 ]
 

@@ -95,9 +95,9 @@ export const DigitalBusinessCard: React.FC<DigitalBusinessCardProps> = ({
 
           {/* Buttons */}
           <FlexBox direction="column" gap={8} alignItems="center" justifyContent="center">
-            <FlexBox gap={22} alignItems="center" justifyContent="center">
+            <FlexBox alignItems="center" justifyContent="space-between" width={"100%"} gap={12}>
               <div className="btn-save">
-                <SolutionOutlined />
+                <ICSocial.Save/>
                 <TextCommon>Save contact</TextCommon>
               </div>
               <div className="btn-connect">
