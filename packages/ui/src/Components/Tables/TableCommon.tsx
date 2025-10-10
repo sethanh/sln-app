@@ -35,7 +35,7 @@ interface TableCommonProps<TItem> extends TableProps<TItem> {
     readonly onExportExcel?: () => void;
     readonly emptyOption?: EmptyTableProps;
     readonly showFilterDropdown?: () => React.ReactNode;
-    readonly rightActionRender?: () => React.ReactNode;
+    readonly rightActionRender?: React.ReactNode;
     readonly leftHeaderRender?: () => React.ReactNode;
 }
 

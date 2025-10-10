@@ -1,4 +1,4 @@
-import { FlexBox, EmptyTable } from '@my-monorepo/ui';
+import { FlexBox, EmptyTable, TextCommon } from '@my-monorepo/ui';
 import React from 'react';
 import { DigitalBusinessCard } from './Components/DigitalBusinessCard';
 import { useAtom } from 'jotai';
@@ -14,6 +14,11 @@ const ContactPage: React.FC = () => {
     if (!account) {
         return (
             <Row gutter={[24, 24]} align="middle">
+                <Col span={24}>
+                <TextCommon fontSize={24} fontWeight={600}>
+                    Contacts
+                </TextCommon>
+                </Col>
                 <Col md={12} sm={24}>
                     <FlexBox direction="column"
                         alignItems="center"

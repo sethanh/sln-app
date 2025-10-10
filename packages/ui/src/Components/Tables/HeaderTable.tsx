@@ -14,7 +14,7 @@ interface HeaderTableProps {
     onExportExcel?: () => void;
     showFilterDropdown?: () => React.ReactNode;
     leftHeaderRender?: () => React.ReactNode;
-    rightActionRender?: () => React.ReactNode;
+    rightActionRender?:  React.ReactNode;
 }
 
 export const HeaderTable = (props: HeaderTableProps) => {
@@ -75,7 +75,7 @@ export const HeaderTable = (props: HeaderTableProps) => {
                             icon={<IconFilter />}
                         />
                     } */}
-                    {rightActionRender && rightActionRender()}
+                    {rightActionRender && rightActionRender}
                     {props.showFilterDropdown && props.showFilterDropdown()}
                 </FlexBox>
             </Block>
