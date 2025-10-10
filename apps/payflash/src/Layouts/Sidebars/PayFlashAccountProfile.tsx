@@ -14,7 +14,7 @@ export const PayFlashAccountProfile: React.FC = () => {
     const [account, setAccount] = useAtom(currentAccountAtom)
     const token = paymentToken.getPaymentToken()
     const {mutateAsync} = usePaymentHttpCommand<AccountModel>({
-        onError: (error) => {
+        onError: (error: any) => {
             console.error('Error fetching current account:', error);
             setAccount(null)
         }

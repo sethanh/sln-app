@@ -14,7 +14,7 @@ const ContactPage: React.FC = () => {
     if (!account) {
         return (
             <Row gutter={[24, 24]} align="middle">
-                <Col md={8} sm={24}>
+                <Col md={12} sm={24}>
                     <FlexBox direction="column"
                         alignItems="center"
                         justifyContent="center">
@@ -22,7 +22,7 @@ const ContactPage: React.FC = () => {
                     </FlexBox>
 
                 </Col>
-                <Col md={8} sm={24}>
+                <Col md={12} sm={24}>
                     <EmptyTable
                         title="Create contact"
                         description="You are not logged in. Please log in to create a contact!"

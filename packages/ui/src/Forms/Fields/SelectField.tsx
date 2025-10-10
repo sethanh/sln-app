@@ -7,7 +7,6 @@ interface SelectFieldProps extends SelectProps {
   fieldName: string;
   label?: string;
   placeholder?: string;
-  options: { label: string; value: string }[];
   onChange?: (value: string) => void;
   required?: boolean;
 }

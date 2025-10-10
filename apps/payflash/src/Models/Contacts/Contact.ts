@@ -7,6 +7,7 @@ export interface CreateContact {
   email?: string;
   PhoneNumber?: string;
   photoId?: string;
+  socialContacts?: SocialContactResponse[];
 }
 
 export interface ContactResponse {
@@ -16,16 +17,33 @@ export interface ContactResponse {
   email?: string;
   phoneNumber?: string;
   photoId?: string;
-  photo?: PhotoGetDetailResponse
+  photo?: PhotoGetDetailResponse;
+  socialContacts?: SocialContactResponse[];
 }
 
 
 export type GetAllContactResponse = PaginationResponse<ContactResponse>
-export interface PhotoGetDetailResponse
-{
-    id ?: number;
-    fileName ?: string;
-    relativePath ?: string;
-    size ?: number;
-    contentType ?: string;
+
+export interface PhotoGetDetailResponse {
+  id?: number;
+  fileName?: string;
+  relativePath?: string;
+  size?: number;
+  contentType?: string;
+}
+
+export interface SocialContactResponse {
+  id?: number;
+  link?: string;
+  socialType?: string;
+}
+
+export enum SocialType {
+  Facebook = 0,
+  X = 1,
+  Github = 2,
+  Instagram = 3,
+  Spotify = 4,
+  Tiktok = 5,
+  Youtube = 6
 }
