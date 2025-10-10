@@ -1,12 +1,14 @@
-import { useHttpCommand } from "@my-monorepo/utils";
+import { useHttpQuery } from "@my-monorepo/utils";
+import { IRequestOptions } from "packages/utils/src/services/IRequestOptions";
 import { paymentToken, currentAccountAtom } from "@my-monorepo/payflash/Root";
 import { useSetAtom } from "jotai";
 import { useNavigate } from "react-router";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
-export const usePaymentHttpCommand = <TResponse>(
-  props?: {
+export const usePaymentHttpQuery = <TResponse>(
+  options?: IRequestOptions,
+  config?: {
     onSuccess?: (data: TResponse) => void;
     onError?: (error: unknown) => void;
     onFinally?: () => void;
@@ -15,10 +17,11 @@ export const usePaymentHttpCommand = <TResponse>(
   const setAccount = useSetAtom(currentAccountAtom);
   const navigate = useNavigate();
 
-  return useHttpCommand<TResponse>(appName, {
-    ...props,
+  return useHttpQuery<TResponse>(appName, options, {
+    ...config,
     onError: (error: any) => {
-      console.error(`[${appName}] HTTP error:`, error);
+      console.error(`[${appName}] HTTP query error:`, error);
+
       const status = error?.status ?? error?.response?.status;
       if (status === 401) {
         console.warn("Token hết hạn hoặc không hợp lệ — clearing token...");
@@ -26,7 +29,8 @@ export const usePaymentHttpCommand = <TResponse>(
         setAccount(null);
         navigate("/auth/login");
       }
-      props?.onError?.(error);
+
+      config?.onError?.(error);
     },
   });
 };

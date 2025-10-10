@@ -1,0 +1,44 @@
+:root {
+    --background-color: #f5f6fa;
+    --background-white-color: #ffffff;
+    --text-color: #2f3640;
+    --text-muted-color: #8c8c8c;
+    --primary-color: #0078ff;
+    --primary-hover-color: #005fcc;
+    --border-color: #dcdde1;
+    --accent-color: #5f27cd;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --error-color: #e74c3c;
+}
+
+@font-face {
+    font-family: 'Gelion';
+    src: url('./Assets/Fonts/Gelion-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dark-theme {
+    --background-color: #1e1e1e;
+    --background-white-color: #2a2a2a;
+    --text-color: #f0f0f0;
+    --text-muted-color: #a0a0a0;
+    --primary-color: #3399ff;
+    --primary-hover-color: #4ca8ff;
+    --border-color: #3a3a3a;
+    --accent-color: #8e44ad;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --error-color: #c0392b;
+}
+
+body {
+    font-family: 'Gelion', Helvetica, "Helvetica Neue", Arial;
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.0rem;
+    font-variant-ligatures: no-common-ligatures;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}

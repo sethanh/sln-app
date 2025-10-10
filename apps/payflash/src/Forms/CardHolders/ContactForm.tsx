@@ -73,9 +73,10 @@ const ContactForm: React.FC = () => {
                 <InputField fieldName="name" label="Name" required />
                 <InputField fieldName="job" label="Job" />
                 <FlexBox gap={14}>
-                  <InputField fieldName="phoneNumber" label="Phone Number" />
+                  <InputField fieldName="phoneNumber" label="Phone number" />
                   <InputField fieldName="email" label="Email" />
                 </FlexBox>
+                <InputField fieldName="profileName" label="Profile name" />
               </FlexBox>
             </Card>
 

@@ -7,6 +7,7 @@ export interface CreateContact {
   email?: string;
   PhoneNumber?: string;
   photoId?: string;
+  profileName?: string;
   socialContacts?: SocialContactResponse[];
 }
 
@@ -18,6 +19,7 @@ export interface ContactResponse {
   phoneNumber?: string;
   photoId?: string;
   photo?: PhotoGetDetailResponse;
+  profileName?: string;
   socialContacts?: SocialContactResponse[];
 }
 
