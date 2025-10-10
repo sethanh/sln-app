@@ -1,8 +1,6 @@
 import React from 'react';
 import { Formik, Form, FormikHelpers, FormikProps } from 'formik';
 import * as Yup from 'yup';
-
-// Generic props cho form
 interface FormikFormProps<T> {
   initialValues: T;
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>;
@@ -11,7 +9,7 @@ interface FormikFormProps<T> {
   validationSchema?: Yup.ObjectSchema<any>;
 }
 
-export function FormikForm<T extends object>({
+function FormikFormInner<T extends object>({
   initialValues,
   onSubmit,
   validate,
@@ -25,11 +23,11 @@ export function FormikForm<T extends object>({
       validate={validate}
       validationSchema={validationSchema}
     >
-      {(formikProps) => (
-        <Form onSubmit={formikProps.handleSubmit}>
-          {children(formikProps)}
-        </Form>
-      )}
+      {(formikProps) => <Form>{children(formikProps)}</Form>}
     </Formik>
   );
 }
+
+export const FormikForm = <T extends object>(props: FormikFormProps<T>) => (
+  <FormikFormInner {...props} />
+);

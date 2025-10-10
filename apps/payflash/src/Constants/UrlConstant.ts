@@ -8,6 +8,10 @@ const paymentQrUrl = appConstant.apiUrl + "/PaymentQrs";
 const paymentQrBankUrl = paymentQrUrl + "/banks";
 const paymentQrCreateQr =  paymentQrUrl + "/qr";
 
+const photoUrl = appConstant.apiUrl + "/Photos";
+
+const contactUrl = appConstant.apiUrl + "/Contacts";
+
 export  const urlConstant = { 
     account: {
         accountUrl,
@@ -17,5 +21,11 @@ export  const urlConstant = {
     paymentQr:{
         paymentQrBankUrl,
         paymentQrCreateQr
+    },
+    photo:{
+        photoCreateUrl: photoUrl,
+    },
+    contact:{
+        contactCreateUrl: contactUrl,
     }
 } 

@@ -13,6 +13,7 @@ import { FlexBox, TextCommon } from "@my-monorepo/ui";
 import React from "react";
 import "./DigitalBusinessCard.css";
 import { Avatar, Button } from "antd";
+import { appConstant } from "@my-monorepo/payflash/Constants";
 
 interface DigitalBusinessCardProps {
   name?: string;
@@ -33,9 +34,9 @@ interface DigitalBusinessCardProps {
 export const DigitalBusinessCard: React.FC<DigitalBusinessCardProps> = ({
   name = "Alexander Chen",
   jobTitle = "Product Designer",
-  phone = "+1 (555) 123-467",
+  phone = "0869-361-705",
   email = "alexander.chen@email.com",
-  avatar = "https://via.placeholder.com/120x120.png?text=Avatar",
+  avatar = `${appConstant.apiUrl}/uploads/56fe34dc-8b7c-4814-8808-ea11e0ba7208.png`,
 //   socials = {
 //     linkedin: "#",
 //     behance: "#",
@@ -82,7 +83,7 @@ export const DigitalBusinessCard: React.FC<DigitalBusinessCardProps> = ({
           </FlexBox>
 
           {/* Social Icons */}
-          <FlexBox gap={12} alignItems="center" justifyContent="center">
+          <FlexBox alignItems="center" justifyContent="space-between">
             <Button shape="circle" icon={<FacebookOutlined style={{ fontSize: 22 }} />} />
             <Button shape="circle" icon={<XOutlined style={{ fontSize: 22 }} />} />
             <Button shape="circle" icon={<GithubOutlined style={{ fontSize: 22 }} />} />

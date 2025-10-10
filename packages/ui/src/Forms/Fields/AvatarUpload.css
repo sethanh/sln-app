@@ -1,0 +1,47 @@
+.avatar-uploader {
+    cursor: pointer;
+    position: relative;
+    .avatar-custom {
+        outline: 2px dashed #D0D5DD;
+        &:hover {
+            background-color: black;
+        }
+    }
+    .camera {
+        border-radius: 6px;
+        position: absolute;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .icon-camera {
+            opacity: 0;
+        }
+        .camera-background {
+            position: absolute;
+            background-color: black;
+            opacity: 0;
+            border-radius: 6px;
+        }
+        .camera-background-circle {
+            position: absolute;
+            background-color: black;
+            opacity: 0;
+            border-radius: 50%;
+        }
+    }
+    .avatar-wrapper:hover {
+        .camera {
+            .icon-camera {
+                opacity: 1;
+                background-color: white;
+            }
+            .camera-background {
+                opacity: 0.3;
+            }
+            .camera-background-circle {
+                opacity: 0.3;
+            }
+        }
+    }
+}

@@ -4,17 +4,17 @@ import {
     FileDoneOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { ContactPage, FlashPage, GeneratePage } from "@my-monorepo/payflash/Pages";
+import { ContactPage, FlashPage, GeneratePage, ContactSettingPage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
 import { Card, Empty } from "antd";
-import { ICPayments } from "../Assets";
+import { ICContacts, ICPayments } from "../Assets";
 
 const cardHolderConstants : ISidebarItemProps[]= [
     {
         label: "Contact",
-        Icon: <ICPayments.QrCode />,
+        Icon: <ICContacts.Link/>,
         path: 'card-holder/contact',
         page : <ContactPage/>
     },
@@ -22,7 +22,7 @@ const cardHolderConstants : ISidebarItemProps[]= [
         label: "Setting",
         Icon: <ICPayments.Setting />,
         path: 'card-holder/setting',
-        page: <Card><Empty description="Feature under development"/></Card>
+        page: <ContactSettingPage />
     }
 ]
 
