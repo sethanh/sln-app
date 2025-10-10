@@ -1,3 +1,5 @@
+import { PaginationResponse } from "@my-monorepo/ui";
+
 export interface CreateContact {
   id?: number;
   name?: string;
@@ -7,16 +9,18 @@ export interface CreateContact {
   photoId?: string;
 }
 
-export interface CreateContactResponse {
+export interface ContactResponse {
   id?: number;
   name?: string;
   job?: string;
   email?: string;
-  PhoneNumber?: string;
+  phoneNumber?: string;
   photoId?: string;
   photo?: PhotoGetDetailResponse
 }
 
+
+export type GetAllContactResponse = PaginationResponse<ContactResponse>
 export interface PhotoGetDetailResponse
 {
     id ?: number;

@@ -9,7 +9,7 @@ import {
 } from 'antd';
 import React from 'react';
 import { Block } from '../Container';
-import EmptyTable, { EmptyTableProps } from './EmptyTable';
+import { EmptyTableProps, EmptyTable } from './EmptyTable';
 import { HeaderTable } from './HeaderTable';
 import { PageInfo } from '../../Frameworks';
 // import { useTranslation } from 'react-i18next';
@@ -47,15 +47,14 @@ const defaultPageInfo: PageInfo = {
 };
 
 interface TableCommonItem {
-    readonly id?: string;
+    readonly id?: number;
 }
 
-type TableCommonTypeType = <TItem extends TableCommonItem>(
+type TableCommonType = <TItem extends TableCommonItem>(
     props: TableCommonProps<TItem>
 ) => React.ReactElement<TableCommonProps<TItem>>;
 
-export const TableCommon: TableCommonTypeType = (props) => {
-
+export const TableCommon: TableCommonType = (props) => {
 
     const renderHeader = React.useCallback(() => {
         return (
@@ -89,7 +88,7 @@ export const TableCommon: TableCommonTypeType = (props) => {
     }, [props]);
 
     return (
-        <Block borderRadius={16} backgroundColor='white' overflow='hidden' border='1px solid #eaecf0'>
+        <Block borderRadius='0.5rem' backgroundColor='white' overflow='hidden' border='1px solid #eaecf0'>
             <Table
                 scroll={props.scroll}
                 loading={props.loading}

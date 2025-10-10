@@ -1,14 +1,14 @@
 .custom-table {
-    border-radius: 16px;
+    border-radius: 0.5rem;
     border: 1px solid #eaecf0;
 
     .ant-table {
-        border-radius: 16px;
+        border-radius: 0.5rem;
         .ant-table-content {
             .ant-table-thead {
                 .ant-table-cell {
                     background-color: #F9FAFB;
-                    font-weight: 500;
+                    font-weight: 450;
                     color: #475467;
                 }
                 .ant-table-cell::before {

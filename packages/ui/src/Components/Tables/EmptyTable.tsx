@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Empty, Image } from 'antd';
+import { Empty } from 'antd';
 import { Block, FlexBox } from '../Container';
 import { TextCommon } from '../Typography';
 export interface EmptyTableProps {
@@ -9,7 +9,7 @@ export interface EmptyTableProps {
     readonly actionButton?: React.JSX.Element;
 }
 
-export default function EmptyTable(props: EmptyTableProps) {
+export function EmptyTable(props: EmptyTableProps) {
     const {
         isSearch,
         title = "",
@@ -32,26 +32,28 @@ export default function EmptyTable(props: EmptyTableProps) {
             height='100%'
             justifyContent='center'
             alignItems='center'
-            direction='column'
+            padding={12}
         >
             <Empty
-            description={
-                <FlexBox width={350} gap={16} direction='column'>
-                    <TextCommon fontSize={16} fontWeight={600}>
-                        {emptyContent.title}
-                    </TextCommon>
-                    <TextCommon fontSize={14} color='gray'>
-                        {emptyContent.description}
-                    </TextCommon>
-                    {emptyContent.actionButton && 
-                <FlexBox justifyContent='center'>
-                    <Block width='fit-content' >
-                        {emptyContent.actionButton}
-                    </Block>
-                </FlexBox>
-                    }
-                </FlexBox>
-            }
+                description={
+                    <FlexBox width={350} gap={8} direction='column' padding='0px 24px 0px 24px'>
+                        <FlexBox gap={2} direction='column' alignItems='center' justifyContent='center'>
+                            <TextCommon fontSize={16} fontWeight={600}>
+                                {emptyContent.title}
+                            </TextCommon>
+                            <TextCommon fontSize={14} color='gray' textAlign='center'>
+                                {emptyContent.description}
+                            </TextCommon>
+                        </FlexBox>
+                        {emptyContent.actionButton &&
+                            <FlexBox justifyContent='center' alignItems='center'>
+                                <Block width='fit-content' >
+                                    {emptyContent.actionButton}
+                                </Block>
+                            </FlexBox>
+                        }
+                    </FlexBox>
+                }
             />
         </FlexBox>
     );

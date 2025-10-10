@@ -10,9 +10,7 @@ const ContactSettingPage: React.FC = () => {
     const initialValues: CreateContact = {
     };
 
-
     const { mutateAsync, isPending } = usePaymentHttpCommand<CreateContact>({});
-
 
     const handleSubmit = async (values: CreateContact) => {
         await mutateAsync({

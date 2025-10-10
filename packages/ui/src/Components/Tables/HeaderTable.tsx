@@ -1,9 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import './TableCommon.css';
 import { Block, FlexBox } from '../Container';
 import { TextCommon } from '../Typography';
-import { Button } from 'antd';
 
 interface HeaderTableProps {
     titleTable?: string;
@@ -19,7 +18,7 @@ interface HeaderTableProps {
 }
 
 export const HeaderTable = (props: HeaderTableProps) => {
-    const { onSearch, rightActionRender, leftHeaderRender } = props;
+    const {  rightActionRender, leftHeaderRender } = props;
     // const [searchParams] = usePagination();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

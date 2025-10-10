@@ -27,5 +27,6 @@ export  const urlConstant = {
     },
     contact:{
         contactCreateUrl: contactUrl,
+        contactGetAll: contactUrl,
     }
 } 

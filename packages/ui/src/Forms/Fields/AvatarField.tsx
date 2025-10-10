@@ -31,7 +31,7 @@ export const AvatarField = (props: AvatarUploadProps) => {
     const [currentSrc, setCurrentSrc] = useState<string | undefined>(src ? `${getPhotoUrl}/${src}` : undefined);
 
   // ✅ Lấy formik context
-  const { values, errors, setFieldValue, touched } = useFormikContext<Record<string, any>>();
+  const { errors, setFieldValue, touched } = useFormikContext<Record<string, any>>();
 
   const handleChange = useCallback(
     (v: FileUpload) => {

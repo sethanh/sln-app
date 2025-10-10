@@ -66,7 +66,7 @@ const FlashPage: React.FC = () => {
     return (
         <FlexBox direction='column' gap={24}>
             <TextCommon fontWeight={600} fontSize={22}>Flash payment QR</TextCommon>
-            <Row gutter={[24, 24]}>
+            <Row gutter={[24, 24]} align='middle'>
                 <Col md={12} sm={24} xs={24}>
                     <Card style={{ width: '100%' }}>
                         <FormikForm

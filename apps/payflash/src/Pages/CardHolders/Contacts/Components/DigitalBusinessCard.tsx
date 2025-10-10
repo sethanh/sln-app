@@ -2,7 +2,6 @@ import {
   FacebookOutlined,
   GithubOutlined,
   InstagramOutlined,
-  SolutionOutlined,
   SpotifyOutlined,
   TikTokOutlined,
   XOutlined,
@@ -101,7 +100,7 @@ export const DigitalBusinessCard: React.FC<DigitalBusinessCardProps> = ({
                 <TextCommon>Save contact</TextCommon>
               </div>
               <div className="btn-connect">
-                <SolutionOutlined />
+                <ICSocial.Connect/>
                 <TextCommon>Connect</TextCommon>
               </div>
             </FlexBox>
