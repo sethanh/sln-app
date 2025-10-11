@@ -7,9 +7,8 @@ export const Router = () => {
 
     return (
         <BrowserRouter>
-            <Routes>
-                  <Route path='' element={<HomePage domain='sethanh' />} /> {/** hainv.izisalon.vn/ */}
-                <Route path='*' element={<HomePage domain={domain} />} /> {/** hainv.izisalon.vn/ */}
+            <Routes> 
+                <Route path='*' element={<HomePage domain={domain} />} />
             </Routes>
         </BrowserRouter>
     );
