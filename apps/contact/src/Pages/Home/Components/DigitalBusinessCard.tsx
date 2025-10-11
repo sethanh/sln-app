@@ -88,14 +88,14 @@ END:VCARD
     [SocialType.X]: <XOutlined style={{ fontSize: 22 }} />,
     [SocialType.Github]: <GithubOutlined style={{ fontSize: 22 }} />,
     [SocialType.Instagram]: (
-      <InstagramOutlined style={{ fontSize: 22, color: "#E4405F" }} />
+      <InstagramOutlined style={{ fontSize: 22}} />
     ),
     [SocialType.Spotify]: (
-      <SpotifyOutlined style={{ fontSize: 22, color: "#1DB954" }} />
+      <SpotifyOutlined style={{ fontSize: 22 }} />
     ),
     [SocialType.Tiktok]: <TikTokOutlined style={{ fontSize: 22 }} />,
     [SocialType.Youtube]: (
-      <YoutubeOutlined style={{ fontSize: 22, color: "#FF0000" }} />
+      <YoutubeOutlined style={{ fontSize: 22}} />
     ),
   };
 
@@ -114,8 +114,8 @@ END:VCARD
           backgroundColor="transparent"
           padding={24}
         >
-          <div style={{ height: 18 }} />
-          <FlexBox gap={16} alignItems="center" justifyContent="center">
+          <div style={{ height: 22 }} />
+          <FlexBox gap={18} alignItems="center" justifyContent="center">
             <div className="avatar-border">
               <Avatar
                 src={`${appConstant.apiUrl}/${contact?.photo?.relativePath}`}
@@ -124,7 +124,7 @@ END:VCARD
               />
             </div>
             <FlexBox direction="column">
-              <TextCommon fontSize={28} fontWeight={600} color="#191b20">
+              <TextCommon fontSize={22} fontWeight={600} color="#191b20">
                 {contact?.name}
               </TextCommon>
               <TextCommon color="#a2aabb">{contact?.job}</TextCommon>
@@ -199,7 +199,7 @@ END:VCARD
                 <TextCommon>Connect</TextCommon>
               </div>
             </FlexBox>
-            <div style={{ height: 4 }} />
+            <div style={{ height: 18 }} />
           </FlexBox>
         </FlexBox>
       </div>
