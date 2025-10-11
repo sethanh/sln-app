@@ -1,0 +1,83 @@
+
+.bgh-1 {
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(239, 236, 236), rgb(255, 252, 252));
+  bottom:10vh;
+  left: 10vw ;
+  filter: blur(2px);
+  animation-delay: 8s;
+}
+
+.bgh-2 {
+  position: absolute;
+  width: 288px;
+  height: 288px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(239, 236, 236), rgb(255, 252, 252));
+  /* background: red; */
+  top: -66px;
+  right: 25vh;
+  filter: blur(2px);
+  /* z-index: -1; */
+  animation-delay: 0s;
+}
+
+.bgh-3 {
+  position: absolute;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(239, 236, 236), rgb(255, 252, 252));
+  /* background: red; */
+  top: 15vh;
+  left: 20vw;
+  filter: blur(2px);
+  /* z-index: -1; */
+  animation-delay: 2s;
+}
+
+.bgh-5 {
+  position: absolute;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(239, 236, 236), rgb(255, 252, 252));
+  /* background: red; */
+  bottom: -20px;
+  right: 22vw;
+  filter: blur(2px);
+  /* z-index: -1; */
+  animation-delay: 4s;
+}
+
+.bgh-4 {
+  position: absolute;
+  width: 222px;
+  height: 222px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(239, 236, 236), rgb(255, 252, 252));
+  /* background: red; */
+  bottom: 10vh;
+  left: 54vw;
+  filter: blur(2px);
+  /* z-index: -1; */
+  animation-delay: 6s;
+}
+
+
+.bgh-6 {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(239, 236, 236), rgb(255, 252, 252));
+  /* background: red; */
+  top: 10vh;
+  right: 54vw;
+  filter: blur(2px);
+  /* z-index: -1; */
+  animation-delay: 6s;
+}

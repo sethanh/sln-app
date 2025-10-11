@@ -3,10 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 22px;
   border-radius: 42px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: var(--background-white-color);
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .page-bg {
@@ -18,6 +20,7 @@
   border-radius: 32px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   background:linear-gradient(145deg, #F4F6FC, #f2f2f6);
+  min-width: 346px;
 }
 
 .bg-blob-bottom {
@@ -50,7 +53,6 @@
 
 .btn-save {
   background: linear-gradient(90deg, #9cd1ff, #c3f0ff);
-  color: #003366;
   cursor: pointer;
   border-radius: 22px;
   padding: 6px 8px;
@@ -64,8 +66,7 @@
 }
 
 .btn-connect {
-  background: linear-gradient(90deg, #a78bfa, #7dd3fc);
-  color: white;
+  background: linear-gradient(90deg, #a78bfa, #7dd3fc); 
   cursor: pointer;
   border-radius: 22px;
   padding: 6px 8px;
@@ -76,6 +77,20 @@
   align-items: center;
   justify-content: center;
   gap: 8px
+}
+
+.btn-save:hover {
+  border: 1px solid white;
+  .ant-typography{
+    color: white;
+  }
+}
+
+.btn-connect:hover {
+  border: 1px solid white;
+  .ant-typography{
+    color: white;
+  }
 }
 
 .avatar-border {
