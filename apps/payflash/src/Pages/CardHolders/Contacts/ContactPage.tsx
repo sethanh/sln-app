@@ -36,7 +36,7 @@ const ContactPage: React.FC = () => {
                                     type='secondary'
                                     color='#1349dd'
                                     cursor='pointer'
-                                    onClick={() => window.open('https://sent.digitalme.website', '_blank')}
+                                    onClick={() => window.open('https://profile.digitalme.website', '_blank')}
                                 >example</TextCommon> to see how it works.
                             </TextCommon>
                             <TextCommon

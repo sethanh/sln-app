@@ -15,6 +15,7 @@ import React, { useCallback } from 'react';
 import { FieldArray } from 'formik';
 import { PlusOutlined } from '@ant-design/icons';
 import { ICSocial } from '@my-monorepo/payflash/Assets';
+import './Contact.css'
 
 interface ContactFormProps {
   initialValues?: ContactResponse,
@@ -30,6 +31,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
     email: props.initialValues?.email || '',
     photoId: props.initialValues?.photoId || '',
     socialContacts: props.initialValues?.socialContacts || [],
+    profileName: props.initialValues?.profileName  
   } as ContactRequestBody;
 
   const { mutateAsync, isPending } = usePaymentHttpCommand<ContactRequestBody>({});
@@ -76,7 +78,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
   ];
 
   return (
-    <FlexBox direction="column" padding={12} width="70vh">
+     <FlexBox direction="column" padding={12} className='contact-form' >
       <FormikForm
         initialValues={initialValues}
         validationSchema={contactSchema}
@@ -115,8 +117,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
                         const socialContacts = formik.values.socialContacts ?? [];
                         const selectedTypes = socialContacts
                             .filter(s => s.socialType !== undefined)
-                            .map((sc) => sc.socialType as unknown as SocialType)
-                            .filter(Boolean);
+                            .map((sc) => sc.socialType as unknown as SocialType);
 
                         const filteredOptions = sosialTypeOptions.filter(
                           (opt) =>

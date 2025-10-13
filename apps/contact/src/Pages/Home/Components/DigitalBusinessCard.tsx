@@ -86,7 +86,7 @@ END:VCARD
     if (!email) return;
     try {
       await navigator.clipboard.writeText(email);
-      message.success("The email number has been copied to the clipboard!");
+      message.success("The email has been copied to the clipboard!");
     } catch {
       message.error("Try again!");
     }
