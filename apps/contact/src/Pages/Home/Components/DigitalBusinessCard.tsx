@@ -82,6 +82,16 @@ END:VCARD
     }
   };
 
+  const contactToClipboard = async (email?: string) => {
+    if (!email) return;
+    try {
+      await navigator.clipboard.writeText(email);
+      message.success("The email number has been copied to the clipboard!");
+    } catch {
+      message.error("Try again!");
+    }
+  };
+
   // 🧩 Map social icons
   const socialIconMap: Record<number, JSX.Element> = {
     [SocialType.Facebook]: <FacebookOutlined style={{ fontSize: 22 }} />,
@@ -194,7 +204,9 @@ END:VCARD
                 <ICSocial.Save />
                 <TextCommon>Save contact</TextCommon>
               </div>
-              <div className="btn-connect">
+              <div className="btn-connect"
+                onClick={() => contactToClipboard(contact.email)}
+              >
                 <ICSocial.Connect />
                 <TextCommon>Connect</TextCommon>
               </div>

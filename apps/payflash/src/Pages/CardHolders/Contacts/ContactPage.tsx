@@ -1,6 +1,5 @@
 import { FlexBox, EmptyTable, TextCommon } from '@my-monorepo/ui';
 import React from 'react';
-import { DigitalBusinessCard } from './Components/DigitalBusinessCard';
 import { useAtom } from 'jotai';
 import { currentAccountAtom } from '@my-monorepo/payflash/Root';
 import { Button, Col, Row } from 'antd';
@@ -15,22 +14,38 @@ const ContactPage: React.FC = () => {
         return (
             <Row gutter={[24, 24]} align="middle">
                 <Col span={24}>
-                <TextCommon fontSize={24} fontWeight={600}>
-                    Contacts
-                </TextCommon>
+                    <TextCommon fontSize={24} fontWeight={600}>
+                        Contacts
+                    </TextCommon>
                 </Col>
-                <Col md={12} sm={24}>
+                {/* <Col md={12} sm={24}>
                     <FlexBox direction="column"
                         alignItems="center"
                         justifyContent="center">
                         <DigitalBusinessCard />
                     </FlexBox>
 
-                </Col>
-                <Col md={12} sm={24}>
+                </Col> */}
+                <Col span={24} >
                     <EmptyTable
                         title="Create contact"
-                        description="You are not logged in. Please log in to create a contact!"
+                        description={<FlexBox direction="column" alignItems="center" justifyContent="center">
+                            <TextCommon>
+                                View an <TextCommon
+                                    textDecoration='underline'
+                                    type='secondary'
+                                    color='#1349dd'
+                                    cursor='pointer'
+                                    onClick={() => window.open('https://sent.digitalme.website', '_blank')}
+                                >example</TextCommon> to see how it works.
+                            </TextCommon>
+                            <TextCommon
+                             fontStyle="italic"
+                            >
+                                You are not logged in. Please log in to create a contact!
+                            </TextCommon>
+                        </FlexBox>
+                        }
                         actionButton={(
                             <Button onClick={() => navigate('/auth/login')}>
                                 Login

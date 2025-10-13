@@ -1,0 +1,13 @@
+.app-button {
+    &.app-button-hover {
+        border-radius: 50%;
+        border: 0px;
+        background-color: transparent !important;
+        box-shadow: none !important;
+
+        &:hover {
+            background-color: #EAECF0 !important;
+        }
+    }
+}
+

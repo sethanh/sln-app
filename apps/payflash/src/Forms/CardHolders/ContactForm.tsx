@@ -1,5 +1,5 @@
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants';
-import { contactSchema, CreateContact, SocialType } from '@my-monorepo/payflash/Models';
+import { ContactResponse, contactSchema, ContactRequestBody, SocialType } from '@my-monorepo/payflash/Models';
 import { usePaymentHttpCommand } from '@my-monorepo/payflash/Root/Services/hooks/usePaymentHttpCommand';
 import {
   AvatarField,
@@ -16,26 +16,49 @@ import { FieldArray } from 'formik';
 import { PlusOutlined } from '@ant-design/icons';
 import { ICSocial } from '@my-monorepo/payflash/Assets';
 
-const ContactForm: React.FC = () => {
-  const initialValues: CreateContact = {
-    name: '',
-    job: '',
-    PhoneNumber: '',
-    email: '',
-    photoId: '',
-    socialContacts: [],
-  };
+interface ContactFormProps {
+  initialValues?: ContactResponse,
+  onSuccess?: () => void
+}
 
-  const { mutateAsync, isPending } = usePaymentHttpCommand<CreateContact>({});
+const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
+  const initialValues = {
+    id: props.initialValues?.id || '',
+    name:  props.initialValues?.name || '',
+    job: props.initialValues?.job || '',
+    PhoneNumber: props.initialValues?.phoneNumber || '',
+    email: props.initialValues?.email || '',
+    photoId: props.initialValues?.photoId || '',
+    socialContacts: props.initialValues?.socialContacts || [],
+  } as ContactRequestBody;
 
-  const handleSubmit = async (values: CreateContact) => {
-    await mutateAsync({
-      url: urlConstant.contact.contactCreateUrl,
-      requestOptions: {
-        method: 'POST',
-        body: values,
-      },
-    });
+  const { mutateAsync, isPending } = usePaymentHttpCommand<ContactRequestBody>({});
+
+  const handleSubmit = async (values: ContactRequestBody) => {
+    if (props.initialValues && props.initialValues.id) {
+      await mutateAsync({
+        url: urlConstant.contact.contactUpdateUrl,
+        requestOptions: {
+          method: 'PATCH',
+          body: values,
+          routeParams: { id: props.initialValues.id }
+          },
+      });
+    };
+
+    if (!props.initialValues) {
+      await mutateAsync({
+        url: urlConstant.contact.contactCreateUrl,
+        requestOptions: {
+          method: 'POST',
+          body: values,
+        },
+      });
+    }
+
+    if (props.onSuccess) {
+      props.onSuccess();
+    }
   };
 
   const getTokenValue = useCallback((): string => {
@@ -69,6 +92,7 @@ const ContactForm: React.FC = () => {
                   token={getTokenValue()}
                   createPhotoUrl={urlConstant.photo.photoCreateUrl}
                   photoServer={appConstant.apiUrl}
+                  src={props.initialValues?.photo?.relativePath}
                 />
                 <InputField fieldName="name" label="Name" required />
                 <InputField fieldName="job" label="Job" />

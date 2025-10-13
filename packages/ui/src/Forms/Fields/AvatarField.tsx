@@ -28,7 +28,7 @@ interface AvatarUploadProps {
 export const AvatarField = (props: AvatarUploadProps) => {
   const { fieldName: name, size = 100, iconHover, src, photoServer: getPhotoUrl } = props;
   const [loading, setLoading] = useState(false);
-    const [currentSrc, setCurrentSrc] = useState<string | undefined>(src ? `${getPhotoUrl}/${src}` : undefined);
+  const [currentSrc, setCurrentSrc] = useState<string | undefined>(src ? `${getPhotoUrl}/${src}` : undefined);
 
   // ✅ Lấy formik context
   const { errors, setFieldValue, touched } = useFormikContext<Record<string, any>>();

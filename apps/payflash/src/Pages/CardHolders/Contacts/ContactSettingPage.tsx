@@ -1,5 +1,5 @@
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants';
-import { contactSchema, CreateContact} from '@my-monorepo/payflash/Models';
+import { contactSchema, ContactRequestBody} from '@my-monorepo/payflash/Models';
 import { usePaymentHttpCommand } from '@my-monorepo/payflash/Root/Services/hooks/usePaymentHttpCommand';
 import { AvatarField, FlexBox, FormikForm, InputField, TextCommon,  } from '@my-monorepo/ui';
 import { getToken } from '@my-monorepo/utils';
@@ -7,12 +7,12 @@ import { Button, Card, Col, Row } from 'antd';
 import React, { useCallback } from 'react';
 
 const ContactSettingPage: React.FC = () => {
-    const initialValues: CreateContact = {
+    const initialValues: ContactRequestBody = {
     };
 
-    const { mutateAsync, isPending } = usePaymentHttpCommand<CreateContact>({});
+    const { mutateAsync, isPending } = usePaymentHttpCommand<ContactRequestBody>({});
 
-    const handleSubmit = async (values: CreateContact) => {
+    const handleSubmit = async (values: ContactRequestBody) => {
         await mutateAsync({
             url: urlConstant.contact.contactCreateUrl,
             requestOptions: {

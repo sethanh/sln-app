@@ -5,7 +5,7 @@ import { TextCommon } from '../Typography';
 export interface EmptyTableProps {
     readonly isSearch?: boolean;
     readonly title?: string;
-    readonly description?: string;
+    readonly description?: string | React.JSX.Element;
     readonly actionButton?: React.JSX.Element;
 }
 

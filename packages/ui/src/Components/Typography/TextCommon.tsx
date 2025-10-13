@@ -31,7 +31,7 @@ export function TextCommon(props: React.PropsWithChildren<TextProps>) {
         fontWeight,
         lineHeight,
         textAlign,
-        color,
+        color = '#344054',
         display,
         type,
         whiteSpace,

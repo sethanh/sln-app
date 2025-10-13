@@ -1,6 +1,6 @@
 import { PaginationResponse } from "@my-monorepo/ui";
 
-export interface CreateContact {
+export interface ContactRequestBody {
   id?: number;
   name?: string;
   job?: string;

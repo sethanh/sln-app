@@ -11,6 +11,8 @@ const paymentQrCreateQr =  paymentQrUrl + "/qr";
 const photoUrl = appConstant.apiUrl + "/Photos";
 
 const contactUrl = appConstant.apiUrl + "/Contacts";
+const contactUpdateUrl = contactUrl + "/:id";
+const contactDeleteUrl = contactUrl + "/:id";
 
 export  const urlConstant = { 
     account: {
@@ -28,5 +30,7 @@ export  const urlConstant = {
     contact:{
         contactCreateUrl: contactUrl,
         contactGetAll: contactUrl,
+        contactUpdateUrl: contactUpdateUrl,
+        contactDeleteUrl: contactDeleteUrl
     }
 } 
