@@ -5,7 +5,7 @@ export interface ContactRequestBody {
   name?: string;
   job?: string;
   email?: string;
-  PhoneNumber?: string;
+  phoneNumber?: string;
   photoId?: string;
   profileName?: string;
   socialContacts?: SocialContactResponse[];

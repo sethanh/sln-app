@@ -38,7 +38,7 @@
         }
         .ant-modal-body {
             position: relative;
-            // margin-top: 16px;
+
             &.show-footer {
                 padding-top: 24px;
                 &::after {

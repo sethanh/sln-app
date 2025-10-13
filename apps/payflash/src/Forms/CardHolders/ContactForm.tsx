@@ -27,7 +27,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
     id: props.initialValues?.id || '',
     name:  props.initialValues?.name || '',
     job: props.initialValues?.job || '',
-    PhoneNumber: props.initialValues?.phoneNumber || '',
+    phoneNumber: props.initialValues?.phoneNumber || '',
     email: props.initialValues?.email || '',
     photoId: props.initialValues?.photoId || '',
     socialContacts: props.initialValues?.socialContacts || [],
