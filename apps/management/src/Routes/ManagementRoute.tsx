@@ -5,7 +5,9 @@ import {
     taskSidebarConstants, 
     teamSidebarConstants,
     documentSidebarConstants,
-    authConstants
+    authConstants,
+    termConstants,
+
  } from '../Constants';
 
 const mainRoots : ISidebarItemProps[] = [
@@ -13,7 +15,8 @@ const mainRoots : ISidebarItemProps[] = [
     ...taskSidebarConstants,
     ...teamSidebarConstants,
     ...documentSidebarConstants,
-    ...authConstants
+    ...authConstants,
+    ...termConstants
 ];
 
 export const ManagementRoute: FC= () => {

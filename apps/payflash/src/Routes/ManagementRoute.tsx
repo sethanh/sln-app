@@ -11,6 +11,8 @@ import {
     cardHolderConstants
 } from '../Constants';
 
+import { termConstants } from '../Constants/TermConstant';
+
 const contentRootRoutes: ISidebarItemProps[] = [
     ...paymentSidebarConstants,
     ...qrCodeSidebarConstants,
@@ -18,11 +20,13 @@ const contentRootRoutes: ISidebarItemProps[] = [
     ...documentSidebarConstants,
     ...taxSidebarConstants,
     ...homeConstants,
-    ...cardHolderConstants
+    ...cardHolderConstants,
+    ...termConstants
 ];
 
 const mainRootRoutes: ISidebarItemProps[] = [
-    ...mainRootConstants.authConstants
+    ...mainRootConstants.authConstants,
+    
 ];
 
 

@@ -127,7 +127,7 @@ export {
     taxSidebarConstants,
     documentSidebarConstants,
     homeConstants,
-    cardHolderConstants
+    cardHolderConstants,
 }
 
 
