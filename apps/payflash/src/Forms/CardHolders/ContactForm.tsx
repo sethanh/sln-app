@@ -67,7 +67,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
     return getToken(appConstant.appName) || '';
   }, []);
 
-  const sosialTypeOptions = [
+  const socialTypeOptions = [
     { label: 'Facebook', value: SocialType.Facebook },
     { label: 'X', value: SocialType.X },
     { label: 'Github', value: SocialType.Github },
@@ -75,6 +75,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
     { label: 'Spotify', value: SocialType.Spotify },
     { label: 'Tiktok', value: SocialType.Tiktok },
     { label: 'Youtube', value: SocialType.Youtube },
+    { label: 'Linkedin', value: SocialType.Linkedin },
   ];
 
   return (
@@ -119,7 +120,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
                             .filter(s => s.socialType !== undefined)
                             .map((sc) => sc.socialType as unknown as SocialType);
 
-                        const filteredOptions = sosialTypeOptions.filter(
+                        const filteredOptions = socialTypeOptions.filter(
                           (opt) =>
                             !selectedTypes.includes(opt.value) ||
                             opt.value === (socialContacts[index]?.socialType as unknown as SocialType)

@@ -2,6 +2,7 @@ import {
   FacebookOutlined,
   GithubOutlined,
   InstagramOutlined,
+  LinkedinOutlined,
   SpotifyOutlined,
   TikTokOutlined,
   XOutlined,
@@ -97,16 +98,11 @@ END:VCARD
     [SocialType.Facebook]: <FacebookOutlined style={{ fontSize: 22 }} />,
     [SocialType.X]: <XOutlined style={{ fontSize: 22 }} />,
     [SocialType.Github]: <GithubOutlined style={{ fontSize: 22 }} />,
-    [SocialType.Instagram]: (
-      <InstagramOutlined style={{ fontSize: 22}} />
-    ),
-    [SocialType.Spotify]: (
-      <SpotifyOutlined style={{ fontSize: 22 }} />
-    ),
+    [SocialType.Instagram]: <InstagramOutlined style={{ fontSize: 22}} />,
+    [SocialType.Spotify]:<SpotifyOutlined style={{ fontSize: 22 }} />,
     [SocialType.Tiktok]: <TikTokOutlined style={{ fontSize: 22 }} />,
-    [SocialType.Youtube]: (
-      <YoutubeOutlined style={{ fontSize: 22}} />
-    ),
+    [SocialType.Youtube]: <YoutubeOutlined style={{ fontSize: 22}} />,
+    [SocialType.Linkedin]: <LinkedinOutlined style={{ fontSize: 22}} />,
   };
 
   if (!contact) return null;
