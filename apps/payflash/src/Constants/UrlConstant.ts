@@ -7,6 +7,8 @@ const googleLoginAccountUrl = accountUrl + "/google-login"
 const paymentQrUrl = appConstant.apiUrl + "/PaymentQrs";
 const paymentQrBankUrl = paymentQrUrl + "/banks";
 const paymentQrCreateQr =  paymentQrUrl + "/qr";
+const paymentQrDeleteUrl =  paymentQrUrl + "/:id";
+const paymentQrUpdateUrl =  paymentQrUrl + "/:id";
 
 const photoUrl = appConstant.apiUrl + "/Photos";
 
@@ -22,7 +24,10 @@ export  const urlConstant = {
     },
     paymentQr:{
         paymentQrBankUrl,
-        paymentQrCreateQr
+        paymentQrCreateQr,
+        paymentQrUrl,
+        paymentQrUpdateUrl,
+        paymentQrDeleteUrl
     },
     photo:{
         photoCreateUrl: photoUrl,

@@ -18,14 +18,6 @@ const ContactPage: React.FC = () => {
                         Contacts
                     </TextCommon>
                 </Col>
-                {/* <Col md={12} sm={24}>
-                    <FlexBox direction="column"
-                        alignItems="center"
-                        justifyContent="center">
-                        <DigitalBusinessCard />
-                    </FlexBox>
-
-                </Col> */}
                 <Col span={24} >
                     <EmptyTable
                         title="Create contact"
@@ -53,17 +45,6 @@ const ContactPage: React.FC = () => {
                         )}
                     />
                 </Col>
-                {/* <Col md={16} sm={24}>
-                    <EmptyTable
-                        title="Create contact"
-                        description="You are not logged in. Please log in to create a contact!"
-                        actionButton={(
-                            <Button onClick={() => navigate('/auth/login')}>
-                                Login
-                            </Button>
-                        )}
-                    />
-                </Col> */}
             </Row>
         );
     }

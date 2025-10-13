@@ -10,3 +10,10 @@ export const createPaymentSchema = Yup.object({
   accountName: Yup.string().nullable(),
   description: Yup.string().nullable(),
 });
+
+export const paymentBodySchema = Yup.object({
+  accountNo: Yup.string().required('bank account is required'),
+  binCode: Yup.string().required('bank name is required'),
+  accountName: Yup.string().nullable(),
+  description: Yup.string().nullable(),
+});

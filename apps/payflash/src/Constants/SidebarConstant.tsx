@@ -4,7 +4,7 @@ import {
     FileDoneOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { ContactPage, FlashPage, GeneratePage } from "@my-monorepo/payflash/Pages";
+import { ContactPage, FlashPage, GeneratePage, PaymentPage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
@@ -77,7 +77,7 @@ const paymentSidebarConstants : ISidebarItemProps[]= [
         label: "Payment amount qr",
         Icon: <ICPayments.Credit/>,
         path: 'payment/amount',
-        page : <Card><Empty description="Feature under development"/></Card>
+        page : <PaymentPage/>
     },
     {
         label: "Histories",
