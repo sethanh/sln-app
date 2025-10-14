@@ -16,7 +16,7 @@ const PaymentPage: React.FC = () => {
                 <Row gutter={[24, 24]} align="middle">
                     <Col span={24}>
                         <TextCommon fontSize={24} fontWeight={600}>
-                            Contacts
+                            Payments
                         </TextCommon>
                     </Col>
                     <Col span={24} >

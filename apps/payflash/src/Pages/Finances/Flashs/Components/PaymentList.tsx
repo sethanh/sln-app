@@ -163,13 +163,13 @@ const PaymentList: React.FC = () => {
     return (<Row gutter={[12, 12]}>
         <Col span={24}>
         <TextCommon fontSize={24} fontWeight={600}>
-            Contact
+            Payment
         </TextCommon>
         </Col>
         <Col span={24}>
             <FlexBox justifyContent='center' alignItems='center' flex={1} width='100%'>
                 <TableCommon
-                    titleTableTransCode='Your contacts'
+                    titleTableTransCode='Your Payment Account'
                     loading={isLoading || isPendingRemove}
                     columns={columns}
                     dataSource={payments?.items}
