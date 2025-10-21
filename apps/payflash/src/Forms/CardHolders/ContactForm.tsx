@@ -167,7 +167,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
               disabled={formik.isSubmitting || !formik.isValid || !formik.dirty}
               loading={isPending}
             >
-              {`${props.initialValues?.id ? 'Create' : 'Update'} Contact`} 
+              {`${props.initialValues?.id ? 'Update' : 'Create'} Contact`} 
             </Button>
           </FlexBox>
         )}
