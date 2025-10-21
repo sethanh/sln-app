@@ -47,7 +47,7 @@ const defaultPageInfo: PageInfo = {
 };
 
 interface TableCommonItem {
-    readonly id?: number;
+    readonly id?: string;
 }
 
 type TableCommonType = <TItem extends TableCommonItem>(

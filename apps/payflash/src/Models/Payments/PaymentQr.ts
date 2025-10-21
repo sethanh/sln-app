@@ -13,7 +13,7 @@ export interface CreatePaymentQrResponse {
 }
 
 export interface PaymentRequestBody {
-  id?: number;
+  id?: string;
   accountNo: string;
   binCode: string;
   accountName?: string ;
@@ -21,7 +21,7 @@ export interface PaymentRequestBody {
 }
 
 export interface PaymentResponse {
-  id: number;
+  id: string;
   accountNo: string;
   binCode: string;
   accountName?: string ;
@@ -36,7 +36,7 @@ export interface BankResponse {
 }
 
 export interface BankInfoResponse {
-  id: number;
+  id: string;
   name?: string;
   code?: string;
   bin?: string;

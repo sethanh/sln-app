@@ -1,13 +1,13 @@
 export interface AccountModel
 {
-    id: number
+    id: string
     name: string
     googleAccount?: GoogleAccountModel
 }
 
 export interface GoogleAccountModel
 {
-    id: number
+    id: string
     email?: string
     picture?: string 
 }

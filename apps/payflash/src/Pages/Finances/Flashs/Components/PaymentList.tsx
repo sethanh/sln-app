@@ -39,7 +39,7 @@ const PaymentList: React.FC = () => {
     }
 
     const  onHandleDeleteAsync = React.useCallback(
-            async (id?: number) => {
+            async (id?: string) => {
                await deleteAsync({
                 url: urlConstant.paymentQr.paymentQrDeleteUrl,
                 requestOptions: {

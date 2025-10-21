@@ -1,7 +1,7 @@
 import { ContextProvider, IContextProvider } from '@my-monorepo/ui';
 
 export interface accountModel {
-    id: number
+    id: string
     name: string
 }
 

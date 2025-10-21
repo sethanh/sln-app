@@ -1,7 +1,7 @@
 import {genericAtom}  from '@my-monorepo/utils'
 
 export interface Account {
-    id: number;
+    id: string;
     name: string;
 }
 

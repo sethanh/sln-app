@@ -33,7 +33,7 @@ const ContactList: React.FC = () => {
     });
 
     const  onHandleDeleteAsync = React.useCallback(
-        async (id?: number) => {
+        async (id?: string) => {
            await deleteAsync({
             url: urlConstant.contact.contactDeleteUrl,
             requestOptions: {
