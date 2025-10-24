@@ -52,8 +52,13 @@ const QRCodeGenerator: React.FC = () => {
       const url = URL.createObjectURL(svgBlob);
 
       img.onload = () => {
-        canvas.width = img.width;
-        canvas.height = img.height;
+        const scale = 4;
+
+        canvas.width = img.width * scale;
+        canvas.height = img.height * scale;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.scale(scale, scale);
         ctx.drawImage(img, 0, 0);
         URL.revokeObjectURL(url);
 
@@ -61,7 +66,7 @@ const QRCodeGenerator: React.FC = () => {
         const timestamp = now.toISOString().replace(/[-:T.Z]/g, '').slice(0, 14);
 
         const link = document.createElement('a');
-        link.download = `${timestamp}_qrcode.png`;;
+        link.download = `${timestamp}_qrcode.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
       };
