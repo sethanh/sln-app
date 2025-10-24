@@ -56,7 +56,6 @@ const QRCodeGenerator: React.FC = () => {
 
         canvas.width = img.width * scale;
         canvas.height = img.height * scale;
-        ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.scale(scale, scale);
         ctx.drawImage(img, 0, 0);
