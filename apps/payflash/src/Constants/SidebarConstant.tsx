@@ -104,9 +104,9 @@ const teamSidebarConstants : ISidebarItemProps[]= [
 
 const documentSidebarConstants : ISidebarItemProps[]= [
     {
-        label: "Document",
-        Icon: <ICPayments.Document />,
-        path: 'document',
+        label: "Message",
+        Icon: <ICPayments.Message />,
+        path: 'message',
         page : <DocumentPage/>
     }
 ]

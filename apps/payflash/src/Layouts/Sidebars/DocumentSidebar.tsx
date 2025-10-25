@@ -9,6 +9,7 @@ export const DocumentSidebar: React.FC = () => {
             label={documentSidebar.label || ''}
             PreIcon={documentSidebar.Icon}
             value={documentSidebar.path}
+            border={true}
        />
     );
 };
