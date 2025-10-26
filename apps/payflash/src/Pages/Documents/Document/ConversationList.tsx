@@ -5,7 +5,7 @@ import { Avatar } from 'antd';
 
 interface ConversationsProps {
   conversations?: ConversationResponse[];
-  onListenConversations?: (conversationId: string) => void;
+  onListenConversations?: (conversationId: ConversationResponse) => void;
 }
 
 const ConversationList: React.FC<ConversationsProps> = ({ conversations, onListenConversations }) => {
@@ -17,7 +17,7 @@ const ConversationList: React.FC<ConversationsProps> = ({ conversations, onListe
           gap={8}
           alignItems="center"
           cursor="pointer"
-          onClick={() => onListenConversations?.(item.id)}
+          onClick={() => onListenConversations?.(item)}
         >
           <Avatar.Group>
             {item.accounts?.map((ac, idx) => (

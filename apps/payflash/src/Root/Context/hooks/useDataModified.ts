@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRealtimeContext } from '../RealtimeRoot';
 import { RealtimeData, RealtimeEvents } from '../Types';
 import { getRealtimeJob, realtimeDataParse } from '../realtimeUtils';
+import { MessageEventModel, messageEvents } from '@my-monorepo/payflash/Events';
 
 export const useDataModified = () => {
     const { realtimeConn: conn } = useRealtimeContext();
@@ -23,31 +24,16 @@ export const useDataModified = () => {
 
             console.log(job);
 
-            // switch (job) {
-            //     case 'APPOINTMENT': {
-            //         handleAppointmentRealtime(data);
-            //         break;
-            //     }
-            //     case 'INVENTORY': {
-            //         if (data.key.startsWith(RealtimeKeys.InventorySoldOut)) {
-            //             handleInventorySoldOutNotify(data.data);
-            //         }
-            //         if (data.key.startsWith(RealtimeKeys.InventoryLowStock)) {
-            //             handleInventoryLowStockNotify(data.data);
-            //         }
-            //         break;
-            //     }
-            //     case 'REFRESH': {
-            //         handleRefreshRealTime(data);
-            //         break;
-            //     }
-            //     case 'BRANCH': {
-            //         handleBranchRealTime(data);
-            //         break;
-            //     }
-            //     default:
-            //         break;
-            // }
+            switch (job) {
+
+                case "MESSAGE": {
+                    const messageValue = data.data as MessageEventModel;
+                    messageEvents.refetchMessage.emit(messageValue)
+                    break;
+                }
+                default:
+                    break;
+            }
         });
 
         return () => {

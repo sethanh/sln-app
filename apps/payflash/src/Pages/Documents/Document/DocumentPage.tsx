@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChatWindow } from './ChatWindow';
 import { Spin } from 'antd';
 import { FlexBox, TextCommon } from '@my-monorepo/ui';
 import { currentConversation, usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
 import { urlConstant } from '@my-monorepo/payflash/Constants';
-import { GetAllConversationResponse } from '@my-monorepo/payflash/Models';
+import { ConversationResponse, GetAllConversationResponse } from '@my-monorepo/payflash/Models';
 import { ConversationList } from './ConversationList';
 import { useAtom } from 'jotai';
 // import {apiFetch} from '@my-monorepo/utils'
@@ -23,11 +23,21 @@ const DocumentPage: React.FC = () => {
         }
     );
 
-    const onSelectedConversationId=(id: string | null)=>{
-        if(id == null){ setConversation(null)}
-        if(id != null){setConversation({id: id})}
-        setSelectedConversationId(id);
+    const onSelectedConversationId=(item: ConversationResponse | null)=>{
+        if(item == null){ setConversation(null)}
+        if(item != null){setConversation({
+            id: item.id,
+            accounts: item.accounts,
+            name: item.name
+        })}
+        setSelectedConversationId(item?.id || null);
     }
+
+    useEffect(() => {
+        return () => {
+            onSelectedConversationId(null);
+        };
+    }, []);
 
     return (
         <FlexBox direction='column' gap={12}>
@@ -35,7 +45,7 @@ const DocumentPage: React.FC = () => {
                 Message Room
             </TextCommon>
             <Spin spinning={isLoading}>
-                 {conversations?.items?<ConversationList conversations={conversations.items}  onListenConversations={onSelectedConversationId}/>: null}
+                {conversations?.items?<ConversationList conversations={conversations.items}  onListenConversations={onSelectedConversationId}/>: null}
             </Spin>
             {
                 selectedConversationId

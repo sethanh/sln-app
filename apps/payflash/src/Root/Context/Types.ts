@@ -25,7 +25,7 @@ export interface BranchNotificationData {
 	readonly notifyId: string;
 }
 
-export type IJobType = 'APPOINTMENT' | 'INVENTORY' | 'REFRESH' | 'BRANCH';
+export type IJobType = 'MESSAGE';
 
 export type AptNotifyStatus = 'book' | 'confirm' | 'no_show' | 'cancel';
 

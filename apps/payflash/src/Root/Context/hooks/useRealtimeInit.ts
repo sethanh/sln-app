@@ -5,12 +5,6 @@ import { RealtimeKeys, RealtimeMethods, realtimeSubscribesArg } from "../Types";
 import { currentAccountAtom, currentConversation } from "../../Store";
 import { useAtom } from "jotai";
 
-/**
- * ✅ Hook khởi tạo và quản lý kết nối SignalR realtime
- * - Kết nối 1 lần theo account.id
- * - Khi conversation đổi → unsubscribe key cũ, subscribe key mới
- * - Tự reconnect khi mất kết nối
- */
 export const useRealtimeInit = () => {
   const [account] = useAtom(currentAccountAtom);
   const [conversation] = useAtom(currentConversation);
@@ -25,8 +19,6 @@ export const useRealtimeInit = () => {
 
     const connection = new HubConnectionBuilder()
       .withUrl(appConstant.realTimHub, {
-        // Nếu có token thì có thể truyền vào đây:
-        // accessTokenFactory: () => account.accessToken,
       })
       .configureLogging(LogLevel.Information)
       .withAutomaticReconnect()
@@ -37,13 +29,15 @@ export const useRealtimeInit = () => {
         await connection.start();
         console.log("🟢 SignalR Connected");
 
-        // Đăng ký tất cả realtime gốc
         realtimeSubscribesArg?.forEach((realtimeArg) => {
           const arg = {
             ...realtimeArg,
             key: `${realtimeArg.key}-${account.id}`,
           };
-          connection.invoke(RealtimeMethods.Subscribe, arg);
+          if(realtimeArg.key !== RealtimeKeys.MessageRefresh)
+          { 
+            connection.invoke(RealtimeMethods.Subscribe, arg);
+          }
         });
 
         setRealtimeConn(connection);
@@ -67,14 +61,12 @@ export const useRealtimeInit = () => {
     };
   }, [account?.id]);
 
-  // 🧩 Lắng nghe thay đổi conversation.id
   useEffect(() => {
     if (!realtimeConn) return;
 
     const oldId = prevConversationId.current;
     const newId = conversation?.id;
 
-    // Nếu có conversation cũ → hủy đăng ký
     if (oldId && oldId !== newId) {
       const oldKey = `${RealtimeKeys.MessageRefresh}-${oldId}`;
       console.log("🧹 Unsubscribing old conversation:", oldKey);
@@ -83,7 +75,6 @@ export const useRealtimeInit = () => {
         .catch((err) => console.error("❌ Failed to unsubscribe:", err));
     }
 
-    // Nếu có conversation mới → đăng ký mới
     if (newId) {
       const newKey = `${RealtimeKeys.MessageRefresh}-${newId}`;
       console.log("🔁 Subscribing to new conversation:", newKey);
@@ -92,7 +83,6 @@ export const useRealtimeInit = () => {
         .catch((err) => console.error("❌ Failed to subscribe:", err));
     }
 
-    // Cập nhật ref
     prevConversationId.current = newId;
   }, [conversation?.id, realtimeConn]);
 

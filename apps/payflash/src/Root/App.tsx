@@ -6,10 +6,9 @@ import { DrawerGlobal, ModalGlobal } from '../Components'
 import { RealtimeRoot } from './Context'
 
 function App() {
-
   return (
     <ManagementBrowserRouter>
-      <RealtimeRoot />
+      <RealtimeRoot/> 
       <DrawerGlobal/>
       <ModalGlobal/>
       <Initializer>
