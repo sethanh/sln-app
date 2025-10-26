@@ -5,5 +5,6 @@ export interface IAccountProfile extends IAccountActionProps {
     icon ?: React.ReactNode
     onLogin: () => void
     onLogOut: () => void
+    onViewprofile?: () => void
 }
 

@@ -39,6 +39,15 @@ export interface AccountResponse extends AuditModel {
   googleAccounts?: GoogleAccountResponse[];
 }
 
+export interface AccountUpdateRequest{
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  photoId?: string;
+}
+
 export interface GoogleAccountResponse extends AuditModel{
+  email?: string;
   picture?: string;
 }

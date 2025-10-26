@@ -12,7 +12,8 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
   avatar,
   onLogin,
   icon,
-  onLogOut
+  onLogOut,
+  onViewprofile
 }) => {
 
   const items: MenuProps['items'] = [
@@ -49,7 +50,10 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
       placement="bottom"
     >
       <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
-        <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
+        <div 
+          className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} 
+          onClick={onViewprofile ? () => onViewprofile() : undefined}
+        >
           <div className="sent_group-sidebar-label-pre">
             <div className="sent_account-profile-avatar">
               <img src={avatar} className='sent_account-profile-avatar-img' alt='avatar' />

@@ -2,6 +2,7 @@ import {appConstant}  from './AppConstant'
 
 const accountUrl = appConstant.apiUrl + "/Accounts" 
 const getCurrentAccountUrl   = accountUrl + "/me" 
+const getAccountDetail   = accountUrl + "/:id"
 const googleLoginAccountUrl = accountUrl + "/google-login"
 
 const paymentQrUrl = appConstant.apiUrl + "/PaymentQrs";
@@ -28,7 +29,8 @@ export  const urlConstant = {
     account: {
         accountUrl,
         googleLoginAccountUrl,
-        getCurrentAccountUrl
+        getCurrentAccountUrl,
+        getAccountDetail
     },
     paymentQr:{
         paymentQrBankUrl,
