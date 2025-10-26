@@ -16,6 +16,14 @@ const contactUrl = appConstant.apiUrl + "/Contacts";
 const contactUpdateUrl = contactUrl + "/:id";
 const contactDeleteUrl = contactUrl + "/:id";
 
+const conversationUrl = appConstant.apiUrl + "/Conversations";
+const conversationUpdateUrl = conversationUrl + "/:id";
+const conversationDeleteUrl = conversationUrl + "/:id";
+
+const chatMessageUrl = appConstant.apiUrl + "/ChatMessages";
+const chatMessageUpdateUrl = chatMessageUrl + "/:id";
+const chatMessageDeleteUrl = chatMessageUrl + "/:id";
+
 export  const urlConstant = { 
     account: {
         accountUrl,
@@ -37,5 +45,15 @@ export  const urlConstant = {
         contactGetAll: contactUrl,
         contactUpdateUrl: contactUpdateUrl,
         contactDeleteUrl: contactDeleteUrl
+    },
+    conversation:{
+        conversationUrl,
+        conversationUpdateUrl,
+        conversationDeleteUrl
+    },
+    message: {
+        chatMessageUrl,
+        chatMessageUpdateUrl,
+        chatMessageDeleteUrl
     }
 } 

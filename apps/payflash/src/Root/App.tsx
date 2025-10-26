@@ -3,12 +3,13 @@ import { ManagementBrowserRouter } from '@my-monorepo/payflash/Routes'
 import { ManagementRootRoute } from '@my-monorepo/payflash/Routes'
 import { Initializer } from './Initizlizer'
 import { DrawerGlobal, ModalGlobal } from '../Components'
+import { RealtimeRoot } from './Context'
 
 function App() {
 
-  // usePaymentSignalR();
   return (
     <ManagementBrowserRouter>
+      <RealtimeRoot />
       <DrawerGlobal/>
       <ModalGlobal/>
       <Initializer>

@@ -1,56 +1,74 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Avatar, Button, Input, List, message as antdMessage, Skeleton, Spin, Tooltip } from "antd";
 import { SendOutlined } from "@ant-design/icons";
 import VirtualList from "rc-virtual-list";
 
-interface MessageItem {
+type MessageItem = {
   id: string;
-  email: string;
-  name: string;
-  avatar: string;
+  conversationId: string;
+  senderId: string;
+  name?: string;
+  avatar?: string;
   text: string;
   createdAt: string; // ISO
   fromMe?: boolean;
-}
+};
+
+type ChatPageResponse = {
+  items: MessageItem[];        // DESC: newest -> oldest
+  nextBeforeId?: string | null;
+};
 
 const CONTAINER_HEIGHT = 600;
 const PAGE_SIZE = 20;
-const BOTTOM_THRESHOLD = 80; // px coi như chạm đáy
+const BOTTOM_THRESHOLD = 80;
 
+// ===== Mock current user =====
 const ME = {
-  email: "me@local.dev",
+  id: "me",
   name: "You",
   avatar: "https://avatars.githubusercontent.com/u/9919?s=200&v=4",
 };
 
-const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
-const makeId = () => Math.random().toString(36).slice(2) + "-" + Date.now().toString(36);
-
-// ============== MOCK APIs (thay bằng API thật) ==============
-async function fetchPage(pageIndex: number): Promise<MessageItem[]> {
-  // Mặc định API trả DESC (mới → cũ) theo createdAt, id
-  const url = `https://660d2bd96ddfa2943b33731c.mockapi.io/api/users/?page=${pageIndex}&limit=${PAGE_SIZE}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const body = await res.json();
-  const arr: MessageItem[] = (Array.isArray(body) ? body : []).map((u: any, i: number) => ({
-    id: `${u.email}-${pageIndex}-${i}`,
-    email: u.email,
-    name: u.name,
-    avatar: u.avatar,
-    text: `Hi, I'm ${u.name}. Mock message #${(pageIndex - 1) * PAGE_SIZE + i + 1}`,
-    createdAt: new Date(Date.now() - (pageIndex * PAGE_SIZE + i) * 45000).toISOString(),
-  }));
-  await delay(250);
-  return arr;
+// ===== MOCK APIs: đổi sang API thật của bạn =====
+async function fetchMessages(params: { conversationId: string; limit: number; beforeId?: string | null; }): Promise<ChatPageResponse> {
+  // GIẢ LẬP: tạo data DESC và nextBeforeId theo cursor
+  const { limit, beforeId } = params;
+  // build a synthetic stream of 200 messages
+  const total = 200;
+  const all: MessageItem[] = Array.from({ length: total }, (_, i) => {
+    const idx = total - i; // newest idx lớn
+    return {
+      id: `m-${idx}`,
+      conversationId: params.conversationId,
+      senderId: idx % 3 === 0 ? ME.id : `u-${idx % 7}`,
+      name: idx % 3 === 0 ? ME.name : `User ${idx % 7}`,
+      avatar: idx % 3 === 0 ? ME.avatar : "https://i.pravatar.cc/100",
+      text: `Mock message #${idx}`,
+      createdAt: new Date(Date.now() - idx * 45000).toISOString(),
+      fromMe: idx % 3 === 0,
+    };
+  });
+  // DESC
+  let q = all;
+  if (beforeId) {
+    const anchorIdx = q.findIndex(m => m.id === beforeId);
+    if (anchorIdx >= 0) q = q.slice(anchorIdx + 1); // cũ hơn anchor
+    else q = []; // không có anchor => hết
+  }
+  const items = q.slice(0, limit);
+  const nextBeforeId = items.length === limit ? items[items.length - 1].id : null;
+  await new Promise(r => setTimeout(r, 250));
+  return { items, nextBeforeId };
 }
 
-async function sendMessageAPI(text: string): Promise<MessageItem> {
-  await delay(200);
+async function sendMessageAPI(conversationId: string, text: string): Promise<MessageItem> {
+  await new Promise(r => setTimeout(r, 180));
   return {
-    id: makeId(),
-    email: ME.email,
+    id: crypto.randomUUID(),
+    conversationId,
+    senderId: ME.id,
     name: ME.name,
     avatar: ME.avatar,
     text,
@@ -58,87 +76,94 @@ async function sendMessageAPI(text: string): Promise<MessageItem> {
     fromMe: true,
   };
 }
-// ============================================================
 
-const ChatWindow: React.FC = () => {
-  const [data, setData] = useState<MessageItem[]>([]); // DESC: newest → oldest
-  const [page, setPage] = useState(1);                 // trang “cũ hơn” kế tiếp
+type ChatWindowProps = {
+  conversationId: string;
+  onClose?: () => void;
+  hubUrl?: string;
+};
+
+export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose}) => {
+  const [data, setData] = useState<MessageItem[]>([]);       // DESC (newest → oldest)
+  const [nextBeforeId, setNextBeforeId] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
 
   const [loadingInitial, setLoadingInitial] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-
   const [draft, setDraft] = useState("");
   const [sending, setSending] = useState(false);
 
   const rafIdRef = useRef<number | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
   const mountedRef = useRef(true);
-  const listContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Lấy trang đầu: newest → oldest (DESC), hiển thị trên cùng trước
+  // dedupe nhanh theo id
+  const idSet = useMemo(() => new Set(data.map(d => d.id)), [data]);
+
+  // ------- load newest page -------
+  const reloadLatest = useCallback(async () => {
+    try {
+      setLoadingInitial(true);
+      const page = await fetchMessages({ conversationId, limit: PAGE_SIZE });
+      if (!mountedRef.current) return;
+
+      setData(page.items);
+      setNextBeforeId(page.nextBeforeId ?? null);
+      setHasMore(Boolean(page.nextBeforeId));
+
+      requestAnimationFrame(() => {
+        const el = listRef.current;
+        if (el) el.scrollTop = 0; // newest on top
+      });
+    } catch {
+      antdMessage.error("Không tải được tin nhắn.");
+    } finally {
+      if (mountedRef.current) setLoadingInitial(false);
+    }
+  }, [conversationId]);
+
+  // ------- load older (append bottom) -------
+  const loadOlder = useCallback(async () => {
+    if (!hasMore || loadingMore || !nextBeforeId) return;
+    try {
+      setLoadingMore(true);
+      const page = await fetchMessages({ conversationId, limit: PAGE_SIZE, beforeId: nextBeforeId });
+      if (!mountedRef.current) return;
+
+      // khử trùng lặp đề phòng server trả trùng
+      const filtered = page.items.filter(m => !idSet.has(m.id));
+
+      setData(prev => prev.concat(filtered));
+      setNextBeforeId(page.nextBeforeId ?? null);
+      setHasMore(Boolean(page.nextBeforeId));
+    } catch {
+      antdMessage.error("Không tải thêm được tin cũ.");
+    } finally {
+      if (mountedRef.current) setLoadingMore(false);
+    }
+  }, [conversationId, hasMore, loadingMore, nextBeforeId, idSet]);
+
+
   useEffect(() => {
     mountedRef.current = true;
-    (async () => {
-      try {
-        setLoadingInitial(true);
-        const first = await fetchPage(1);
-        if (!mountedRef.current) return;
-        setData(first);
-        setPage(2);
-        setHasMore(first.length === PAGE_SIZE);
-
-        // cuộn về TOP (vì newest ở đầu, người dùng sẽ xem đầu danh sách)
-        requestAnimationFrame(() => {
-          const el = listContainerRef.current;
-          if (el) el.scrollTop = 0;
-        });
-      } catch {
-        if (!mountedRef.current) return;
-        antdMessage.error("Tải dữ liệu thất bại. Vui lòng thử lại.");
-      } finally {
-        if (mountedRef.current) setLoadingInitial(false);
-      }
-    })();
+    void reloadLatest();
     return () => {
       mountedRef.current = false;
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
-  }, []);
+  }, [reloadLatest]);
 
-  // Append dữ liệu cũ hơn ở CUỐI danh sách (vì đang DESC)
-  const appendOlder = useCallback(async () => {
-    if (loadingMore || !hasMore) return;
-    try {
-      setLoadingMore(true);
-    //   const el = listContainerRef.current;
-      // giữ vị trí cuộn: khi append ở cuối, vị trí hiện tại không đổi nên không cần tính toán gì thêm
-      const next = await fetchPage(page);
-      if (!mountedRef.current) return;
-
-      setData(prev => prev.concat(next)); // thêm xuống dưới
-      setPage(prev => prev + 1);
-      setHasMore(next.length === PAGE_SIZE);
-    } catch {
-      if (!mountedRef.current) return;
-      antdMessage.error("Tải thêm dữ liệu thất bại.");
-    } finally {
-      if (mountedRef.current) setLoadingMore(false);
-    }
-  }, [hasMore, loadingMore, page]);
-
-  // rAF throttle onScroll: khi gần đáy → load cũ hơn
+  // rAF throttle scroll: chạm đáy thì load cũ
   const onScroll: React.UIEventHandler<HTMLElement> = (e) => {
     if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     const target = e.currentTarget;
     rafIdRef.current = requestAnimationFrame(() => {
-      const distanceToBottom = target.scrollHeight - target.scrollTop - target.clientHeight;
-      if (distanceToBottom <= BOTTOM_THRESHOLD) {
-        void appendOlder();
-      }
+      const dist = target.scrollHeight - target.scrollTop - target.clientHeight;
+      if (dist <= BOTTOM_THRESHOLD) void loadOlder();
     });
   };
 
-  // Gửi tin: prepend lên ĐẦU danh sách (newest ở top)
+  // gửi: prepend top
   const sendMessage = useCallback(async () => {
     const text = draft.trim();
     if (!text || sending) return;
@@ -146,35 +171,25 @@ const ChatWindow: React.FC = () => {
     setSending(true);
     try {
       const temp: MessageItem = {
-        id: "temp-" + makeId(),
-        email: ME.email,
+        id: `temp-${crypto.randomUUID()}`,
+        conversationId,
+        senderId: ME.id,
         name: ME.name,
         avatar: ME.avatar,
         text,
         createdAt: new Date().toISOString(),
         fromMe: true,
       };
-
-      // prepend ngay để thấy trên đầu
       setData(prev => [temp, ...prev]);
       setDraft("");
 
-      // cuộn về TOP để đảm bảo nhìn thấy tin mới
       requestAnimationFrame(() => {
-        const el = listContainerRef.current;
+        const el = listRef.current;
         if (el) el.scrollTop = 0;
       });
 
-      const saved = await sendMessageAPI(text);
-
-      // thay temp bằng saved ở đầu
+      const saved = await sendMessageAPI(conversationId, text);
       setData(prev => {
-        if (prev.length && prev[0].id === temp.id) {
-          const clone = prev.slice();
-          clone[0] = saved;
-          return clone;
-        }
-        // nếu vì lý do gì temp không còn là item[0], tìm và thay
         const idx = prev.findIndex(m => m.id === temp.id);
         if (idx >= 0) {
           const clone = prev.slice();
@@ -185,12 +200,11 @@ const ChatWindow: React.FC = () => {
       });
     } catch {
       antdMessage.error("Gửi tin nhắn thất bại");
-      // rollback temp
       setData(prev => prev.filter(m => !m.id.startsWith("temp-")));
     } finally {
       setSending(false);
     }
-  }, [draft, sending]);
+  }, [conversationId, draft, sending]);
 
   const onKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -199,45 +213,33 @@ const ChatWindow: React.FC = () => {
     }
   };
 
-  const renderItem = (item: MessageItem) => (
+  const renderItem = (m: MessageItem) => (
     <List.Item
-      key={item.id}
+      key={m.id}
       style={{
         paddingInline: 12,
         border: "none",
         display: "flex",
-        justifyContent: item.fromMe ? "flex-end" : "flex-start",
+        justifyContent: m.fromMe ? "flex-end" : "flex-start",
       }}
     >
-      {!item.fromMe && (
-        <Avatar
-          src={item.avatar}
-          style={{ marginRight: 8, alignSelf: "flex-end" }}
-          size="large"
-        />
-      )}
+      {!m.fromMe && <Avatar src={m.avatar} style={{ marginRight: 8 }} size="large" />}
       <div
         style={{
           maxWidth: 520,
-          background: item.fromMe ? "#e6f7ff" : "#fff",
-          border: item.fromMe ? "1px solid #91d5ff" : "1px solid #f0f0f0",
+          background: m.fromMe ? "#e6f7ff" : "#fff",
+          border: m.fromMe ? "1px solid #91d5ff" : "1px solid #f0f0f0",
           borderRadius: 12,
           padding: "8px 12px",
           boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
         }}
       >
         <div style={{ fontSize: 12, color: "#999", marginBottom: 4 }}>
-          {item.fromMe ? "Bạn" : item.name} · {new Date(item.createdAt).toLocaleString()}
+          {(m.fromMe ? "Bạn" : m.name) ?? ""} · {new Date(m.createdAt).toLocaleString()}
         </div>
-        <div style={{ whiteSpace: "pre-wrap" }}>{item.text}</div>
+        <div style={{ whiteSpace: "pre-wrap" }}>{m.text}</div>
       </div>
-      {item.fromMe && (
-        <Avatar
-          src={item.avatar}
-          style={{ marginLeft: 8, alignSelf: "flex-end" }}
-          size="large"
-        />
-      )}
+      {m.fromMe && <Avatar src={m.avatar} style={{ marginLeft: 8 }} size="large" />}
     </List.Item>
   );
 
@@ -249,12 +251,15 @@ const ChatWindow: React.FC = () => {
         flexDirection: "column",
         height: 720,
         border: "1px solid #f0f0f0",
+        backgroundColor: "white",
         borderRadius: 8,
         overflow: "hidden",
       }}
     >
-      <div style={{ padding: "8px 12px", borderBottom: "1px solid #f0f0f0" }}>
-        <strong>Conversation Name</strong>
+      <div style={{ padding: "8px 12px", borderBottom: "1px solid #f0f0f0", display: "flex", alignItems: "center", gap: 8 }}>
+        <strong>Conversation</strong>
+        <div style={{ flex: 1 }} />
+        {onClose && <Button onClick={onClose}>Close</Button>}
       </div>
 
       <List style={{ flex: 1, overflow: "hidden" }}>
@@ -272,20 +277,20 @@ const ChatWindow: React.FC = () => {
         ) : (
           <>
             <VirtualList
-              data={data}              // DESC: newest → oldest
+              data={data}              // DESC (newest → oldest)
               height={CONTAINER_HEIGHT}
               itemHeight={72}
               itemKey="id"
               onScroll={onScroll}      // chạm đáy → load older
               ref={(node: any) => {
                 // rc-virtual-list nội bộ có scrollRef
-                listContainerRef.current = node?.component?.scrollRef ?? null;
+                listRef.current = node?.component?.scrollRef ?? null;
               }}
             >
               {(item: MessageItem) => renderItem(item)}
             </VirtualList>
 
-            {/* Footer hiển thị loader/hint ở DƯỚI (phần tin cũ) */}
+            {/* Loader/hint phía DƯỚI (khu vực tin cũ) */}
             <div style={{ display: "flex", justifyContent: "center", padding: 10 }}>
               {loadingMore ? (
                 <Spin />
@@ -299,7 +304,7 @@ const ChatWindow: React.FC = () => {
         )}
       </List>
 
-      {/* Footer chat (nhập & gửi) */}
+      {/* Footer chat */}
       <div
         style={{
           borderTop: "1px solid #f0f0f0",
@@ -331,5 +336,3 @@ const ChatWindow: React.FC = () => {
     </div>
   );
 };
-
-export { ChatWindow };
