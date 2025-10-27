@@ -2,6 +2,7 @@ import React from 'react';
 import { FlexBox, TextCommon } from '@my-monorepo/ui';
 import { ConversationResponse } from '@my-monorepo/payflash/Models';
 import { Avatar } from 'antd';
+import { appConstant } from '@my-monorepo/payflash/Constants';
 
 interface ConversationsProps {
   conversations?: ConversationResponse[];
@@ -23,7 +24,7 @@ const ConversationList: React.FC<ConversationsProps> = ({ conversations, onListe
             {item.accounts?.map((ac, idx) => (
               <Avatar
                 key={ac.accountId ?? idx}
-                src={ac.account?.googleAccounts?.[0]?.picture || ''}
+                src={ac.account?.photo? `${appConstant.apiUrl}/${ac.account?.photo.relativePath}`: ac.account?.googleAccounts?.[0]?.picture || ''}
               />
             ))}
           </Avatar.Group>

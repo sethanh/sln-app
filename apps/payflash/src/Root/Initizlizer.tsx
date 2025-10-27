@@ -4,7 +4,7 @@ import { currentAccountAtom, paymentToken } from './Store';
 import { useAtom } from 'jotai';
 import { usePaymentHttpCommand } from './Services';
 import { AccountModel } from '../Models';
-import { urlConstant } from '../Constants';
+import { appConstant, urlConstant } from '../Constants';
 
 interface InitializerProps {
     readonly children: React.ReactNode;
@@ -55,8 +55,11 @@ export function Initializer(props: InitializerProps) {
                     }
 
                     if(savedLoginRes) {
-                        
-                        setAccount(savedLoginRes);
+                        const initialSrc = savedLoginRes.photo?.relativePath ? `${appConstant.apiUrl}/${savedLoginRes.photo?.relativePath}`: savedLoginRes?.googleAccounts?.[0].picture || '';
+                        setAccount({
+                            ...savedLoginRes,
+                            picture: initialSrc
+                        });
                     }
                 })
                 .then(() => {

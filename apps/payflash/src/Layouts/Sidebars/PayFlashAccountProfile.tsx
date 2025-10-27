@@ -58,7 +58,7 @@ export const PayFlashAccountProfile: React.FC = () => {
             }}
             onLogOut={()=> onLogOut()}
             onViewProfile={()=>showModalEditProfile()}
-            avatar={account?.googleAccount?.picture}
+            avatar={account?.picture}
             icon={<ICPayments.User stroke='#22356F'/>}
         />
     );

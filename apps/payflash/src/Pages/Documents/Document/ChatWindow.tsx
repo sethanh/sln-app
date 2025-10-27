@@ -6,7 +6,7 @@ import { SendOutlined } from "@ant-design/icons";
 import VirtualList from "rc-virtual-list";
 import { ChatMessageResponse, GetAllChatMessageResponse } from "@my-monorepo/payflash/Models";
 import { currentAccountAtom, currentConversation, usePaymentHttpCommand } from "@my-monorepo/payflash/Root";
-import { urlConstant } from "@my-monorepo/payflash/Constants";
+import { appConstant, urlConstant } from "@my-monorepo/payflash/Constants";
 import { useAtom } from "jotai";
 import { messageEvents } from "@my-monorepo/payflash/Events";
 import { TextCommon } from "@my-monorepo/ui";
@@ -205,7 +205,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
   const renderItem = (m: ChatMessageResponse) => {
     const isMine = m.accountId === account?.id;
     const accountMessage = conversation?.accounts?.find((c) => c.accountId === m.accountId)?.account;
-    const avatar = accountMessage?.googleAccounts?.[0]?.picture;
+    const avatar = accountMessage?.photo ?  `${appConstant.apiUrl}/${accountMessage.photo?.relativePath}` : accountMessage?.googleAccounts?.[0]?.picture;
 
     return (
       <List.Item
@@ -266,7 +266,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
           {conversation?.accounts?.map((ac, idx) => (
             <Avatar
               key={ac.accountId ?? idx}
-              src={ac.account?.googleAccounts?.[0]?.picture || ''}
+              src={ac.account?.photo? `${appConstant.apiUrl}/${ac.account?.photo.relativePath}`: ac.account?.googleAccounts?.[0]?.picture || ''}
             />
           ))}
         </Avatar.Group>

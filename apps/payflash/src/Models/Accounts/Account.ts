@@ -1,7 +1,7 @@
-export interface AccountModel
+import { AccountResponse } from "../Messages"
+
+export interface AccountModel extends AccountResponse
 {
-    id: string
-    name: string
     googleAccount?: GoogleAccountModel,
     picture?: string 
 }

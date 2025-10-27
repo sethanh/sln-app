@@ -27,25 +27,13 @@ const AccountForm: React.FC<AccountFormProps> = (props: AccountFormProps) => {
   const initialValues = {
     email: defaultValues?.email || '',
     name: defaultValues?.name || '',
-    password: defaultValues?.password || '',
+    password: defaultValues?.password || "********",
     photoId: defaultValues?.photoId,
-    id: defaultValues?.id || ''
+    id: defaultValues?.id || '',
   } as AccountUpdateRequest;
 
-  const { mutateAsync, isPending } = usePaymentHttpCommand<AccountResponse>({});
-
-  const handleSubmit = async (values: AccountUpdateRequest) => {
-    const profile = await mutateAsync({
-      url: urlConstant.account.accountDetail,
-      requestOptions: {
-        method: 'PATCH',
-        body: values,
-        routeParams: { id: initialValues.id }
-      },
-    });
-
-    if(profile)
-    {
+  const { mutateAsync, isPending } = usePaymentHttpCommand<AccountResponse>({
+    onSuccess(profile) {
       const initialSrc = profile.photo?.relativePath ? `${appConstant.apiUrl}/${profile.photo?.relativePath}`: profile?.googleAccounts?.[0].picture || '';
       setCurrentAccount({
         id: profile.id,
@@ -53,11 +41,21 @@ const AccountForm: React.FC<AccountFormProps> = (props: AccountFormProps) => {
         googleAccount: profile?.googleAccounts?.[0],
         picture: initialSrc
       } as AccountModel);
-    }
+      if (props.onSuccess) {
+        props.onSuccess();
+      }
+    },
+  });
 
-    if (props.onSuccess) {
-      props.onSuccess();
-    }
+  const handleSubmit = async (values: AccountUpdateRequest) => {
+    await mutateAsync({
+      url: urlConstant.account.accountDetail,
+      requestOptions: {
+        method: 'PATCH',
+        body: values,
+        routeParams: { id: initialValues.id }
+      },
+    });
   };
 
   const getTokenValue = useCallback((): string => {
@@ -103,13 +101,5 @@ const AccountForm: React.FC<AccountFormProps> = (props: AccountFormProps) => {
   );
 };
 
-AccountForm.defaultProps = {
-  defaultValues: {
-    password: "********",
-    name: '',
-    email: '',
-    id: ''
-  },
-};
 
 export { AccountForm };

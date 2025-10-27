@@ -4,6 +4,7 @@ const accountUrl = appConstant.apiUrl + "/Accounts"
 const getCurrentAccountUrl   = accountUrl + "/me" 
 const accountDetail   = accountUrl + "/:id"
 const googleLoginAccountUrl = accountUrl + "/google-login"
+const AccountLogin = accountUrl + "/login"
 
 const paymentQrUrl = appConstant.apiUrl + "/PaymentQrs";
 const paymentQrBankUrl = paymentQrUrl + "/banks";
@@ -30,7 +31,8 @@ export  const urlConstant = {
         accountUrl,
         googleLoginAccountUrl,
         getCurrentAccountUrl,
-        accountDetail
+        accountDetail,
+        AccountLogin
     },
     paymentQr:{
         paymentQrBankUrl,

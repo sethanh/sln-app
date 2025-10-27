@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react'
 import '../Sidebars/Sidebar.css'
 import { IAccountProfile } from './IAccountProfile'
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons'
-import { Dropdown, MenuProps } from 'antd';
+import { Avatar, Dropdown, MenuProps } from 'antd';
 
 export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
   label,
@@ -55,9 +55,7 @@ export const AccountProfile: React.FC<PropsWithChildren<IAccountProfile>> = ({
           onClick={onViewProfile ? () => onViewProfile() : undefined}
         >
           <div className="sent_group-sidebar-label-pre">
-            <div className="sent_account-profile-avatar">
-              <img src={avatar} className='sent_account-profile-avatar-img' alt='avatar' />
-            </div>
+            <Avatar src={avatar}></Avatar>
             <div className="sent_group-sidebar-label-pre-label">{label}</div>
           </div>
         </div>
