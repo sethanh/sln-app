@@ -2,7 +2,8 @@ export interface AccountModel
 {
     id: string
     name: string
-    googleAccount?: GoogleAccountModel
+    googleAccount?: GoogleAccountModel,
+    picture?: string 
 }
 
 export interface GoogleAccountModel

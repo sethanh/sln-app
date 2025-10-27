@@ -55,6 +55,7 @@ export function Initializer(props: InitializerProps) {
                     }
 
                     if(savedLoginRes) {
+                        
                         setAccount(savedLoginRes);
                     }
                 })
