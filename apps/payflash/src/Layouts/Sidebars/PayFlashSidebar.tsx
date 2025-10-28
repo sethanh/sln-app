@@ -3,7 +3,7 @@ import {
     PaymentSidebar,
     QrCodeSidebar,
     TeamSidebar,
-    DocumentSidebar,
+    MessageSidebar,
     PayFlashAccountAction,
 } from '.'
 import './Sidebar.css'
@@ -15,11 +15,11 @@ export const PayFlashSidebar: React.FC = () => {
         <FlexBox direction="column" justifyContent="space-between" >
             <FlexBox direction="column" gap={2}>
                 <CardHolderSidebar/>
+                <MessageSidebar />
                 <PaymentSidebar />
                 {/* <TaxSidebar/> */}
                 <QrCodeSidebar />
                 <TeamSidebar />
-                <DocumentSidebar />
             </FlexBox >
             <PayFlashAccountAction />
         </FlexBox>

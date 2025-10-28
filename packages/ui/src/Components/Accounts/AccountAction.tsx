@@ -1,6 +1,7 @@
 import React, { PropsWithChildren} from 'react';
 import { IAccountActionProps } from './IAccountAction';
 import '../Sidebars/Sidebar.css'
+import { TextCommon } from '../Typography';
 
 function getInitials(name: string) {
     const words = name.split(" ");
@@ -13,15 +14,16 @@ export const AccountAction: React.FC<PropsWithChildren<IAccountActionProps>> = (
   label,
   className,
   border,
-  style
+  style,
+  onViewProfile
 }) => {
   const termName = getInitials(label || '');
   return (
     <div className={`sent_group-sidebar-wrapper ${className}`} style={style}>
-      <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`}>
+      <div className={`sent_group-sidebar-label ${border ? 'shadow-border' : ''}`} onClick={onViewProfile}>
         <div className="sent_group-sidebar-label-pre">
           <div className="sent_account-action-avatar">{termName.toUpperCase()}</div>
-          <div className="sent_group-sidebar-label-pre-label">{label}</div>
+          <TextCommon fontWeight={500}>{label}</TextCommon>
         </div>
       </div>
     </div>

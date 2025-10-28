@@ -5,7 +5,7 @@ import {
     qrCodeSidebarConstants,
     teamSidebarConstants,
     taxSidebarConstants,
-    documentSidebarConstants,
+    messageSidebarConstants,
     mainRootConstants,
     homeConstants,
     cardHolderConstants
@@ -17,7 +17,7 @@ const contentRootRoutes: ISidebarItemProps[] = [
     ...paymentSidebarConstants,
     ...qrCodeSidebarConstants,
     ...teamSidebarConstants,
-    ...documentSidebarConstants,
+    ...messageSidebarConstants,
     ...taxSidebarConstants,
     ...homeConstants,
     ...cardHolderConstants,
