@@ -4,6 +4,7 @@ export interface IAccountActionProps extends IStyle {
     label?: string
     className?: string
     Icon?: React.ReactNode 
-    border?: boolean
+    border?: boolean,
+    onViewProfile?: () => void
 }
 

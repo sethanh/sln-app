@@ -8,8 +8,8 @@ import { ContactPage, FlashPage, GeneratePage, PaymentPage } from "@my-monorepo/
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
-import { Card, Empty } from "antd";
 import { ICContacts, ICPayments } from "../Assets";
+import { EmptyContainer } from "../Components";
 
 const cardHolderConstants : ISidebarItemProps[]= [
     {
@@ -22,7 +22,7 @@ const cardHolderConstants : ISidebarItemProps[]= [
         label: "Setting",
         Icon: <ICPayments.Setting />,
         path: 'card-holder/setting',
-        page: <Card><Empty description="Feature under development"/></Card>
+        page: <EmptyContainer/>
     }
 ]
 
@@ -34,19 +34,19 @@ const qrCodeSidebarConstants : ISidebarItemProps[]= [
         page: <GeneratePage/>
 
     },
-    {
-        label: "History",
-        Icon: <ICPayments.Clock />,
-        path: 'qrcode/history',
-        page: <Card><Empty description="Feature under development"/></Card>
+    // {
+    //     label: "History",
+    //     Icon: <ICPayments.Clock />,
+    //     path: 'qrcode/history',
+    //     page: <EmptyContainer/>
 
-    },
-    {
-        label: "Setting",
-        Icon: <ICPayments.Setting />,
-        path: 'qrcode/setting',
-        page: <Card><Empty description="Feature under development"/></Card>
-    }
+    // },
+    // {
+    //     label: "Setting",
+    //     Icon: <ICPayments.Setting />,
+    //     path: 'qrcode/setting',
+    //     page: <EmptyContainer/>
+    // }
 ] 
 
 const taxSidebarConstants : ISidebarItemProps[]= [
@@ -54,14 +54,14 @@ const taxSidebarConstants : ISidebarItemProps[]= [
         label: "Tax",
         Icon: <FileDoneOutlined />,
         path: 'tax/generate',
-        page: <Card><Empty description="Feature under development"/></Card>
+        page: <EmptyContainer/>
 
     },
     {
         label: "History",
         Icon: <HistoryOutlined />,
         path: 'tax/history',
-        page: <Card><Empty description="Feature under development"/></Card>
+        page: <EmptyContainer/>
 
     },
 ] 
@@ -79,18 +79,18 @@ const paymentSidebarConstants : ISidebarItemProps[]= [
         path: 'payment/amount',
         page : <PaymentPage/>
     },
-    {
-        label: "Histories",
-        Icon: <ICPayments.Clock/>,
-        path: 'payment/history',
-        page :<Card><Empty description="Feature under development"/></Card>
-    },
-    {
-        label: "Setting",
-        Icon: <ICPayments.Setting/>,
-        path: 'payment/setting',
-        page : <Card><Empty description="Feature under development"/></Card>
-    }
+    // {
+    //     label: "Histories",
+    //     Icon: <ICPayments.Clock/>,
+    //     path: 'payment/history',
+    //     page :<EmptyContainer/>
+    // },
+    // {
+    //     label: "Setting",
+    //     Icon: <ICPayments.Setting/>,
+    //     path: 'payment/setting',
+    //     page : <EmptyContainer/>
+    // }
 ]
 
 const teamSidebarConstants : ISidebarItemProps[]= [
@@ -102,12 +102,30 @@ const teamSidebarConstants : ISidebarItemProps[]= [
     }
 ]
 
-const documentSidebarConstants : ISidebarItemProps[]= [
+const messageSidebarConstants : ISidebarItemProps[]= [
     {
         label: "Message",
-        Icon: <ICPayments.Message />,
+        Icon: <ICPayments.MessageCircle />,
         path: 'message',
         page : <DocumentPage/>
+    },
+    {
+        label: "Connect",
+        Icon: <ICPayments.Connection />,
+        path: 'connect',
+        page : <EmptyContainer/>
+    },
+    {
+        label: "Conversation",
+        Icon: <ICPayments.Conversation />,
+        path: 'conversation',
+        page : <EmptyContainer/>
+    },
+    {
+        label: "Notify setting",
+        Icon: <ICPayments.MessageNotify />,
+        path: 'notify',
+        page : <EmptyContainer/>
     }
 ]
 
@@ -125,7 +143,7 @@ export {
     qrCodeSidebarConstants, 
     teamSidebarConstants, 
     taxSidebarConstants,
-    documentSidebarConstants,
+    messageSidebarConstants,
     homeConstants,
     cardHolderConstants,
 }

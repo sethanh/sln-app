@@ -11,7 +11,6 @@ export const PaymentSidebar: React.FC = () => {
             label='Payment'
             sidebarItems={paymentSidebarConstants}
             Icon={<ICPayments.Wallet stroke='#22356F'/>}
-            defaultShowItem={true}
             border
         />
     );

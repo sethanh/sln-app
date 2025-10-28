@@ -1,16 +1,16 @@
 import React from 'react';
 import { qrCodeSidebarConstants } from '@my-monorepo/payflash/Constants';
-import { GroupSidebar } from '@my-monorepo/ui';
-import { ICPayments } from '@my-monorepo/payflash/Assets';
+import { SingleSidebar } from '@my-monorepo/ui';
+const qrCodeSidebar = qrCodeSidebarConstants[0];
 
 export const QrCodeSidebar: React.FC = () => {
 
     return (
-        <GroupSidebar
+        <SingleSidebar
             label='Qr Code'
-            sidebarItems={qrCodeSidebarConstants}
-            Icon={<ICPayments.QrCode />}
-            defaultShowItem={true}
+            PreIcon={qrCodeSidebar.Icon}
+            value={qrCodeSidebar.path}
+            border={true}
         />
     );
 };
