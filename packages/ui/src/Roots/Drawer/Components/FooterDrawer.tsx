@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonCommon, FlexBox, TextCommon, useGlobalFormRef } from '@my-monorepo/ui';
+import { ButtonCommon, FlexBox, useGlobalFormRef } from '@my-monorepo/ui';
 import { FormikProps } from 'formik';
 
 
