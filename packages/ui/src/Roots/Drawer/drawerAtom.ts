@@ -1,4 +1,4 @@
-import { genericAtom } from '@my-monorepo/utils'
+import { genericAtom } from "@my-monorepo/utils";
 
 export interface DrawerState {
     isOpen?: boolean;
@@ -9,6 +9,7 @@ export interface DrawerState {
     onClose?: () => void;
     subtitle?: React.ReactNode;
     hideHeader?: boolean;
+    submitText?: string;
 }
 
 

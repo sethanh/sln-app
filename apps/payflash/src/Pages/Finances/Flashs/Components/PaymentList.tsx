@@ -1,7 +1,7 @@
 import { urlConstant } from '@my-monorepo/payflash/Constants';
 import { GetAllPaymentResponse } from '@my-monorepo/payflash/Models';
-import { useGlobalDrawer, usePaymentHttpCommand, usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
-import { ButtonCommon, FlexBox, TableCommon, TextCommon } from '@my-monorepo/ui';
+import { usePaymentHttpCommand, usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
+import { ButtonCommon, FlexBox, TableCommon, TextCommon, useGlobalDrawer } from '@my-monorepo/ui';
 import { Button, Col, Row, TableColumnsType, Image } from 'antd';
 import React from 'react';
 import { PaymentResponse } from '@my-monorepo/payflash/Models';
@@ -63,6 +63,7 @@ const PaymentList: React.FC = () => {
                     onSuccess={onRefetch}
                 />
             ),
+            submitText: 'Create payment'
         });
     };
 
@@ -76,6 +77,7 @@ const PaymentList: React.FC = () => {
                     initialValues={record}
                 />
             ),
+            submitText: 'Update payment'
         });
     };
 

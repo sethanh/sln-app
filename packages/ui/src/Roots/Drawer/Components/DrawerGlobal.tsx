@@ -1,10 +1,9 @@
-import { globalDrawerState } from '@my-monorepo/payflash/Root';
-import { DrawerCustom } from './DrawerCustom';
 import { useAtom } from 'jotai';
+import { globalDrawerState } from '../drawerAtom';
+import { DrawerCustom } from './DrawerCustom';
 
 export const DrawerGlobal: React.FC = () =>  {
     const [drawerState, setDrawerState] = useAtom(globalDrawerState);
-    
     return (
         <DrawerCustom
             onClose={() => {
@@ -26,9 +25,9 @@ export const DrawerGlobal: React.FC = () =>  {
             footer={drawerState?.footer}
             hideHeader={drawerState?.hideHeader}
             drawerTitleAction={drawerState?.titleAction}
+            submitText={drawerState?.submitText}
         >
             {drawerState?.content}
-            {/* <SubDrawer /> */}
         </DrawerCustom>
     );
 };

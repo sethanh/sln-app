@@ -14,13 +14,15 @@ export interface AppButtonProps extends Omit<ButtonProps, 'type'> {
     readonly textAlign?: React.CSSProperties['textAlign'];
     readonly borderColor?: React.CSSProperties['borderColor'];
     readonly type?: ButtonType | 'secondary_blue';
+    readonly flex?: React.CSSProperties['flex'];
+    readonly display?: React.CSSProperties['display'];
     readonly tooltipTitle?: string;
     readonly toolTipPlacement?: 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
 }
 
 export const ButtonCommon = (props: AppButtonProps) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { children, translateCode, width, height, padding, textAlign, borderColor, type, className, classNames, tooltipTitle, toolTipPlacement,...rest } = props;
+    const { children, translateCode, width, height, padding, textAlign, borderColor, type, className, classNames, tooltipTitle, toolTipPlacement, display, flex, ...rest } = props;
 
     const style = React.useMemo((): React.CSSProperties => {
         return {
@@ -28,9 +30,11 @@ export const ButtonCommon = (props: AppButtonProps) => {
             padding,
             textAlign,
             borderColor,
-            height
+            height,
+            display,
+            flex
         };
-    }, [borderColor, padding, textAlign, width, height]);
+    }, [borderColor, padding, textAlign, width, height, display, flex]);
 
     const renderButton = () => (
         <Button

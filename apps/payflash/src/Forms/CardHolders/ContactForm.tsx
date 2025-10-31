@@ -34,7 +34,7 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
     profileName: props.initialValues?.profileName  
   } as ContactRequestBody;
 
-  const { mutateAsync, isPending } = usePaymentHttpCommand<ContactRequestBody>({});
+  const { mutateAsync } = usePaymentHttpCommand<ContactRequestBody>({});
 
   const handleSubmit = async (values: ContactRequestBody) => {
     if (props.initialValues && props.initialValues.id) {
@@ -160,15 +160,6 @@ const ContactForm: React.FC<ContactFormProps> = (props: ContactFormProps) => {
                 )}
               />
             </Card>
-
-            <Button
-              type="primary"
-              htmlType="submit"
-              disabled={formik.isSubmitting || !formik.isValid || !formik.dirty}
-              loading={isPending}
-            >
-              {`${props.initialValues?.id ? 'Update' : 'Create'} Contact`} 
-            </Button>
           </FlexBox>
         )}
       </FormikForm>

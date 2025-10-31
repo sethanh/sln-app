@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
-import { AccountAction } from '@my-monorepo/ui';
+import { AccountAction, useGlobalDrawer } from '@my-monorepo/ui';
 import { useAtom } from 'jotai';
 import { 
     AccountForm, 
     currentAccountAtom, 
     urlConstant, 
-    useGlobalDrawer, 
     usePaymentHttpCommand 
 } from '../..';
 import { AccountResponse } from '@my-monorepo/payflash/Models';
@@ -38,6 +37,7 @@ export const PayFlashAccountAction: React.FC = () => {
                         defaultValues={profile}
                     />
                 ),
+                submitText: 'Update profile'
             });
         } catch (error) {
             console.error('Failed to load account detail:', error);

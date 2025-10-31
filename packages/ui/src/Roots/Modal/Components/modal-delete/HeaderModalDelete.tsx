@@ -1,4 +1,3 @@
-import { ICModal } from "@my-monorepo/payflash/Assets";
 import { Block, FlexBox } from "@my-monorepo/ui";
 
 
@@ -12,7 +11,7 @@ export const HeaderModalDelete = () => {
                 borderRadius={999}
             >
                 <FlexBox justifyContent='center' alignItems='center' height='100%' width='100%'>
-                    <ICModal.Trash color='red' />
+                    {/* <ICModal.Trash color='red' /> */}
                 </FlexBox>
             </Block>
         </Block>

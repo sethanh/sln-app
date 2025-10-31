@@ -2,9 +2,9 @@ import { ICSocial } from '@my-monorepo/payflash/Assets';
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants';
 import { ContactForm } from '@my-monorepo/payflash/Forms';
 import { ContactResponse, GetAllContactResponse } from '@my-monorepo/payflash/Models';
-import { useGlobalDrawer, usePaymentHttpCommand, usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
+import { usePaymentHttpCommand, usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
 import { useGlobalModal } from '@my-monorepo/payflash/Root/Store/Modal';
-import { ButtonCommon, FlexBox, TableCommon, TextCommon } from '@my-monorepo/ui';
+import { ButtonCommon, FlexBox, TableCommon, TextCommon, useGlobalDrawer } from '@my-monorepo/ui';
 import { Avatar, Button, Col, Row, TableColumnsType } from 'antd';
 import React from 'react';
 
@@ -62,6 +62,7 @@ const ContactList: React.FC = () => {
                     onSuccess={onRefetch}
                 />
             ),
+            submitText:"Create contact"
         });
     };
 
@@ -75,6 +76,7 @@ const ContactList: React.FC = () => {
                     onSuccess={onRefetch}
                 />
             ),
+            submitText:"Update contact"
         });
     };
 

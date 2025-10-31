@@ -3,17 +3,24 @@
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
         "target": "ES6",
-        "jsx": "react",
+        "jsx": "react-jsx",
         "declaration": true,
         "declarationMap": true,
         "outDir": "dist",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "rootDir": "../../",
+        "baseUrl": "../../",
+        "paths": {
+            "@my-monorepo/utils": ["packages/utils/src"],
+            "@my-monorepo/ui": ["packages/ui/src"],
+        }
     },
     "include": [
-        "src"
+        "src",
+        "../utils/src",
     ],
     "exclude": [
         "node_modules",
