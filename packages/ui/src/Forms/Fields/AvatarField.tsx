@@ -1,11 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Avatar, Button, Form } from 'antd';
 import { LoadingOutlined, UserOutlined } from '@ant-design/icons';
-// import { AppButton, Block, FlexBox } from '@esg/ui';
 import { useFormikContext } from 'formik';
-// import { t } from 'i18next';
-// import { FileUpload } from '@esg/business-upload';
-// import { UploadImage } from '../upload';
 import './AvatarUpload.css';
 import { Block, FlexBox } from '../../Components';
 import { FileUpload } from '../../Models';
@@ -46,8 +42,6 @@ export const AvatarField = (props: AvatarUploadProps) => {
   );
 
   const error = touched?.[name] && (errors?.[name] as string | undefined);
-
-  console.log(props);
 
   return (
     <Form.Item
