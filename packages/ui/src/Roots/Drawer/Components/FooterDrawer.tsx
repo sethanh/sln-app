@@ -1,6 +1,5 @@
 import React from 'react';
 import { ButtonCommon, FlexBox, useGlobalFormRef } from '@my-monorepo/ui';
-import { FormikProps } from 'formik';
 
 interface FooterDrawerProps {
     onClose?: (e: React.MouseEvent | React.KeyboardEvent) => void
