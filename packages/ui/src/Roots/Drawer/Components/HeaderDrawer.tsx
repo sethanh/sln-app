@@ -1,8 +1,7 @@
 import React from 'react';
-
-import { FlexBox, TextCommon } from '@my-monorepo/ui';
 import { CloseOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { FlexBox, TextCommon } from '@my-monorepo/ui';
 
 
 interface HeaderDrawerProps {

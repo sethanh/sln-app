@@ -1,11 +1,10 @@
 import React, { useCallback } from 'react';
-import { AccountAction } from '@my-monorepo/ui';
+import { AccountAction, useGlobalDrawer } from '@my-monorepo/ui';
 import { useAtom } from 'jotai';
 import { 
     AccountForm, 
     currentAccountAtom, 
     urlConstant, 
-    useGlobalDrawer, 
     usePaymentHttpCommand 
 } from '../..';
 import { AccountResponse } from '@my-monorepo/payflash/Models';
