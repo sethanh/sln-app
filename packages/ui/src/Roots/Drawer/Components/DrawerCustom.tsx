@@ -10,6 +10,7 @@ interface DrawerCustomProps extends DrawerProps {
     drawerSubtitle?: React.ReactNode;
     hideHeader?: boolean;
     footer?: React.ReactNode;
+    submitText?: string;
 }
 
 export const DrawerCustom = (props: DrawerCustomProps) => {
@@ -30,7 +31,7 @@ export const DrawerCustom = (props: DrawerCustomProps) => {
             open={props.open}
             placement='right'
             closable={false}
-            footer={props?.footer || <FooterDrawer onClose={props.onClose}/>}
+            footer={props?.footer || <FooterDrawer onClose={props.onClose} submitText={props.submitText}/>}
         >
             {props.children}
         </Drawer>

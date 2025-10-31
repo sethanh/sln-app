@@ -9,6 +9,7 @@ export interface DrawerState {
     onClose?: () => void;
     subtitle?: React.ReactNode;
     hideHeader?: boolean;
+    submitText?: string;
 }
 
 

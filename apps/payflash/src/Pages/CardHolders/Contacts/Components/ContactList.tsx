@@ -62,6 +62,7 @@ const ContactList: React.FC = () => {
                     onSuccess={onRefetch}
                 />
             ),
+            submitText:"Create contact"
         });
     };
 
@@ -75,6 +76,7 @@ const ContactList: React.FC = () => {
                     onSuccess={onRefetch}
                 />
             ),
+            submitText:"Update contact"
         });
     };
 

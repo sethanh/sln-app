@@ -25,6 +25,7 @@ export const DrawerGlobal: React.FC = () =>  {
             footer={drawerState?.footer}
             hideHeader={drawerState?.hideHeader}
             drawerTitleAction={drawerState?.titleAction}
+            submitText={drawerState?.submitText}
         >
             {drawerState?.content}
         </DrawerCustom>

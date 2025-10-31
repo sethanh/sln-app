@@ -63,6 +63,7 @@ const PaymentList: React.FC = () => {
                     onSuccess={onRefetch}
                 />
             ),
+            submitText: 'Create payment'
         });
     };
 
@@ -76,6 +77,7 @@ const PaymentList: React.FC = () => {
                     initialValues={record}
                 />
             ),
+            submitText: 'Update payment'
         });
     };
 

@@ -37,6 +37,7 @@ export const PayFlashAccountAction: React.FC = () => {
                         defaultValues={profile}
                     />
                 ),
+                submitText: 'Update profile'
             });
         } catch (error) {
             console.error('Failed to load account detail:', error);

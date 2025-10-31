@@ -2,10 +2,9 @@ import React from 'react';
 import { ButtonCommon, FlexBox, useGlobalFormRef } from '@my-monorepo/ui';
 import { FormikProps } from 'formik';
 
-
 interface FooterDrawerProps {
     onClose?: (e: React.MouseEvent | React.KeyboardEvent) => void
-    formikRef?: React.RefObject<FormikProps<any>> | null;
+    submitText?: string
 }
 
 export const FooterDrawer = (props: FooterDrawerProps) => {
@@ -14,8 +13,6 @@ export const FooterDrawer = (props: FooterDrawerProps) => {
     const handleSubmit = () => {
         globalFormRef?.formikRef?.current?.submitForm()
     };
-
-    console.log(globalFormRef?.formikRef?.current, 'current', globalFormRef?.isSubmitting, globalFormRef?.isDirty);
 
     const disabled = globalFormRef?.isSubmitting || !globalFormRef?.isDirty;
 
@@ -28,8 +25,9 @@ export const FooterDrawer = (props: FooterDrawerProps) => {
                 display='flex' 
                 onClick={handleSubmit}
                 disabled={disabled}
+                loading={globalFormRef?.isSubmitting}
             >
-                Submit
+                {props?.submitText || 'Submit'}
             </ButtonCommon>
         </FlexBox>
     );
