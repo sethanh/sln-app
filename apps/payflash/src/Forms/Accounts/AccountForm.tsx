@@ -11,7 +11,7 @@ import {
   TextCommon,
 } from '@my-monorepo/ui';
 import { getToken } from '@my-monorepo/utils';
-import { Button, Card } from 'antd';
+import { Card } from 'antd';
 import { useAtom } from 'jotai';
 import React, { useCallback } from 'react';
 
@@ -32,7 +32,7 @@ const AccountForm: React.FC<AccountFormProps> = (props: AccountFormProps) => {
     id: defaultValues?.id || '',
   } as AccountUpdateRequest;
 
-  const { mutateAsync, isPending } = usePaymentHttpCommand<AccountResponse>({
+  const { mutateAsync } = usePaymentHttpCommand<AccountResponse>({
     onSuccess(profile) {
       const initialSrc = profile.photo?.relativePath ? `${appConstant.apiUrl}/${profile.photo?.relativePath}`: profile?.googleAccounts?.[0].picture || '';
       setCurrentAccount({
@@ -69,7 +69,7 @@ const AccountForm: React.FC<AccountFormProps> = (props: AccountFormProps) => {
         validationSchema={accountSchema}
         onSubmit={handleSubmit}
       >
-        {(formik) => (
+        {() => (
           <FlexBox direction="column" gap={6}>
             <TextCommon fontWeight={600}>General Info</TextCommon>
             <Card style={{ width: '100%' }}>
@@ -86,14 +86,6 @@ const AccountForm: React.FC<AccountFormProps> = (props: AccountFormProps) => {
                 <InputPasswordField fieldName="password" label="password" />
               </FlexBox>
             </Card>
-            <Button
-              type="primary"
-              htmlType="submit"
-              disabled={formik.isSubmitting || !formik.dirty}
-              loading={isPending}
-            >
-              Update
-            </Button>
           </FlexBox>
         )}
       </FormikForm>

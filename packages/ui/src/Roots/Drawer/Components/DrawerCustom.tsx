@@ -2,12 +2,14 @@ import './DrawerCustom.css';
 import { Drawer, DrawerProps } from 'antd';
 import React from 'react';
 import { HeaderDrawer } from './HeaderDrawer';
+import { FooterDrawer } from './FooterDrawer';
 
 interface DrawerCustomProps extends DrawerProps {
     drawerTitle?: React.ReactNode;
     drawerTitleAction?: React.ReactNode;
     drawerSubtitle?: React.ReactNode;
     hideHeader?: boolean;
+    footer?: React.ReactNode;
 }
 
 export const DrawerCustom = (props: DrawerCustomProps) => {
@@ -28,7 +30,7 @@ export const DrawerCustom = (props: DrawerCustomProps) => {
             open={props.open}
             placement='right'
             closable={false}
-            footer={false}
+            footer={props?.footer || <FooterDrawer onClose={props.onClose}/>}
         >
             {props.children}
         </Drawer>

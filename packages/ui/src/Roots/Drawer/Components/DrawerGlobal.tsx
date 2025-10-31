@@ -4,7 +4,6 @@ import { DrawerCustom } from './DrawerCustom';
 
 export const DrawerGlobal: React.FC = () =>  {
     const [drawerState, setDrawerState] = useAtom(globalDrawerState);
-    
     return (
         <DrawerCustom
             onClose={() => {
