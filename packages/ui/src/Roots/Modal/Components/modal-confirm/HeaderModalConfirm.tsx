@@ -1,20 +1,17 @@
-import { ICModal } from "@my-monorepo/payflash/Assets";
 import { Block, FlexBox } from "@my-monorepo/ui";
 
 
-export const HeaderModalFinish = () => {
+export const HeaderModalConfirm = () => {
     return (
-        <Block className='header-modal-finish'>
+        <Block className='header-modal-delete'  >
             <Block
                 width={48}
                 height={48}
                 backgroundColor='#DCFAE6'
-                borderRadius={8}
+                borderRadius={999}
             >
                 <FlexBox justifyContent='center' alignItems='center' height='100%' width='100%'>
-                    <Block>
-                        <ICModal.Check color='white'/>
-                    </Block>
+                    {/* <ICModal.Refresh color='green' /> */}
                 </FlexBox>
             </Block>
         </Block>

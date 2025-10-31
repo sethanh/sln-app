@@ -2,8 +2,8 @@ import { PayFlashLayout } from '@my-monorepo/payflash/Layouts'
 import { ManagementBrowserRouter } from '@my-monorepo/payflash/Routes'
 import { ManagementRootRoute } from '@my-monorepo/payflash/Routes'
 import { Initializer } from './Initizlizer'
-import { DrawerGlobal, ModalGlobal } from '../Components'
 import { RealtimeRoot } from './Context'
+import { DrawerGlobal, ModalGlobal } from '@my-monorepo/ui'
 
 function App() {
   return (

@@ -1,4 +1,4 @@
-import { genericAtom } from '@my-monorepo/utils'
+import { genericAtom } from "@my-monorepo/utils";
 
 export interface DrawerState {
     isOpen?: boolean;
