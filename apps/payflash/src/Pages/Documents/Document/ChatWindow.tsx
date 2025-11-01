@@ -10,6 +10,8 @@ import { appConstant, urlConstant } from "@my-monorepo/payflash/Constants";
 import { useAtom } from "jotai";
 import { messageEvents } from "@my-monorepo/payflash/Events";
 import { TextCommon } from "@my-monorepo/ui";
+import "./Document.css"
+import { TextAreaRef } from "antd/es/input/TextArea";
 
 const CONTAINER_HEIGHT = 600;
 const BOTTOM_THRESHOLD = 80;
@@ -39,6 +41,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
   const rafIdRef = useRef<number | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
   const mountedRef = useRef(false);
+
+  const inputRef = useRef<TextAreaRef | null>(null);
 
   // Dedupe theo id để tránh trùng tin nhắn
   const idSet = useMemo(() => new Set(data.map((d) => d.id)), [data]);
@@ -152,6 +156,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
     rafIdRef.current = requestAnimationFrame(() => {
       const dist = target.scrollHeight - target.scrollTop - target.clientHeight;
       if (dist <= BOTTOM_THRESHOLD) void loadOlder();
+
     });
   };
 
@@ -182,6 +187,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
       {
         setDraft("");
         return requestAnimationFrame(() => {
+          inputRef.current?.focus();
           const el = listRef.current;
           if (el) el.scrollTop = 0;
         });
@@ -220,21 +226,29 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         {!isMine && <Avatar src={avatar} style={{ marginRight: 8 }} size="large" />}
         <div
           style={{
-            maxWidth: 520,
-            background: isMine ? "#e6f7ff" : "#fff",
-            border: isMine ? "1px solid #91d5ff" : "1px solid #f0f0f0",
-            borderRadius: 12,
+            maxWidth: "40%",
+            background: isMine ? "#ffffffff" : "#efefefff",
+            border: isMine ? "1px solid #6bfbcdff" : "1px solid #fbfbfb",
+            borderRadius: "16px",
             padding: "8px 12px",
             boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
           }}
         >
           <div style={{ fontSize: 12, color: "#999", marginBottom: 4 }}>
-            {(isMine ? "Bạn" : accountMessage?.name) ?? ""} ·{" "}
-            {new Date(m?.creationTime || "").toLocaleString()}
+              {new Date(m?.creationTime || "").toLocaleString(
+                'en-US',
+                {
+                  year: 'numeric',
+                  month: 'long',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }
+              )}
           </div>
+
           <div style={{ whiteSpace: "pre-wrap" }}>{m.message}</div>
         </div>
-        {isMine && <Avatar src={avatar} style={{ marginLeft: 8 }} size="large" />}
       </List.Item>
     );
   };
@@ -242,14 +256,12 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
   return (
     <div
       style={{
-        flex: 1,
         display: "flex",
+        flex: 1,
         flexDirection: "column",
-        height: 720,
         border: "1px solid #f0f0f0",
         backgroundColor: "white",
-        borderRadius: 8,
-        overflow: "hidden",
+        borderRadius: "12px",
       }}
     >
       {/* Header */}
@@ -276,53 +288,58 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         <div style={{ flex: 1 }} />
         {onClose && <Button onClick={onClose}>Close</Button>}
       </div>
-
-      {/* Message list */}
-      <List style={{ flex: 1, overflow: "hidden" }}>
-        {loadingInitial ? (
-          <div style={{ height: CONTAINER_HEIGHT, overflow: "auto", padding: 12 }}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
-                <Skeleton.Avatar active size="large" />
-                <div style={{ flex: 1 }}>
-                  <Skeleton active paragraph={{ rows: 1 }} title={{ width: "40%" }} />
+        <List 
+          className="chat-window"
+          style={{
+            flex: 1,
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+        }}>
+          {loadingInitial ? (
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
+                  <Skeleton.Avatar active size="large" />
+                  <div style={{ flex: 1 }}>
+                    <Skeleton active paragraph={{ rows: 1 }} title={{ width: "40%" }} />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <>
-            <VirtualList
-              data={data}
-              height={CONTAINER_HEIGHT}
-              itemHeight={72}
-              itemKey="id"
-              onScroll={onScroll}
-              ref={(node: any) => {
-                listRef.current = node?.component?.scrollRef ?? null;
-              }}
-            >
-              {(item: ChatMessageResponse) => renderItem(item)}
-            </VirtualList>
-
-            {/* Loader dưới */}
-            <div style={{ display: "flex", justifyContent: "center", padding: 10 }}>
-              {loadingMore ? (
-                <Spin />
-              ) : hasMore ? (
-                <span style={{ color: "#999", fontSize: 12 }}>Kéo xuống để tải tin cũ…</span>
-              ) : (
-                <span style={{ color: "#999", fontSize: 12 }}>Đã hiển thị tất cả tin cũ</span>
-              )}
+              ))}
             </div>
-          </>
-        )}
-      </List>
+          ) : (
+            <>
+              <VirtualList
+                className="virtual-list"
+                data={data}
+                itemHeight={72}
+                itemKey="id"
+                height={CONTAINER_HEIGHT}
+                onScroll={onScroll}
+                ref={(node: any) => {
+                  listRef.current = node?.component?.scrollRef ?? null;
+                }}
+              >
+                {(item: ChatMessageResponse) => renderItem(item)}
+              </VirtualList>
+
+              {/* Loader dưới */}
+              <div style={{ display: "flex", justifyContent: "center", width: "100%", position: "absolute", bottom: 10 }}>
+                {loadingMore ? (
+                  <Spin />
+                ) : hasMore ? (
+                  <span></span>
+                ) : (
+                  <span style={{ color: "#999", fontSize: 12 }}>Đã hiển thị tất cả tin cũ</span>
+                )}
+              </div>
+            </>
+          )}
+        </List>
 
       {/* Footer */}
       <div
         style={{
-          borderTop: "1px solid #f0f0f0",
           padding: 12,
           background: "#fff",
           display: "flex",
@@ -331,6 +348,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         }}
       >
         <Input.TextArea
+          ref={inputRef}
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
           onKeyDown={onKeyDown}
