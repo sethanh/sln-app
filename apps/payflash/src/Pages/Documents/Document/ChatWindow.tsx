@@ -10,6 +10,8 @@ import { appConstant, urlConstant } from "@my-monorepo/payflash/Constants";
 import { useAtom } from "jotai";
 import { messageEvents } from "@my-monorepo/payflash/Events";
 import { TextCommon } from "@my-monorepo/ui";
+import "./Document.css"
+import { TextAreaRef } from "antd/es/input/TextArea";
 
 const CONTAINER_HEIGHT = 600;
 const BOTTOM_THRESHOLD = 80;
@@ -40,10 +42,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
   const listRef = useRef<HTMLDivElement | null>(null);
   const mountedRef = useRef(false);
 
-  const [containerHeight, setContainerHeight] = useState(0);
-  const listContainerRef = useRef<HTMLDivElement | null>(null);
-
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef<TextAreaRef | null>(null);
 
   // Dedupe theo id để tránh trùng tin nhắn
   const idSet = useMemo(() => new Set(data.map((d) => d.id)), [data]);
@@ -150,24 +149,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         };
     }, [conversationId, data]);
 
-  useEffect(() => {
-    const container = listContainerRef.current;
-    if (!container) return;
-
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const newHeight = entry.contentRect.height;
-        setContainerHeight(newHeight);
-      }
-    });
-
-    resizeObserver.observe(container);
-
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, []);
-
   // Scroll handler — chạm đáy thì load thêm tin cũ
   const onScroll: React.UIEventHandler<HTMLElement> = (e) => {
     if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
@@ -175,6 +156,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
     rafIdRef.current = requestAnimationFrame(() => {
       const dist = target.scrollHeight - target.scrollTop - target.clientHeight;
       if (dist <= BOTTOM_THRESHOLD) void loadOlder();
+
     });
   };
 
@@ -244,7 +226,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         {!isMine && <Avatar src={avatar} style={{ marginRight: 8 }} size="large" />}
         <div
           style={{
-            maxWidth: "25%",
+            maxWidth: "40%",
             background: isMine ? "#ffffffff" : "#efefefff",
             border: isMine ? "1px solid #6bfbcdff" : "1px solid #fbfbfb",
             borderRadius: "16px",
@@ -252,20 +234,21 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
             boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
           }}
         >
+          <div style={{ fontSize: 12, color: "#999", marginBottom: 4 }}>
+              {new Date(m?.creationTime || "").toLocaleString(
+                'en-US',
+                {
+                  year: 'numeric',
+                  month: 'long',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                }
+              )}
+          </div>
+
           <div style={{ whiteSpace: "pre-wrap" }}>{m.message}</div>
         </div>
-        {/* <div style={{ fontSize: 12, color: "#999", marginBottom: 4 }}>
-            {new Date(m?.creationTime || "").toLocaleString(
-              'en-US',
-              {
-                year: 'numeric',
-                month: 'long',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-              }
-            )}
-          </div> */}
       </List.Item>
     );
   };
@@ -305,21 +288,16 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         <div style={{ flex: 1 }} />
         {onClose && <Button onClick={onClose}>Close</Button>}
       </div>
-      
-      <div 
-        ref={listContainerRef}
-        style={{
-          display: "flex", 
-          flexDirection: "column", 
-          flex: 1,
-          position: "relative",
-          overflow: "hidden"
-        }}
-      >
-
-        <List style={{position: "absolute", top: 0, left: 0, right: 0, bottom: 0}}>
+        <List 
+          className="chat-window"
+          style={{
+            flex: 1,
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+        }}>
           {loadingInitial ? (
-            <div style={{ flex: 1, overflow: "auto", padding: 12, position: "relative" }}>
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
               {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
                   <Skeleton.Avatar active size="large" />
@@ -332,10 +310,11 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
           ) : (
             <>
               <VirtualList
+                className="virtual-list"
                 data={data}
                 itemHeight={72}
                 itemKey="id"
-                height={containerHeight}
+                height={CONTAINER_HEIGHT}
                 onScroll={onScroll}
                 ref={(node: any) => {
                   listRef.current = node?.component?.scrollRef ?? null;
@@ -345,11 +324,11 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
               </VirtualList>
 
               {/* Loader dưới */}
-              <div style={{ display: "flex", justifyContent: "center", width: "100%", position: "absolute", bottom: 12}}>
+              <div style={{ display: "flex", justifyContent: "center", width: "100%", position: "absolute", bottom: 10 }}>
                 {loadingMore ? (
                   <Spin />
                 ) : hasMore ? (
-                  <span style={{ color: "#999", fontSize: 12 }}>Kéo xuống để tải tin cũ…</span>
+                  <span></span>
                 ) : (
                   <span style={{ color: "#999", fontSize: 12 }}>Đã hiển thị tất cả tin cũ</span>
                 )}
@@ -357,7 +336,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
             </>
           )}
         </List>
-      </div>
 
       {/* Footer */}
       <div
