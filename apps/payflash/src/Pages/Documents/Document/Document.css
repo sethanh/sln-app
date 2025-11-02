@@ -1,0 +1,28 @@
+.chat-window .ant-spin-nested-loading {
+    flex: 1 !important;
+    display: flex !important;
+    position: unset;
+}
+
+.chat-window .ant-spin-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: unset;
+}
+
+.rc-virtual-list.virtual-list {
+  position: absolute !important;
+  inset: 0 !important;
+  scroll-behavior: smooth !important;
+  overflow-y: scroll !important;
+
+}
+
+.rc-virtual-list.virtual-list .rc-virtual-list-holder {
+  height: 100% !important;
+}
+
+.virtual-list::-webkit-scrollbar {
+  display: none;
+}
