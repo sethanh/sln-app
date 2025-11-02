@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Avatar, Button, Input, List, message as antdMessage, Skeleton, Spin, Tooltip } from "antd";
-import { SendOutlined } from "@ant-design/icons";
+import { Avatar, Button, Input, List, message as antdMessage, Skeleton, Spin, Tooltip, Flex } from "antd";
+import { CloseOutlined, SendOutlined } from "@ant-design/icons";
 import VirtualList from "rc-virtual-list";
 import { ChatMessageResponse, GetAllChatMessageResponse } from "@my-monorepo/payflash/Models";
 import { currentAccountAtom, currentConversation, usePaymentHttpCommand } from "@my-monorepo/payflash/Root";
 import { appConstant, urlConstant } from "@my-monorepo/payflash/Constants";
 import { useAtom } from "jotai";
 import { messageEvents } from "@my-monorepo/payflash/Events";
-import { TextCommon } from "@my-monorepo/ui";
+import { FlexBox, TextCommon } from "@my-monorepo/ui";
 import "./Document.css"
 import { TextAreaRef } from "antd/es/input/TextArea";
 
@@ -125,29 +125,29 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
     };
   }, [conversationId]);
 
-   useEffect(() => {
-        if(!conversationId) return;
-        
-        const listen = messageEvents.refetchMessage.listen((dataMessage) => {
-          if(!dataMessage) return;
-          const hasMessage = data.find(c => dataMessage.messageId === c.id);
-          if(hasMessage) return;
+  useEffect(() => {
+    if (!conversationId) return;
 
-          const messageValue = {
-            id: dataMessage?.messageId,
-            message: dataMessage?.message,
-            conversationId,
-            creationTime: dataMessage.creationTime,
-            accountId: dataMessage.accountId
-          } as ChatMessageResponse; 
-      
-          setData((prev) => [messageValue, ...prev]);
-        });
+    const listen = messageEvents.refetchMessage.listen((dataMessage) => {
+      if (!dataMessage) return;
+      const hasMessage = data.find(c => dataMessage.messageId === c.id);
+      if (hasMessage) return;
 
-        return () => {
-          listen();
-        };
-    }, [conversationId, data]);
+      const messageValue = {
+        id: dataMessage?.messageId,
+        message: dataMessage?.message,
+        conversationId,
+        creationTime: dataMessage.creationTime,
+        accountId: dataMessage.accountId
+      } as ChatMessageResponse;
+
+      setData((prev) => [messageValue, ...prev]);
+    });
+
+    return () => {
+      listen();
+    };
+  }, [conversationId, data]);
 
   // Scroll handler — chạm đáy thì load thêm tin cũ
   const onScroll: React.UIEventHandler<HTMLElement> = (e) => {
@@ -168,14 +168,14 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
     try {
 
       const response = await chatDetailAsync({
-         url: urlConstant.message.chatMessageUrl,
-          requestOptions: {
+        url: urlConstant.message.chatMessageUrl,
+        requestOptions: {
           method: "POST",
           queryParams: {
             page: 1,
             pageSize: 10,
           },
-          body:{
+          body: {
             accountId: account?.id ?? "",
             conversationId,
             message: text,
@@ -183,8 +183,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         },
       });
 
-      if(response)
-      {
+      if (response) {
         setDraft("");
         return requestAnimationFrame(() => {
           inputRef.current?.focus();
@@ -211,31 +210,33 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
   const renderItem = (m: ChatMessageResponse) => {
     const isMine = m.accountId === account?.id;
     const accountMessage = conversation?.accounts?.find((c) => c.accountId === m.accountId)?.account;
-    const avatar = accountMessage?.photo ?  `${appConstant.apiUrl}/${accountMessage.photo?.relativePath}` : accountMessage?.googleAccounts?.[0]?.picture;
+    const avatar = accountMessage?.photo ? `${appConstant.apiUrl}/${accountMessage.photo?.relativePath}` : accountMessage?.googleAccounts?.[0]?.picture;
 
     return (
       <List.Item
         key={m.id}
         style={{
-          paddingInline: 12,
           border: "none",
           display: "flex",
           justifyContent: isMine ? "flex-end" : "flex-start",
+          flex: 1,
+          padding: "8px 12px",
         }}
       >
-        {!isMine && <Avatar src={avatar} style={{ marginRight: 8 }} size="large" />}
+        {!isMine && <Avatar src={avatar} size="large" />}
         <div
           style={{
-            maxWidth: "40%",
-            background: isMine ? "#ffffffff" : "#efefefff",
-            border: isMine ? "1px solid #6bfbcdff" : "1px solid #fbfbfb",
-            borderRadius: "16px",
+            background: isMine ? "#e6f7ff" : "#fff",
+            border: isMine ? "1px solid #91d5ff" : "1px solid #f0f0f0",
+            borderRadius: 12,
             padding: "8px 12px",
             boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
+            gap: 2,
           }}
         >
-          <div style={{ fontSize: 12, color: "#999", marginBottom: 4 }}>
-              {new Date(m?.creationTime || "").toLocaleString(
+          <TextCommon>
+              <TextCommon color="#999" fontSize={10}>{`${isMine ? "Bạn" : accountMessage?.name} • `}</TextCommon>
+              <TextCommon color="#999" fontSize={8}>  {new Date(m?.creationTime || "").toLocaleString(
                 'en-US',
                 {
                   year: 'numeric',
@@ -244,9 +245,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
                   hour: '2-digit',
                   minute: '2-digit',
                 }
-              )}
-          </div>
-
+              )}</TextCommon>
+          </TextCommon>
           <div style={{ whiteSpace: "pre-wrap" }}>{m.message}</div>
         </div>
       </List.Item>
@@ -265,82 +265,74 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
       }}
     >
       {/* Header */}
-      <div
-        style={{
-          padding: "8px 12px",
-          borderBottom: "1px solid #f0f0f0",
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-        }}
-      >
-        <Avatar.Group>
+      <FlexBox padding='8px 12px' gap={8} justifyContent='space-between' borderBottom='1px solid #f0f0f0' flex='none'>
+        <FlexBox gap={8} alignItems='center'>
+           <Avatar.Group>
           {conversation?.accounts?.map((ac, idx) => (
             <Avatar
               key={ac.accountId ?? idx}
-              src={ac.account?.photo? `${appConstant.apiUrl}/${ac.account?.photo.relativePath}`: ac.account?.googleAccounts?.[0]?.picture || ''}
+              src={ac.account?.photo ? `${appConstant.apiUrl}/${ac.account?.photo.relativePath}` : ac.account?.googleAccounts?.[0]?.picture || ''}
             />
           ))}
         </Avatar.Group>
         <TextCommon>
           {conversation?.name}
         </TextCommon>
-        <div style={{ flex: 1 }} />
-        {onClose && <Button onClick={onClose}>Close</Button>}
-      </div>
-        <List 
-          className="chat-window"
-          style={{
-            flex: 1,
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
+        </FlexBox>
+        {onClose &&<Button shape='circle' icon={ <CloseOutlined/>} onClick={onClose}/>}
+      </FlexBox>
+      <List
+        className="chat-window"
+        style={{
+          flex: 1,
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
         }}>
-          {loadingInitial ? (
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
-                  <Skeleton.Avatar active size="large" />
-                  <div style={{ flex: 1 }}>
-                    <Skeleton active paragraph={{ rows: 1 }} title={{ width: "40%" }} />
-                  </div>
+        {loadingInitial ? (
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} style={{ display: "flex", gap: 12, marginBottom: 12 }}>
+                <Skeleton.Avatar active size="large" />
+                <div style={{ flex: 1 }}>
+                  <Skeleton active paragraph={{ rows: 1 }} title={{ width: "40%" }} />
                 </div>
-              ))}
-            </div>
-          ) : (
-            <>
-              <VirtualList
-                className="virtual-list"
-                data={data}
-                itemHeight={72}
-                itemKey="id"
-                height={CONTAINER_HEIGHT}
-                onScroll={onScroll}
-                ref={(node: any) => {
-                  listRef.current = node?.component?.scrollRef ?? null;
-                }}
-              >
-                {(item: ChatMessageResponse) => renderItem(item)}
-              </VirtualList>
-
-              {/* Loader dưới */}
-              <div style={{ display: "flex", justifyContent: "center", width: "100%", position: "absolute", bottom: 10 }}>
-                {loadingMore ? (
-                  <Spin />
-                ) : hasMore ? (
-                  <span></span>
-                ) : (
-                  <span style={{ color: "#999", fontSize: 12 }}>Đã hiển thị tất cả tin cũ</span>
-                )}
               </div>
-            </>
-          )}
-        </List>
+            ))}
+          </div>
+        ) : (
+          <>
+            <VirtualList
+              className="virtual-list"
+              data={data}
+              itemKey="id"
+              height={CONTAINER_HEIGHT}
+              onScroll={onScroll}
+              ref={(node: any) => {
+                listRef.current = node?.component?.scrollRef ?? null;
+              }}
+            >
+              {(item: ChatMessageResponse) => renderItem(item)}
+            </VirtualList>
+
+            {/* Loader dưới */}
+            <div style={{ display: "flex", justifyContent: "center", width: "100%", position: "absolute", bottom: 10 }}>
+              {loadingMore ? (
+                <Spin />
+              ) : hasMore ? (
+                <span></span>
+              ) : (
+                <span style={{ color: "#999", fontSize: 12 }}>Đã hiển thị tất cả tin cũ</span>
+              )}
+            </div>
+          </>
+        )}
+      </List>
 
       {/* Footer */}
       <div
         style={{
-          padding: 12,
+          padding: '0px 12px 12px 12px',
           background: "#fff",
           display: "flex",
           gap: 8,
