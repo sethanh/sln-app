@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Avatar, Button, Input, List, message as antdMessage, Skeleton, Spin, Tooltip, Flex } from "antd";
+import { Avatar, Button, Input, List, message as antdMessage, Skeleton, Spin, Tooltip } from "antd";
 import { CloseOutlined, SendOutlined } from "@ant-design/icons";
 import VirtualList from "rc-virtual-list";
 import { ChatMessageResponse, GetAllChatMessageResponse } from "@my-monorepo/payflash/Models";
