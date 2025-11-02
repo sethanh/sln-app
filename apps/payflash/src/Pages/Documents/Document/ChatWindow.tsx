@@ -57,7 +57,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
           method: "GET",
           queryParams: {
             page: 1,
-            pageSize: 10,
+            pageSize: 30,
             conversationId,
           },
         },
@@ -94,7 +94,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
           method: "GET",
           queryParams: {
             page: 1,
-            pageSize: 10,
+            pageSize: 30,
             conversationId,
             beforeId: nextBeforeId,
           },
