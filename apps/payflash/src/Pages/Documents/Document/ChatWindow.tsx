@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Avatar, Button, Input, List, message as antdMessage, Skeleton, Spin, Tooltip } from "antd";
+import { Avatar, Button, Input, List, message as antdMessage, Skeleton, Spin, Tooltip, Badge } from "antd";
 import { CloseOutlined, SendOutlined } from "@ant-design/icons";
 import VirtualList from "rc-virtual-list";
 import { ChatMessageResponse, GetAllChatMessageResponse } from "@my-monorepo/payflash/Models";
@@ -15,6 +15,7 @@ import { TextAreaRef } from "antd/es/input/TextArea";
 
 const CONTAINER_HEIGHT = 600;
 const BOTTOM_THRESHOLD = 80;
+const TOP_THRESHOLD = 80;
 
 type ChatWindowProps = {
   conversationId: string;
@@ -43,6 +44,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
   const mountedRef = useRef(false);
 
   const inputRef = useRef<TextAreaRef | null>(null);
+
+  const [isAtTop, setIsAtTop] = useState(true);
+  const [isRead, setIsRead] = useState(true); 
 
   // Dedupe theo id để tránh trùng tin nhắn
   const idSet = useMemo(() => new Set(data.map((d) => d.id)), [data]);
@@ -141,13 +145,34 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
         accountId: dataMessage.accountId
       } as ChatMessageResponse;
 
-      setData((prev) => [messageValue, ...prev]);
+      const el = listRef.current;
+
+      if (isAtTop) {
+        setData((prev) => [messageValue, ...prev]);
+        setIsRead(true);
+      } else {
+        if (el) 
+        {
+          const prevScrollTop = el.scrollTop;
+          const prevScrollHeight = el.scrollHeight;
+
+          setData((prev) => [messageValue, ...prev]);
+
+          requestAnimationFrame(() => {
+            const newScrollHeight = el.scrollHeight;
+            const newScrollTop =  prevScrollTop + (newScrollHeight - prevScrollHeight);
+            el.scrollTop = newScrollTop;
+          });
+
+          setIsRead(false);
+        }
+      }
     });
 
     return () => {
       listen();
     };
-  }, [conversationId, data]);
+  }, [conversationId, data, isAtTop, isRead, listRef]);
 
   // Scroll handler — chạm đáy thì load thêm tin cũ
   const onScroll: React.UIEventHandler<HTMLElement> = (e) => {
@@ -157,6 +182,19 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
       const dist = target.scrollHeight - target.scrollTop - target.clientHeight;
       if (dist <= BOTTOM_THRESHOLD) void loadOlder();
 
+      if ((target.scrollTop <= TOP_THRESHOLD))
+      {
+        setIsAtTop(true);
+        setIsRead(true);
+      }
+      else if (target.scrollTop > TOP_THRESHOLD) {
+        if (isRead) {
+          setIsAtTop(false);
+        } else {
+          setIsAtTop(false);
+          setIsRead(false);
+        }
+      }
     });
   };
 
@@ -267,20 +305,36 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
       {/* Header */}
       <FlexBox padding='8px 12px' gap={8} justifyContent='space-between' borderBottom='1px solid #f0f0f0' flex='none'>
         <FlexBox gap={8} alignItems='center'>
-           <Avatar.Group>
-          {conversation?.accounts?.map((ac, idx) => (
-            <Avatar
-              key={ac.accountId ?? idx}
-              src={ac.account?.photo ? `${appConstant.apiUrl}/${ac.account?.photo.relativePath}` : ac.account?.googleAccounts?.[0]?.picture || ''}
-            />
-          ))}
-        </Avatar.Group>
+          {!isRead ? (
+            <Badge dot color="red">
+              <Avatar.Group>
+                {conversation?.accounts?.map((ac, idx) => (
+                  <Avatar
+                    key={ac.accountId ?? idx}
+                    src={ac.account?.photo ? `${appConstant.apiUrl}/${ac.account?.photo.relativePath}` : ac.account?.googleAccounts?.[0]?.picture || ''}
+                  />
+                ))}
+              </Avatar.Group>
+            </Badge>
+          ) : (
+            <Avatar.Group>
+              {conversation?.accounts?.map((ac, idx) => (
+                <Avatar
+                  key={ac.accountId ?? idx}
+                  src={ac.account?.photo ? `${appConstant.apiUrl}/${ac.account?.photo.relativePath}` : ac.account?.googleAccounts?.[0]?.picture || ''}
+                />
+              ))}
+            </Avatar.Group>
+          )
+          }
         <TextCommon>
           {conversation?.name}
         </TextCommon>
         </FlexBox>
         {onClose &&<Button shape='circle' icon={ <CloseOutlined/>} onClick={onClose}/>}
       </FlexBox>
+
+      {/* Message List */}
       <List
         className="chat-window"
         style={{
@@ -309,7 +363,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
               height={CONTAINER_HEIGHT}
               onScroll={onScroll}
               ref={(node: any) => {
-                listRef.current = node?.component?.scrollRef ?? null;
+                listRef.current = document.querySelector('.rc-virtual-list-holder');
               }}
             >
               {(item: ChatMessageResponse) => renderItem(item)}

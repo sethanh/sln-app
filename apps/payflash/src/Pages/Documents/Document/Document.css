@@ -14,8 +14,8 @@
 .rc-virtual-list.virtual-list {
   position: absolute !important;
   inset: 0 !important;
-  scroll-behavior: smooth !important;
-  overflow-y: scroll !important;
+  scroll-behavior: auto !important;
+  overflow-y: auto !important;
 
 }
 
