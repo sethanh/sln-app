@@ -362,7 +362,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ conversationId, onClose 
               itemKey="id"
               height={CONTAINER_HEIGHT}
               onScroll={onScroll}
-              ref={(node: any) => {
+              ref={() => {
                 listRef.current = document.querySelector('.rc-virtual-list-holder');
               }}
             >
