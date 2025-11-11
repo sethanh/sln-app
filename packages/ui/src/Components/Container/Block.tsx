@@ -5,6 +5,9 @@ interface BlockProps {
     readonly className?: string;
     readonly color?: React.CSSProperties['color'];
     readonly display?: React.CSSProperties['display'];
+    readonly flexDirection?: React.CSSProperties['flexDirection'];
+    readonly alignItems?: React.CSSProperties['alignItems'];
+    readonly justifyContent?: React.CSSProperties['justifyContent'];
     readonly textAlign?: React.CSSProperties['textAlign'];
     readonly width?: React.CSSProperties['width'];
     readonly minWidth?: React.CSSProperties['minWidth'];
@@ -37,6 +40,9 @@ export function Block(props: React.PropsWithChildren<BlockProps>) {
         id,
         children,
         display,
+        flexDirection,
+        alignItems,
+        justifyContent,
         textAlign,
         color,
         width,
@@ -94,7 +100,10 @@ export function Block(props: React.PropsWithChildren<BlockProps>) {
             flexGrow,
             cursor,
             objectFit,
-            padding
+            padding,
+            alignItems,
+            justifyContent,
+            flexDirection
         };
     }, [
         color,
@@ -121,7 +130,10 @@ export function Block(props: React.PropsWithChildren<BlockProps>) {
         flexGrow,
         cursor,
         objectFit,
-        padding
+        padding,
+        alignItems,
+        justifyContent,
+        flexDirection
     ]);
 
     return (

@@ -40,14 +40,14 @@ export const useHttpQuery = <TResponse>(
       setIsLoading(false);
       config?.onFinally?.();
     }
-  }, [appName, options?.url]);
+  }, [appName, options?.queryParams]);
 
   useEffect(() => {
     if (config?.autoFetch === false) return;
     if (hasFetched.current) return;
     hasFetched.current = true;
     fetchData();
-  }, [fetchData, config?.autoFetch]);
+  }, [fetchData, config?.autoFetch, options?.queryParams]);
 
   return { data, isLoading, error, refetch: fetchData };
 };

@@ -26,6 +26,10 @@ const chatMessageUrl = appConstant.apiUrl + "/ChatMessages";
 const chatMessageUpdateUrl = chatMessageUrl + "/:id";
 const chatMessageDeleteUrl = chatMessageUrl + "/:id";
 
+const accountConnectionUrl = appConstant.apiUrl + "/AccountConnections";
+const accountConnectionGetAllUrl = accountConnectionUrl;
+const accountConnectionUpdateUrl = accountConnectionUrl + "/:id";
+
 export  const urlConstant = { 
     account: {
         accountUrl,
@@ -59,5 +63,10 @@ export  const urlConstant = {
         chatMessageUrl,
         chatMessageUpdateUrl,
         chatMessageDeleteUrl
+    },
+    connection: {
+        accountConnectionUrl,
+        accountConnectionGetAllUrl,
+        accountConnectionUpdateUrl
     }
 } 

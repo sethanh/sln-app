@@ -12,6 +12,7 @@ export const usePaymentHttpQuery = <TResponse>(
     onSuccess?: (data: TResponse) => void;
     onError?: (error: unknown) => void;
     onFinally?: () => void;
+    autoFetch?: boolean;
   }
 ) => {
   const setAccount = useSetAtom(currentAccountAtom);

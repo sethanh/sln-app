@@ -20,6 +20,10 @@ export interface FlexBoxProps {
     readonly borderBottom?: React.CSSProperties['borderBottom'];
     readonly borderTop?: React.CSSProperties['borderTop'];
     readonly position?: React.CSSProperties['position'];
+    readonly left?: React.CSSProperties['left'];
+    readonly right?: React.CSSProperties['right'];
+    readonly top?: React.CSSProperties['top'];
+    readonly bottom?: React.CSSProperties['bottom'];
     readonly opacity?: React.CSSProperties['opacity'];
     readonly padding?: React.CSSProperties['padding'];
     readonly grow?: React.CSSProperties['flexGrow'];
@@ -31,7 +35,7 @@ export function FlexBox(props: React.PropsWithChildren<FlexBoxProps>) {
         children, flex = 1, alignItems, direction,
         preset, justifyContent, gap, height, width,
         backgroundColor, borderRadius, cursor, flexWrap, border,
-        position, borderBottom, borderTop, opacity, padding, grow,
+        position, left, right, top, bottom, borderBottom, borderTop, opacity, padding, grow,
         onClick } = props;
     const clx = React.useMemo(() => {
         const clx = ['flex-box'];
@@ -58,6 +62,10 @@ export function FlexBox(props: React.PropsWithChildren<FlexBoxProps>) {
             flexWrap,
             border,
             position,
+            left,
+            right,
+            top,
+            bottom,
             borderBottom,
             opacity,
             padding,
@@ -102,7 +110,7 @@ export function FlexBox(props: React.PropsWithChildren<FlexBoxProps>) {
         }
 
         return style;
-    }, [flex, alignItems, direction, justifyContent, gap, height, width, backgroundColor, borderRadius, cursor, flexWrap, border, position, borderBottom, opacity, padding, borderTop, grow, preset]);
+    }, [flex, alignItems, direction, justifyContent, gap, height, width, backgroundColor, borderRadius, cursor, flexWrap, border, position, left, right, top, bottom, borderBottom, opacity, padding, borderTop, grow, preset]);
 
     return (
         <div className={clx} style={style} onClick={onClick} >
