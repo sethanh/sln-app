@@ -1,5 +1,4 @@
-import { PhotoGetDetailResponse } from "../Contacts";
-import { AccountResponse, GoogleAccountResponse } from "../Messages";
+import { AccountResponse } from "../Messages";
 
 export interface AccountConnectionSearchRequest {
     email: string;
@@ -34,6 +33,6 @@ export interface AccountConnectionUpdateResponse {
 }
 
 export interface AccountConnectionDetailResponse extends AccountResponse {
-    connectionId: string;
+    connectionId?: string;
 }
 

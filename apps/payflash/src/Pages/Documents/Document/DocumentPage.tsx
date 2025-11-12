@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChatWindow } from './ChatWindow';
 import { Avatar, Spin } from 'antd';
-import { Block, ButtonCommon, FlexBox, ListCommon, ListItemCommon, TextCommon } from '@my-monorepo/ui';
+import { Block, FlexBox, ListCommon, ListItemCommon, TextCommon } from '@my-monorepo/ui';
 import { currentConversation, usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
 import { appConstant, urlConstant } from '@my-monorepo/payflash/Constants';
 import { AccountConnectionDetailResponse, AccountConnectionGetAllResponse, ConversationResponse, GetAllConversationResponse } from '@my-monorepo/payflash/Models';
@@ -13,10 +13,10 @@ import { ConnectActionEnum } from '../Connect/Enums';
 const DocumentPage: React.FC = () => {
     const [, setConversation] = useAtom(currentConversation);
     const [selectedConversationId, setSelectedConversationId] = useState<string | null>(null);
-    const [isSender, setIsSender] = useState(true);
-    const [loadingInitial, setLoadingInitial] = useState(false);
-    const [loadingMore, setLoadingMore] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
+    const [isSender, ] = useState(true);
+    const [loadingInitial, ] = useState(false);
+    const [loadingMore, ] = useState(false);
+    const [hasMore, ] = useState(true);
 
     const listRef = useRef<HTMLDivElement | null>(null);
 
@@ -113,7 +113,7 @@ const DocumentPage: React.FC = () => {
                     </TextCommon>
                 </Block>
 
-                <ListCommon
+                <ListCommon<AccountConnectionDetailResponse>
                     containerStyle={{ 
                         display: "flex", 
                         flexDirection: "column", 

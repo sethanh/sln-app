@@ -9,13 +9,13 @@ import { ConnectActionEnum } from "./Enums";
 
 export const ConnectPage : React.FC = () => {
     const [isSender, setIsSender] = useState(true);
-    const [loadingInitial, setLoadingInitial] = useState(false);
-    const [loadingMore, setLoadingMore] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
+    const [loadingInitial, ] = useState(false);
+    const [loadingMore, ] = useState(false);
+    const [hasMore, ] = useState(true);
 
     const listRef = useRef<HTMLDivElement | null>(null);
 
-    const {globalDrawer, setGlobalDrawer, resetGlobalDrawerState } = useGlobalDrawer();
+    const {setGlobalDrawer, resetGlobalDrawerState } = useGlobalDrawer();
 
     const selectOptions = [
         { value: "true", label: "Sent Requests" },
@@ -115,7 +115,7 @@ export const ConnectPage : React.FC = () => {
                         initialValues={{ listType: isSender ? 'true' : 'false' }}
                         onSubmit={() => {}} // can be no-op
                     >
-                        {(formik) => (
+                        {() => (
                             <SelectField
                                 fieldName="listType"
                                 options={selectOptions}
@@ -139,7 +139,7 @@ export const ConnectPage : React.FC = () => {
                 </ButtonCommon>
             </Block>
 
-            <ListCommon
+            <ListCommon<AccountConnectionDetailResponse>
                 containerStyle={{ display: "flex", flexDirection: "column", width: "100%", backgroundColor: "#f4f4f4ff" }}
                 containerClassName="friend-list-container"
                 data={requestList?.items || []}

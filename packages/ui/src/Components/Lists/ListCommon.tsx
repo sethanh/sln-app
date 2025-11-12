@@ -17,7 +17,7 @@ export interface ListCommonProps<T> {
     listItemKey?: string;
 }
 
-export const ListCommon: React.FC = <T,>(props: ListCommonProps<T>) => {
+export const ListCommon = <T,>(props: ListCommonProps<T>) => {
     return (
         <List
             className={props.containerClassName}

@@ -1,4 +1,4 @@
-import { AccountConnectionResponse, AccountConnectionSearchRequest, AccountConnectionSearchResponse, AccountResponse } from "@my-monorepo/payflash/Models";
+import { AccountConnectionResponse, AccountConnectionSearchRequest, AccountConnectionSearchResponse } from "@my-monorepo/payflash/Models";
 import { Block, FormikForm, InputField } from "@my-monorepo/ui"
 import { useEffect, useState } from "react";
 import { urlConstant } from "../../Constants";
@@ -32,7 +32,7 @@ export const AddFriendForm : React.FC<AddFriendFormProps> = (props) => {
 
     const { mutateAsync } = usePaymentHttpCommand<AccountConnectionResponse>();
 
-    const handleSubmit = async (values: AccountConnectionSearchRequest) => {
+    const handleSubmit = async () => {
         if (searchedAccount) {
             const requestedAccount = searchedAccount.items[0];
 
@@ -41,7 +41,7 @@ export const AddFriendForm : React.FC<AddFriendFormProps> = (props) => {
                 requestOptions: {
                     method: "POST",
                     body: {
-                        accountRequestId: currentAccount?.id!,
+                        accountRequestId: currentAccount?.id,
                         accountAcceptId: requestedAccount.id
                     }
                 }
@@ -62,7 +62,7 @@ export const AddFriendForm : React.FC<AddFriendFormProps> = (props) => {
                 onSubmit={handleSubmit}
             >
             {
-                (formik) => (
+                () => (
                     <InputField
                         fieldName="email"
                         label="Email"
