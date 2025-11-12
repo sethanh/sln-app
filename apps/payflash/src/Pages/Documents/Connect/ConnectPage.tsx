@@ -30,9 +30,9 @@ export const ConnectPage: React.FC = () => {
 
 
     return (
-        <FlexBox direction="column" gap={4}>
+        <FlexBox direction="column" gap={12}>
             <FlexBox flex='none' >
-                Connect Page
+                Connection
             </FlexBox>
             <FlexBox flex='none' alignItems="center" justifyContent='center'>
                 <Block padding={2} backgroundColor="white" borderRadius={8}>

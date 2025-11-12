@@ -25,6 +25,8 @@ export interface AccountConnectionResponse {
     accountRequestId: string;
     accountAcceptId: string;
     status: AccountConnectionStatus;
+    accountRequest?: AccountResponse;
+    accountAccept?: AccountResponse;
 }
 
 export interface AccountConnectionUpdateRequest {
