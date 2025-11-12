@@ -30,7 +30,7 @@ export interface ConversationAccountResponse extends AuditModel {
 export interface AccountResponse extends AuditModel {
   name: string;
   email: string;
-  password: string;
+  password?: string;
   photoId?: string;
   rootAccount?: boolean;
   chatMessages?: ChatMessageResponse[];

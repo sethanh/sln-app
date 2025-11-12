@@ -4,7 +4,7 @@ import {
     FileDoneOutlined
 } from "@ant-design/icons";
 // import {  TaskPage } from "../Pages";
-import { ContactPage, FlashPage, GeneratePage, PaymentPage } from "@my-monorepo/payflash/Pages";
+import { ConnectPage, ContactPage, FlashPage, GeneratePage, PaymentPage } from "@my-monorepo/payflash/Pages";
 import { TeamPage } from "@my-monorepo/payflash/Pages";
 import { DocumentPage } from "@my-monorepo/payflash/Pages";
 import { ISidebarItemProps } from "@my-monorepo/ui";
@@ -113,7 +113,7 @@ const messageSidebarConstants : ISidebarItemProps[]= [
         label: "Connect",
         Icon: <ICPayments.Connection />,
         path: 'connect',
-        page : <EmptyContainer/>
+        page : <ConnectPage/>
     },
     {
         label: "Conversation",
