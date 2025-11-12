@@ -42,3 +42,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
+
+.ant-card-body {
+    padding: 12px;
+}

@@ -1,25 +1,30 @@
+import { PaginationResponse } from "@my-monorepo/ui";
 import { AccountResponse } from "../Messages";
 
+export enum AccountConnectionStatus {
+    Wait = 0,
+    Accepted = 1,
+    Rejected = 2,
+    Canceled = 3
+}
 export interface AccountConnectionSearchRequest {
     email: string;
 }
 
-export interface AccountConnectionSearchResponse {
-    items: AccountResponse[];
-}
+export type AccountGetAllSearchResponse = PaginationResponse<AccountResponse>;
 
 export interface AccountConnectionRequest {
-    accountRequestId: string;
-    accountAcceptId: string;
+    accountRequestId?: string;
+    accountAcceptId?: string;
 }
+
+export type  AccountConnectionGetAllResponse = PaginationResponse<AccountConnectionResponse>;
 
 export interface AccountConnectionResponse {
+    id: string;
     accountRequestId: string;
     accountAcceptId: string;
-}
-
-export interface AccountConnectionGetAllResponse {
-    items: AccountResponse[];
+    status: AccountConnectionStatus;
 }
 
 export interface AccountConnectionUpdateRequest {
