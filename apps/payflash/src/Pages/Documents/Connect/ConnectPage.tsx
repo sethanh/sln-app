@@ -26,9 +26,6 @@ export const ConnectPage: React.FC = () => {
     //         useCountTotal: true
     //     },
     // });
-
-
-
     return (
         <FlexBox direction="column" gap={12}>
             <FlexBox flex='none' >

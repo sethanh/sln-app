@@ -1,4 +1,4 @@
-import { IJobType, RealtimeData, RealtimeKeys } from "./Types";
+import { RealtimeData, RealtimeKeys } from "./Types";
 
 export const realtimeDataParse = (data: RealtimeData): RealtimeData => {
     return {
@@ -11,6 +11,6 @@ export const getRealtimeKey = (data: RealtimeData): RealtimeKeys => {
     return data.key.split('-')[0] as RealtimeKeys;
 };
 
-export const getRealtimeJob = (data: RealtimeData): IJobType => {
-    return data.key.split('_')[0] as IJobType;
+export const getRealtimeJob = (data: RealtimeData) => {
+    return data.key.split('_')[0];
 };
