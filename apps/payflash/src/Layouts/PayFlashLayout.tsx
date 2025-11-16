@@ -6,7 +6,6 @@ import './Layout.css'
 import { PayFlashHeader } from './Sidebars/PayFlashHeader';
 import { ICPayments } from '../Assets';
 
-
 export const PayFlashLayout: React.FC = () => {
     
     return (
