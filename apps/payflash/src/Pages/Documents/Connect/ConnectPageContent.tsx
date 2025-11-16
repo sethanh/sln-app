@@ -6,7 +6,6 @@ interface ContentProps {
 }
 
 export const ConnectPageContent: React.FC<ContentProps> = ({ activeTab }) => {
-    
     switch (activeTab) {
         case "Friends":
             return <FlexBox>Friends Content</FlexBox>;
