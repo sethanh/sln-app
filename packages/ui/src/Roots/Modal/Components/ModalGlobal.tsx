@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { ModalCustom } from './ModalCustom';
-import { useGlobalModal } from '@my-monorepo/payflash/Root/Store/Modal';
 import { ModalDelete } from './modal-delete';
 import { ModalConfirm } from './modal-confirm';
 import { ModalFinish } from './modal-finish';
+import {useGlobalModal} from '../hooks/useGlobalModal'
 
 
 export const ModalGlobal = () => {

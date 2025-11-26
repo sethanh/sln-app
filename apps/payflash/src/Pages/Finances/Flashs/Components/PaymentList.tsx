@@ -1,13 +1,12 @@
 import { urlConstant } from '@my-monorepo/payflash/Constants';
 import { GetAllPaymentResponse } from '@my-monorepo/payflash/Models';
 import { usePaymentHttpCommand, usePaymentHttpQuery } from '@my-monorepo/payflash/Root';
-import { ButtonCommon, FlexBox, TableCommon, TextCommon, useGlobalDrawer } from '@my-monorepo/ui';
+import { ButtonCommon, FlexBox, TableCommon, TextCommon, useGlobalDrawer, useGlobalModal } from '@my-monorepo/ui';
 import { Button, Col, Row, TableColumnsType, Image } from 'antd';
 import React from 'react';
 import { PaymentResponse } from '@my-monorepo/payflash/Models';
 import { PaymentForm } from '@my-monorepo/payflash/Forms';
 import { ICSocial } from '@my-monorepo/payflash/Assets';
-import { useGlobalModal } from '@my-monorepo/payflash/Root/Store/Modal';
 
 const PaymentList: React.FC = () => {
     const { resetGlobalDrawerState, setGlobalDrawer } = useGlobalDrawer();

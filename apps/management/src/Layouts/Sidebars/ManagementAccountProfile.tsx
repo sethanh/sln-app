@@ -4,7 +4,6 @@ import {AccountProfile} from '@my-monorepo/ui'
 export const ManagementAccountProfile: React.FC = () => {
     return (
        <AccountProfile
-            label='Nguyễn Thanh Sẻ'
-       />
+            label='Nguyễn Thanh Sẻ' onLogin={()=>{}} onLogOut={()=>{}}       />
     );
 };

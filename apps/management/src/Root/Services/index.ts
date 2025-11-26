@@ -1,1 +1,1 @@
-export * from './managementApiFetch'
+export * from './hooks'

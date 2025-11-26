@@ -1,12 +1,9 @@
 import { useHttpQuery } from "@my-monorepo/utils";
 import { IRequestOptions } from "packages/utils/src/services/IRequestOptions";
-import { paymentToken, currentAccountAtom } from "@my-monorepo/payflash/Root";
-import { useSetAtom } from "jotai";
-import { useNavigate } from "react-router";
 
 const appName = import.meta.env.VITE_APP_NAME;
 
-export const usePaymentHttpQuery = <TResponse>(
+export const useManagementHttpQuery = <TResponse>(
   options?: IRequestOptions,
   config?: {
     onSuccess?: (data: TResponse) => void;
@@ -15,8 +12,6 @@ export const usePaymentHttpQuery = <TResponse>(
     autoFetch?: boolean;
   }
 ) => {
-  const setAccount = useSetAtom(currentAccountAtom);
-  const navigate = useNavigate();
 
   return useHttpQuery<TResponse>(appName, options, {
     ...config,
@@ -27,9 +22,6 @@ export const usePaymentHttpQuery = <TResponse>(
       const status = error?.status ?? error?.response?.status;
       if (status === 401) {
         console.warn("Token hết hạn hoặc không hợp lệ — clearing token...");
-        paymentToken.removePaymentToken();
-        setAccount(null);
-        navigate("/auth/login");
       }
 
       config?.onError?.(error);
