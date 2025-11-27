@@ -1,12 +1,14 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { IRequestOptions } from "../IRequestOptions";
 import { handleApiFetch } from "../handleApiFetch";
+import { useSmartQuery } from "../../query";
 
 interface UseHttpQueryConfig<TResponse> {
   onSuccess?: (data: TResponse) => void;
   onError?: (error: unknown) => void;
   onFinally?: () => void;
-  autoFetch?: boolean; 
+  autoFetch?: boolean;
+  staleTime?: number; // ms
 }
 
 export const useHttpQuery = <TResponse>(
@@ -14,40 +16,105 @@ export const useHttpQuery = <TResponse>(
   options?: IRequestOptions,
   config?: UseHttpQueryConfig<TResponse>
 ) => {
-  const [data, setData] = useState<TResponse | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<unknown | null>(null);
+  const { autoFetch = true, staleTime = 0 } = config || {};
 
-  const hasFetched = useRef(false);
+  const url = options?.url;
+  const method = options?.method;
 
-  const fetchData = useCallback(async () => {
-    if (!options?.url) return;
-    setIsLoading(true);
-    setError(null);
+  const qpKey = useMemo(
+    () => JSON.stringify(options?.queryParams ?? {}),
+    [options?.queryParams]
+  );
 
-    try {
-      const result = await handleApiFetch<TResponse>(options.url, options, appName);
+  const bodyKey = useMemo(
+    () => JSON.stringify(options?.body ?? {}),
+    [options?.body]
+  );
 
-      if (result !== null && result !== undefined) {
-        setData(result);
-        config?.onSuccess?.(result);
-      }
+  const headersKey = useMemo(
+    () => JSON.stringify(options?.headers ?? {}),
+    [options?.headers]
+  );
 
-    } catch (err) {
-      setError(err);
-      config?.onError?.(err);
-    } finally {
-      setIsLoading(false);
+  const queryKey = useMemo(
+    () =>
+      [
+        "http",
+        appName,
+        url,
+        method,
+        qpKey,
+        bodyKey,
+        headersKey,
+      ] as const,
+    [appName, url, method, qpKey, bodyKey, headersKey]
+  );
+
+  const enabled = autoFetch && !!url;
+
+  const queryFn = useCallback(async (): Promise<TResponse> => {
+    if (!url) {
+      throw new Error("Missing URL in useHttpQuery");
+    }
+
+    // dựng lại requestOptions từ các phần stable – tránh lệ thuộc vào cả object options
+    const requestOptions: IRequestOptions = {
+      ...(options || {}),
+      url,
+      method,
+      queryParams: options?.queryParams,
+      body: options?.body,
+      headers: options?.headers,
+    };
+
+    const result = await handleApiFetch<TResponse>(url, requestOptions, appName);
+    return result as TResponse;
+  }, [
+    appName,
+    url,
+    method,
+    qpKey,      // đảm bảo đổi queryParams => tạo queryFn mới
+    bodyKey,    // đổi body => queryFn mới
+    headersKey, // đổi headers => queryFn mới
+  ]);
+
+  const {
+    data,
+    error,
+    status,
+    isLoading,
+    isFetching,
+    isStale,
+    refetch,
+  } = useSmartQuery<TResponse>({
+    queryKey,
+    queryFn,
+    enabled,
+    staleTime,
+  });
+
+  // callback onSuccess / onFinally
+  useEffect(() => {
+    if (status === "success" && data !== undefined && data !== null) {
+      config?.onSuccess?.(data);
       config?.onFinally?.();
     }
-  }, [appName, options?.queryParams]);
+  }, [status, data, config]);
 
+  // callback onError / onFinally
   useEffect(() => {
-    if (config?.autoFetch === false) return;
-    if (hasFetched.current) return;
-    hasFetched.current = true;
-    fetchData();
-  }, [fetchData, config?.autoFetch, options?.queryParams]);
+    if (status === "error" && error) {
+      config?.onError?.(error);
+      config?.onFinally?.();
+    }
+  }, [status, error, config]);
 
-  return { data, isLoading, error, refetch: fetchData };
+  return {
+    data: (data as TResponse | undefined) ?? null,
+    error,
+    isLoading,
+    isFetching,
+    isStale,
+    refetch,
+  };
 };
