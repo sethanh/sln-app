@@ -10,11 +10,11 @@ export const RequestConnectPage: React.FC<RequestConnectProps> = () => {
 
   return (
     <Row gutter={[12,12]}>
-      <Col sm={24} md={12}>
-      <RequestConnectAction/>
+      <Col  xs={24} sm={24} md={12}>
+        <RequestConnectAction/>
       </Col>
-       <Col sm={24} md={12}>
-      <RequestConnectList/>
+      <Col  xs={24} sm={24} md={12}>
+        <RequestConnectList/>
       </Col>
     </Row>
   );

@@ -28,7 +28,7 @@ export const RequestConnectList: React.FC<AddFriendFormProps> = () => {
 
   return (
     <FlexBox direction="column" gap={12}>
-      <TextCommon>Account connected request list</TextCommon>
+      <TextCommon fontWeight={550}>Account connected request list</TextCommon>
       <Spin spinning={connectionLoading}>
         <FlexBox direction="column" gap={8} > 
             { data?.items?.map((accountConnect) => {

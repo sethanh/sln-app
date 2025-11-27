@@ -4,7 +4,7 @@ import {
   AccountGetAllSearchResponse,
   AccountResponse
 } from "@my-monorepo/payflash/Models";
-import { FlexBox } from "@my-monorepo/ui";
+import { FlexBox, TextCommon } from "@my-monorepo/ui";
 import { Input, Spin } from "antd";
 import { useState, useCallback, memo, useEffect } from "react";
 import { usePaymentHttpCommand } from "@my-monorepo/payflash/Root";
@@ -18,7 +18,7 @@ export interface AddFriendFormProps {
 }
 
 const SearchInput = memo(({ onSearch }: { onSearch: (value: string) => void }) => (
-  <Search placeholder="Enter email to search..." onSearch={onSearch} />
+  <Search placeholder="Enter email to search..." onSearch={onSearch}  style={{width: '100%'}}/>
 ));
 
 export const RequestConnectAction: React.FC<AddFriendFormProps> = () => {
@@ -90,6 +90,7 @@ export const RequestConnectAction: React.FC<AddFriendFormProps> = () => {
 
   return (
     <FlexBox direction="column" gap={12}>
+      <TextCommon fontWeight={550}>Add connection</TextCommon>
       <SearchInput onSearch={setTextSearch} />
       <Spin spinning={searchLoading || connectionLoading}>
         <FlexBox direction="column" gap={8} > 
