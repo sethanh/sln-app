@@ -26,6 +26,10 @@ export function usePaymentSignalR() {
       // if (eventName === "DataAdded" || eventName === "ChildDataAdded") {
       //   // yourNotifyToast("Có thông báo thanh toán mới", payload);
       // }
+      
+      if (eventName === "DataModified" && resolvedKey.startsWith("NOTIFY-")) {
+        // payload is the NOTIFY object itself
+      }
     },
   });
 }

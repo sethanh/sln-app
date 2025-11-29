@@ -2,10 +2,19 @@ import { useEffect } from 'react';
 import { useRealtimeContext } from '../RealtimeRoot';
 import { RealtimeData, RealtimeEvents } from '../Types';
 import { getRealtimeJob, realtimeDataParse } from '../realtimeUtils';
-import { MessageEventModel, messageEvents } from '@my-monorepo/payflash/Events';
+import { MessageEventModel, messageEvents, notifyEvents } from '@my-monorepo/payflash/Events';
+import { NotifyEventModel } from '@my-monorepo/payflash/Events/Enums/NotifyEventModel';
 
 export const useDataModified = () => {
-    const { realtimeConn: conn } = useRealtimeContext();
+    const { realtimeConn: conn, notify } = useRealtimeContext();
+    
+    const notifySuccess = (payload: any) => {
+        notify.success({
+            message: `${payload.title}`,
+            description: `${payload.body}\n`,
+            duration: 5,
+    });
+    }
 
     // const handleAppointmentRealtime = useAppointmentRealtime();
     // const handleInventorySoldOutNotify = useInventorySoldOutNotify();
@@ -31,9 +40,13 @@ export const useDataModified = () => {
                     messageEvents.refetchMessage.emit(messageValue)
                     break;
                 }
-                default:
-                    break;
+                case "NOTIFY": {
+                    const messageValue = data.data as NotifyEventModel;
+                    notifyEvents.refetchBell.emit(messageValue);
+                }
             }
+
+            notifySuccess(data.data);
         });
 
         return () => {

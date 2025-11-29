@@ -26,7 +26,7 @@ export type RealtimeListenerOptions<TContext extends RealtimeContext> = {
       | "ChildDataRemoved"
       | "Connected"
       | "Error",
-    payload: unknown
+    payload: any
   ) => void;
   /** Tùy chọn debug log */
   debug?: boolean;
@@ -105,7 +105,7 @@ export function useSignalRListener<TContext extends RealtimeContext>(opts: Realt
       // Đăng ký handler cho tất cả server events
       SERVER_EVENTS.forEach((evt) => {
         connection.off(evt); // tránh đăng ký lặp
-        connection.on(evt, (payload: unknown) => {
+        connection.on(evt, (payload) => {
           if (debug) console.log(`[SignalR] ${evt}`, payload);
           // Forward đến consumer cho từng key đã subscribe (nhiều key có thể cùng nghe 1 event)
           // Ở server payload item thường có .Key, nhưng không bắt buộc; ta cứ bắn cả bộ keys.
